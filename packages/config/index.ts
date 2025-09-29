@@ -1,46 +1,44 @@
-import type { Config } from "./types";
+import type { AppConfig } from "./types";
 
-export const config: Config = {
-  name: "Your App Name",
+export const config: AppConfig = {
+  appName: "Your App Name",
   description: "A Full-stack starter kit for building web and mobile app",
   author: "Your Name",
-  mail: {
-    fromAddress: "hi@codebasehub.pro",
-  },
+  emailFrom: "hi@codebasehub.pro",
   legal: {
-    termsOfServiceUrl: "https://codebasehub.pro/terms",
-    privacyPolicyUrl: "https://codebasehub.pro/privacy",
+    termsUrl: "https://codebasehub.pro/terms",
+    privacyUrl: "https://codebasehub.pro/privacy",
   },
   i18n: {
-    defaultLocale: "en",
-    locales: ["en", "tr", "ar"],
+    default: "en",
+    supported: ["en", "tr", "ar"],
   },
   platforms: {
     web: {
       auth: {
-        signupEnabled: true,
-        googleLoginEnabled: false,
-        appleLoginEnabled: false,
+        allowSignup: true,
+        google: false,
+        apple: false,
       },
-      ui: {
-        defaultTheme: "system", // light, dark, system
-      },
+      theme: "system",
     },
-    native: {
+    mobile: {
       auth: {
-        signupEnabled: true,
-        googleLoginEnabled: false,
-        appleLoginEnabled: false,
+        allowSignup: true,
+        google: false,
+        apple: false,
       },
-      ui: {
-        defaultTheme: "system", // light, dark, system
+      theme: "system",
+      features: {
+        onboarding: true,
       },
-      hasOnboarding: true,
-      hasAppsFlyer: false,
-      hasOneSignal: false,
-      hasPostHog: false,
+      integrations: {
+        appsFlyer: false,
+        oneSignal: false,
+        postHog: false,
+      },
     },
   },
 };
 
-export type { Config, I18nConfig, Locale } from "./types";
+export type { AppConfig as Config, I18nConfig, Locale } from "./types";

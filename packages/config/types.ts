@@ -1,39 +1,55 @@
-export type PlatformConfig = {
-  auth: {
-    signupEnabled: boolean;
-    googleLoginEnabled?: boolean;
-    appleLoginEnabled?: boolean;
-  };
-  ui: {
-    defaultTheme: "system" | "light" | "dark";
-  };
-  hasOnboarding?: boolean;
-  hasAppsFlyer?: boolean;
-  hasOneSignal?: boolean;
-  hasPostHog?: boolean;
-};
+export type Theme = "system" | "light" | "dark";
 
 export type Locale = "en" | "tr" | "ar";
 
-export type I18nConfig = {
-  defaultLocale: Locale;
-  locales: Locale[];
+export type I18n = {
+  default: Locale;
+  supported: Locale[];
 };
 
-export type Config = {
-  name: string;
-  description: string;
-  author: string;
-  mail: {
-    fromAddress: string;
+export type AuthSettings = {
+  allowSignup: boolean;
+  google: boolean;
+  apple: boolean;
+};
+
+export type WebSettings = {
+  auth: AuthSettings;
+  theme: Theme;
+};
+
+export type MobileSettings = {
+  auth: AuthSettings;
+  theme: Theme;
+  features: {
+    onboarding: boolean;
   };
-  legal: {
-    termsOfServiceUrl: string;
-    privacyPolicyUrl: string;
-  };
-  i18n: I18nConfig;
-  platforms: {
-    web: PlatformConfig;
-    native: PlatformConfig;
+  integrations: {
+    appsFlyer: boolean;
+    oneSignal: boolean;
+    postHog: boolean;
   };
 };
+
+export type Platforms = {
+  web: WebSettings;
+  mobile: MobileSettings;
+};
+
+export type AppConfig = {
+  appName: string;
+  description: string;
+  author: string;
+  emailFrom: string;
+  legal: {
+    termsUrl: string;
+    privacyUrl: string;
+  };
+  i18n: I18n;
+  platforms: Platforms;
+};
+
+// Compatibility aliases for existing imports
+export type Config = AppConfig;
+export type I18nConfig = I18n;
+export type PlatformConfig = WebSettings | MobileSettings;

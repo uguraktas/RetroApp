@@ -25,10 +25,10 @@
     "pg": "^8.14.1",
     "ai": "^5.0.49",
     "@ai-sdk/google": "^2.0.13",
-    "better-auth": "^1.3.13",
-    "@better-auth/expo": "^1.3.13",
-    "@polar-sh/better-auth": "^1.1.3",
-    "@polar-sh/sdk": "^0.34.16"
+    "better-auth": "^1.3.23",
+    "@better-auth/expo": "^1.3.23",
+    "@polar-sh/better-auth": "^1.1.4",
+    "@polar-sh/sdk": "^0.35.2"
   },
   "trustedDependencies": [
     "supabase"

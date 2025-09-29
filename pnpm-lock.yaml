@@ -38,6 +38,9 @@ importers:
       '@react-navigation/native':
         specifier: ^7.0.14
         version: 7.1.17(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
+      '@repo/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@stardazed/streams-text-encoding':
         specifier: ^1.0.2
         version: 1.0.2
@@ -162,6 +165,9 @@ importers:
       '@polar-sh/sdk':
         specifier: ^0.35.2
         version: 0.35.2
+      '@repo/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@trpc/client':
         specifier: ^11.5.0
         version: 11.6.0(@trpc/server@11.6.0(typescript@5.8.3))(typescript@5.8.3)
@@ -217,6 +223,9 @@ importers:
       '@polar-sh/better-auth':
         specifier: ^1.1.4
         version: 1.1.4(@polar-sh/sdk@0.35.2)(better-auth@1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+      '@repo/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@tanstack/react-form':
         specifier: ^1.12.3
         version: 1.23.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -304,6 +313,12 @@ importers:
         version: 4.1.13
       typescript:
         specifier: ^5
+        version: 5.8.3
+
+  packages/config:
+    devDependencies:
+      typescript:
+        specifier: ^5.8.2
         version: 5.8.3
 
 packages:

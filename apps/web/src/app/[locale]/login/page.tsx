@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import SignInForm from "@/components/sign-in-form";
 import SignUpForm from "@/components/sign-up-form";
 
 export default function LoginPage() {
+  const t = useTranslations();
   const [showSignIn, setShowSignIn] = useState(false);
 
   return (
@@ -20,8 +22,7 @@ export default function LoginPage() {
               codebasehub
             </h2>
             <p className="text-lg text-muted-foreground">
-              Build faster with our modern full-stack platform featuring AI
-              capabilities, secure authentication, and beautiful UI components.
+              {t("login.branding.subtitle")}
             </p>
           </div>
           <div className="mt-8 space-y-4">
@@ -30,9 +31,11 @@ export default function LoginPage() {
                 <span className="text-lg">⚡</span>
               </div>
               <div>
-                <h3 className="font-semibold">Lightning Fast</h3>
+                <h3 className="font-semibold">
+                  {t("login.branding.features.lightningFast.title")}
+                </h3>
                 <p className="text-muted-foreground text-sm">
-                  Built with Next.js and modern tools
+                  {t("login.branding.features.lightningFast.description")}
                 </p>
               </div>
             </div>
@@ -41,9 +44,11 @@ export default function LoginPage() {
                 <span className="text-lg">🔐</span>
               </div>
               <div>
-                <h3 className="font-semibold">Secure by Default</h3>
+                <h3 className="font-semibold">
+                  {t("login.branding.features.secureByDefault.title")}
+                </h3>
                 <p className="text-muted-foreground text-sm">
-                  Enterprise-grade authentication
+                  {t("login.branding.features.secureByDefault.description")}
                 </p>
               </div>
             </div>
@@ -52,9 +57,11 @@ export default function LoginPage() {
                 <span className="text-lg">🤖</span>
               </div>
               <div>
-                <h3 className="font-semibold">AI-Powered</h3>
+                <h3 className="font-semibold">
+                  {t("login.branding.features.aiPowered.title")}
+                </h3>
                 <p className="text-muted-foreground text-sm">
-                  Integrated AI chat capabilities
+                  {t("login.branding.features.aiPowered.description")}
                 </p>
               </div>
             </div>

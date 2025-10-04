@@ -1,20 +1,22 @@
 "use client";
 
-import { CheckCircle2, Copy, Home, ShoppingBag } from "lucide-react";
+import { CheckCircle2, Copy, Home } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function SuccessPage() {
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const checkoutId = searchParams.get("checkout_id");
 
   const copyToClipboard = () => {
     if (checkoutId) {
       navigator.clipboard.writeText(checkoutId);
-      toast.success("Checkout ID copied to clipboard!");
+      toast.success(t("success.copySuccess"));
     }
   };
 
@@ -27,11 +29,10 @@ export default function SuccessPage() {
             <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
           <h1 className="mb-2 font-bold text-3xl text-gray-900 dark:text-gray-100">
-            Payment Successful!
+            {t("success.title")}
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Thank you for your purchase. Your payment has been processed
-            successfully.
+            {t("success.subtitle")}
           </p>
         </div>
 
@@ -40,13 +41,13 @@ export default function SuccessPage() {
           <Card className="border-green-200 dark:border-green-800">
             <CardHeader className="pb-3">
               <CardTitle className="text-center text-lg">
-                Transaction Details
+                {t("success.transactionDetails")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
                 <p className="mb-1 text-gray-500 text-sm dark:text-gray-400">
-                  Checkout ID
+                  {t("success.checkoutId")}
                 </p>
                 <div className="flex items-center justify-between">
                   <code className="break-all font-mono text-gray-900 text-sm dark:text-gray-100">
@@ -64,7 +65,7 @@ export default function SuccessPage() {
                 </div>
               </div>
               <p className="text-center text-gray-500 text-xs dark:text-gray-400">
-                Save this ID for your records
+                {t("success.saveRecord")}
               </p>
             </CardContent>
           </Card>
@@ -75,7 +76,7 @@ export default function SuccessPage() {
           <Button asChild className="w-full" size="lg" variant="outline">
             <Link href="/dashboard">
               <Home className="h-4 w-4" />
-              Back to Dashboard
+              {t("success.backToDashboard")}
             </Link>
           </Button>
         </div>
@@ -83,9 +84,9 @@ export default function SuccessPage() {
         {/* Footer Message */}
         <div className="text-center">
           <p className="text-gray-500 text-sm dark:text-gray-400">
-            Need help? Contact our{" "}
+            {t("success.needHelp")}{" "}
             <Link className="text-primary hover:underline" href="/contact">
-              support team
+              {t("success.supportTeam")}
             </Link>
           </p>
         </div>

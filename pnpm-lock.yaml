@@ -67,7 +67,7 @@ importers:
         version: 5.0.56(zod@3.25.76)
       better-auth:
         specifier: ^1.3.23
-        version: 1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       expo:
         specifier: ^54.0.1
         version: 54.0.10(@babel/core@7.28.4)(@expo/metro-runtime@6.1.2)(expo-router@6.0.8)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
@@ -164,7 +164,7 @@ importers:
         version: 0.4.0(@trpc/server@11.6.0(typescript@5.8.3))(hono@4.9.9)
       '@polar-sh/better-auth':
         specifier: ^1.1.7
-        version: 1.1.7(@polar-sh/sdk@0.35.4)(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(better-auth@1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.11)
+        version: 1.1.7(@polar-sh/sdk@0.35.4)(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(better-auth@1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.11)
       '@polar-sh/sdk':
         specifier: ^0.35.4
         version: 0.35.4
@@ -182,7 +182,7 @@ importers:
         version: 5.0.60(zod@4.1.11)
       better-auth:
         specifier: ^1.3.26
-        version: 1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dotenv:
         specifier: ^17.2.1
         version: 17.2.2
@@ -221,11 +221,11 @@ importers:
   apps/web:
     dependencies:
       '@ai-sdk/react':
-        specifier: ^2.0.39
-        version: 2.0.56(react@19.1.0)(zod@4.1.11)
+        specifier: ^2.0.60
+        version: 2.0.60(react@19.1.0)(zod@4.1.11)
       '@polar-sh/better-auth':
-        specifier: ^1.1.4
-        version: 1.1.4(@polar-sh/sdk@0.35.4)(better-auth@1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: ^1.1.7
+        version: 1.1.7(@polar-sh/sdk@0.35.4)(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(better-auth@1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.11)
       '@repo/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -248,11 +248,11 @@ importers:
         specifier: ^11.5.0
         version: 11.6.0(@tanstack/react-query@5.90.2(react@19.1.0))(@trpc/client@11.6.0(@trpc/server@11.6.0(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.6.0(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       ai:
-        specifier: ^5.0.49
-        version: 5.0.56(zod@4.1.11)
+        specifier: ^5.0.60
+        version: 5.0.60(zod@4.1.11)
       better-auth:
-        specifier: ^1.3.23
-        version: 1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^1.3.26
+        version: 1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -392,6 +392,16 @@ packages:
 
   '@ai-sdk/react@2.0.56':
     resolution: {integrity: sha512-7glIc65IZYFx+GZIcvMFdp+lkJnpsgRJNGRhStF6naUXtCrhjC5SyyXFMwZk+GMk3ZK9Kb83zdnWqtO7LOXGuA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^18 || ^19 || ^19.0.0-rc
+      zod: ^3.25.76 || ^4.1.8
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
+  '@ai-sdk/react@2.0.60':
+    resolution: {integrity: sha512-Ev0MC0I7eDcCH4FnrHzK48g9bJjyF3F67MMq76qoVsbtcs6fGIO5RjmYgPoFeSo8/yQ5EM6i/14yfcD0oB+moA==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -1885,13 +1895,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@polar-sh/better-auth@1.1.4':
-    resolution: {integrity: sha512-8SfzZdeqig4NltgIQZe9ezIY05hCRTKwrvup4TvYKUfr5dGSD+dN53OgmyPrx10tNNPXW9xiDrDYDvmRrhs1eg==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      '@polar-sh/sdk': ^0.34.16
-      better-auth: ^1.3.9
 
   '@polar-sh/better-auth@1.1.7':
     resolution: {integrity: sha512-NtrYj6roBVwrGMwkGO3KCX1BjAumUCw+RjHwYb4WEc1FijPFCuZvn6toz9zStNP8oEetab1cy+jLWlbZiJ27eQ==}
@@ -7435,12 +7438,6 @@ snapshots:
       '@ai-sdk/provider-utils': 3.0.10(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/gateway@1.0.30(zod@4.1.11)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.11)
-      zod: 4.1.11
-
   '@ai-sdk/gateway@1.0.33(zod@4.1.11)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
@@ -7488,10 +7485,10 @@ snapshots:
     optionalDependencies:
       zod: 3.25.76
 
-  '@ai-sdk/react@2.0.56(react@19.1.0)(zod@4.1.11)':
+  '@ai-sdk/react@2.0.60(react@19.1.0)(zod@4.1.11)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.10(zod@4.1.11)
-      ai: 5.0.56(zod@4.1.11)
+      ai: 5.0.60(zod@4.1.11)
       react: 19.1.0
       swr: 2.3.6(react@19.1.0)
       throttleit: 2.1.0
@@ -8127,7 +8124,7 @@ snapshots:
   '@better-auth/expo@1.3.23(better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(expo-constants@18.0.9)(expo-crypto@15.0.7(expo@54.0.10))(expo-linking@8.0.8)(expo-secure-store@15.0.7(expo@54.0.10))(expo-web-browser@15.0.7(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0)))':
     dependencies:
       '@better-fetch/fetch': 1.1.18
-      better-auth: 1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       expo-constants: 18.0.9(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))
       expo-crypto: 15.0.7(expo@54.0.10)
       expo-linking: 8.0.8(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
@@ -8138,7 +8135,7 @@ snapshots:
   '@better-auth/expo@1.3.26(better-auth@1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(expo-constants@18.0.9)(expo-crypto@15.0.7(expo@54.0.10))(expo-linking@8.0.8)(expo-secure-store@15.0.7(expo@54.0.10))(expo-web-browser@15.0.7(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0)))':
     dependencies:
       '@better-fetch/fetch': 1.1.18
-      better-auth: 1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       expo-constants: 18.0.9(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))
       expo-crypto: 15.0.7(expo@54.0.10)
       expo-linking: 8.0.8(expo@54.0.10)(react-native@0.81.4(@babel/core@7.28.4)(@types/react@19.1.15)(react@19.1.0))(react@19.1.0)
@@ -9166,17 +9163,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@polar-sh/better-auth@1.1.4(@polar-sh/sdk@0.35.4)(better-auth@1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
-    dependencies:
-      '@polar-sh/sdk': 0.35.4
-      better-auth: 1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      zod: 3.25.76
-
-  '@polar-sh/better-auth@1.1.7(@polar-sh/sdk@0.35.4)(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(better-auth@1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.11)':
+  '@polar-sh/better-auth@1.1.7(@polar-sh/sdk@0.35.4)(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(better-auth@1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(zod@4.1.11)':
     dependencies:
       '@polar-sh/checkout': 0.1.12(@stripe/react-stripe-js@3.10.0(@stripe/stripe-js@7.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@stripe/stripe-js@7.9.0)(@types/react-dom@19.1.9(@types/react@19.1.15))(@types/react@19.1.15)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@polar-sh/sdk': 0.35.4
-      better-auth: 1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      better-auth: 1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod: 4.1.11
     transitivePeerDependencies:
       - '@modelcontextprotocol/sdk'
@@ -10887,14 +10878,6 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 3.25.76
 
-  ai@5.0.56(zod@4.1.11):
-    dependencies:
-      '@ai-sdk/gateway': 1.0.30(zod@4.1.11)
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.11)
-      '@opentelemetry/api': 1.9.0
-      zod: 4.1.11
-
   ai@5.0.60(zod@4.1.11):
     dependencies:
       '@ai-sdk/gateway': 1.0.33(zod@4.1.11)
@@ -11102,7 +11085,7 @@ snapshots:
 
   baseline-browser-mapping@2.8.9: {}
 
-  better-auth@1.3.23(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  better-auth@1.3.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@better-auth/core': 1.3.23
       '@better-auth/utils': 0.3.0
@@ -11118,11 +11101,10 @@ snapshots:
       nanostores: 1.0.1
       zod: 4.1.11
     optionalDependencies:
-      next: 15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  better-auth@1.3.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  better-auth@1.3.26(next@15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@better-auth/core': 1.3.26
       '@better-auth/utils': 0.3.0
@@ -11138,6 +11120,7 @@ snapshots:
       nanostores: 1.0.1
       zod: 4.1.11
     optionalDependencies:
+      next: 15.5.0(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 

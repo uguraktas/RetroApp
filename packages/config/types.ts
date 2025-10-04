@@ -4,7 +4,7 @@ export type Locale = "en" | "tr" | "ar";
 
 export type I18n = {
   default: Locale;
-  supported: Locale[];
+  locales: Record<Locale, string>; // locale code -> native name
 };
 
 export type AuthSettings = {

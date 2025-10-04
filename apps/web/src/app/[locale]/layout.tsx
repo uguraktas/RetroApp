@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../index.css";
-import Header from "@/components/header";
+import { ConditionalHeader } from "@/components/conditional-header";
 import Providers from "@/components/providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -49,7 +49,7 @@ export default async function LocaleLayout({
 				<NextIntlClientProvider messages={messages}>
 					<Providers>
 						<div className="grid h-svh grid-rows-[auto_1fr]">
-							<Header />
+							<ConditionalHeader />
 							{children}
 						</div>
 					</Providers>

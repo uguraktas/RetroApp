@@ -23,7 +23,8 @@
     "previous": "Previous",
     "email": "Email",
     "password": "Password",
-    "name": "Name"
+    "name": "Name",
+    "now": "Now"
   },
   "navigation": {
     "home": "Home",
@@ -160,5 +161,86 @@
     "needHelp": "Need help? Contact our",
     "supportTeam": "support team",
     "copySuccess": "Checkout ID copied to clipboard!"
+  },
+  "sidebar": {
+    "overview": "Overview",
+    "accountSettings": "Account Settings",
+    "general": "General",
+    "security": "Security",
+    "billing": "Billing",
+    "dangerZone": "Danger Zone",
+    "admin": "Admin",
+    "footer": "© 2024 CodeBaseHub",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "settings": {
+    "general": {
+      "title": "General Settings",
+      "description": "Manage your account information and preferences",
+      "profileInfo": "Profile Information",
+      "profileDescription": "Update your name and email address",
+      "namePlaceholder": "Enter your name",
+      "emailPlaceholder": "Enter your email",
+      "saved": "Settings saved successfully",
+      "saving": "Saving..."
+    },
+    "security": {
+      "title": "Security Settings",
+      "description": "Manage your password, two-factor authentication, and active sessions",
+      "changePassword": "Change Password",
+      "passwordDescription": "Update your password to keep your account secure",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "updatePassword": "Update Password",
+      "updating": "Updating...",
+      "passwordChanged": "Password changed successfully",
+      "passwordMismatch": "Passwords do not match",
+      "twoFactor": "Two-Factor Authentication",
+      "twoFactorDescription": "Add an extra layer of security to your account",
+      "enable2FA": "Enable 2FA",
+      "activeSessions": "Active Sessions",
+      "sessionsDescription": "Manage devices that are currently signed in to your account",
+      "currentDevice": "Current Device",
+      "lastActive": "Last active",
+      "active": "Active",
+      "revokeAllSessions": "Revoke All Other Sessions"
+    },
+    "billing": {
+      "title": "Billing Settings",
+      "description": "Manage your subscription and payment methods",
+      "currentPlan": "Current Plan",
+      "planDescription": "View and manage your subscription plan",
+      "proDescription": "Access to all premium features",
+      "freeDescription": "Basic features included",
+      "manage": "Manage Plan",
+      "upgrade": "Upgrade to Pro",
+      "paymentMethod": "Payment Method",
+      "paymentDescription": "Update your payment information",
+      "managePayment": "Manage Payment Method",
+      "history": "Billing History",
+      "historyDescription": "View your past invoices and payments",
+      "viewHistory": "View Billing History"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "description": "Irreversible actions that affect your account",
+      "exportData": "Export Your Data",
+      "exportDescription": "Download a copy of all your account data",
+      "downloadData": "Download Data",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "Once you delete your account, there is no going back. Please be certain.",
+      "permanentAction": "This action is permanent and cannot be undone:",
+      "deleteItem1": "All your data will be permanently deleted",
+      "deleteItem2": "Your subscription will be cancelled",
+      "deleteItem3": "You will lose access to all features",
+      "typeDelete": "Type DELETE to confirm",
+      "deleteAccountButton": "Delete My Account",
+      "deleting": "Deleting...",
+      "confirmError": "Please type DELETE to confirm",
+      "accountDeleted": "Account deleted successfully"
+    }
   }
 }

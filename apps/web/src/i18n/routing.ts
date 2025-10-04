@@ -3,7 +3,7 @@ import { createNavigation } from "next-intl/navigation";
 import { config, type Locale } from "@repo/config";
 
 export const routing = defineRouting({
-	locales: config.i18n.supported as readonly Locale[],
+	locales: Object.keys(config.i18n.locales) as readonly Locale[],
 	defaultLocale: config.i18n.default,
 	localePrefix: "as-needed",
 });

@@ -22,22 +22,22 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8">
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-2">
-          <h1 className="font-bold text-4xl tracking-tight">Dashboard</h1>
-          <p className="text-muted-foreground text-xl">
-            Welcome back,{" "}
-            <span className="font-semibold text-foreground">
-              {session.data.user.name}
-            </span>
-          </p>
-        </div>
-
-        {/* Dashboard Content */}
-        <Dashboard customerState={customerState} session={session.data} />
+    <div className="space-y-6 sm:space-y-8">
+      {/* Header */}
+      <div className="space-y-2">
+        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl lg:text-4xl">
+          Dashboard
+        </h1>
+        <p className="text-muted-foreground text-base sm:text-lg lg:text-xl">
+          Welcome back,{" "}
+          <span className="font-semibold text-foreground">
+            {session.data.user.name}
+          </span>
+        </p>
       </div>
+
+      {/* Dashboard Content */}
+      <Dashboard customerState={customerState} session={session.data} />
     </div>
   );
 }

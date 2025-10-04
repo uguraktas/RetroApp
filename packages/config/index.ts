@@ -11,7 +11,11 @@ export const appConfig: AppConfig = {
   },
   i18n: {
     default: "en",
-    supported: ["en", "tr", "ar"],
+    locales: {
+      en: "English",
+      tr: "Türkçe",
+      ar: "العربية",
+    },
   },
   platforms: {
     web: {

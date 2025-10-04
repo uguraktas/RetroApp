@@ -13,12 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
-const LANGUAGE_NAMES: Record<string, string> = {
-	en: "English",
-	tr: "Türkçe",
-	ar: "العربية",
-};
-
 export default function LanguageSwitcher() {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -26,7 +20,8 @@ export default function LanguageSwitcher() {
 	const [isPending, startTransition] = useTransition();
 
 	const currentLocale = (params.locale as string) || config.i18n.default;
-	const supportedLocales = config.i18n.supported;
+	const supportedLocales = Object.keys(config.i18n.locales);
+	const localeNames = config.i18n.locales;
 
 	if (supportedLocales.length <= 1) {
 		return null;
@@ -62,7 +57,7 @@ export default function LanguageSwitcher() {
 								handleLocaleChange(locale);
 							}}
 						>
-							{LANGUAGE_NAMES[locale] || locale.toUpperCase()}
+							{localeNames[locale as keyof typeof localeNames] || locale.toUpperCase()}
 						</DropdownMenuItem>
 					);
 				})}

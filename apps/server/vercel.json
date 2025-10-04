@@ -1,5 +1,10 @@
 {
 	"installCommand": "pnpm install --filter=server...",
-	"buildCommand": "echo 'No build needed'",
-	"rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+	"buildCommand": "pnpm run build",
+	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+	"functions": {
+		"api/index.ts": {
+			"maxDuration": 60
+		}
+	}
 }

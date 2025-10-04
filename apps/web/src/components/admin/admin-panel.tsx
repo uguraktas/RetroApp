@@ -79,7 +79,7 @@ export function AdminPanel() {
     try {
       await authClient.admin.setRole({
         userId,
-        role,
+        role: role as "user" | "admin",
       });
       toast.success(t("admin.success.roleUpdated"));
       await loadUsers();

@@ -44,7 +44,7 @@ interface MenuItem {
 export function DashboardSidebar({
   user,
 }: {
-  user: { name: string; email: string; role?: string };
+  user: { name: string; email: string; role?: string | null };
 }) {
   const t = useTranslations();
   const pathname = usePathname();

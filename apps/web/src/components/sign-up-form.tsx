@@ -1,5 +1,6 @@
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import z from "zod";
 import Loader from "./loader";
@@ -13,6 +14,7 @@ export default function SignUpForm({
 }: {
 	onSwitchToSignIn: () => void;
 }) {
+	const t = useTranslations();
 	const router = useRouter();
 	const { isPending } = authClient.useSession();
 
@@ -32,7 +34,7 @@ export default function SignUpForm({
 				{
 					onSuccess: () => {
 						router.push("/dashboard");
-						toast.success("Sign up successful");
+						toast.success(t("auth.signUp.success"));
 					},
 					onError: (error) => {
 						toast.error(error.error.message || error.error.statusText);
@@ -42,9 +44,9 @@ export default function SignUpForm({
 		},
 		validators: {
 			onSubmit: z.object({
-				name: z.string().min(2, "Name must be at least 2 characters"),
-				email: z.email("Invalid email address"),
-				password: z.string().min(8, "Password must be at least 8 characters"),
+				name: z.string().min(2, t("auth.validation.nameMin")),
+				email: z.email(t("auth.validation.invalidEmail")),
+				password: z.string().min(8, t("auth.validation.passwordMin")),
 			}),
 		},
 	});
@@ -57,9 +59,9 @@ export default function SignUpForm({
 		<div className="mx-auto w-full max-w-md">
 			<div className="bg-card border rounded-2xl shadow-xl p-8">
 				<div className="space-y-2 mb-8">
-					<h1 className="text-3xl font-bold">Create Account</h1>
+					<h1 className="text-3xl font-bold">{t("auth.signUp.title")}</h1>
 					<p className="text-muted-foreground">
-						Get started with your free account
+						{t("auth.signUp.subtitle")}
 					</p>
 				</div>
 
@@ -76,12 +78,12 @@ export default function SignUpForm({
 							{(field) => (
 								<div className="space-y-2">
 									<Label htmlFor={field.name} className="text-sm font-medium">
-										Name
+										{t("common.name")}
 									</Label>
 									<Input
 										id={field.name}
 										name={field.name}
-										placeholder="John Doe"
+										placeholder={t("auth.signUp.namePlaceholder")}
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -102,13 +104,13 @@ export default function SignUpForm({
 							{(field) => (
 								<div className="space-y-2">
 									<Label htmlFor={field.name} className="text-sm font-medium">
-										Email
+										{t("common.email")}
 									</Label>
 									<Input
 										id={field.name}
 										name={field.name}
 										type="email"
-										placeholder="you@example.com"
+										placeholder={t("auth.signUp.emailPlaceholder")}
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -129,13 +131,13 @@ export default function SignUpForm({
 							{(field) => (
 								<div className="space-y-2">
 									<Label htmlFor={field.name} className="text-sm font-medium">
-										Password
+										{t("common.password")}
 									</Label>
 									<Input
 										id={field.name}
 										name={field.name}
 										type="password"
-										placeholder="••••••••"
+										placeholder={t("auth.signUp.passwordPlaceholder")}
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -158,7 +160,7 @@ export default function SignUpForm({
 								className="w-full h-11 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
 								disabled={!state.canSubmit || state.isSubmitting}
 							>
-								{state.isSubmitting ? "Creating account..." : "Sign Up"}
+								{state.isSubmitting ? t("auth.signUp.creatingAccount") : t("auth.signUp.signUp")}
 							</Button>
 						)}
 					</form.Subscribe>
@@ -166,13 +168,13 @@ export default function SignUpForm({
 
 				<div className="mt-6 text-center">
 					<p className="text-sm text-muted-foreground">
-						Already have an account?{" "}
+						{t("auth.signUp.haveAccount")}{" "}
 						<Button
 							variant="link"
 							onClick={onSwitchToSignIn}
 							className="p-0 h-auto font-semibold text-blue-600 hover:text-blue-700"
 						>
-							Sign In
+							{t("auth.signUp.signIn")}
 						</Button>
 					</p>
 				</div>

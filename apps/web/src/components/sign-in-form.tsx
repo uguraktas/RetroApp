@@ -1,5 +1,6 @@
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import z from "zod";
 import Loader from "./loader";
@@ -13,6 +14,7 @@ export default function SignInForm({
 }: {
 	onSwitchToSignUp: () => void;
 }) {
+	const t = useTranslations();
 	const router = useRouter();
 	const { isPending } = authClient.useSession();
 
@@ -30,7 +32,7 @@ export default function SignInForm({
 				{
 					onSuccess: () => {
 						router.push("/dashboard");
-						toast.success("Sign in successful");
+						toast.success(t("auth.signIn.success"));
 					},
 					onError: (error) => {
 						toast.error(error.error.message || error.error.statusText);
@@ -40,8 +42,8 @@ export default function SignInForm({
 		},
 		validators: {
 			onSubmit: z.object({
-				email: z.email("Invalid email address"),
-				password: z.string().min(8, "Password must be at least 8 characters"),
+				email: z.email(t("auth.validation.invalidEmail")),
+				password: z.string().min(8, t("auth.validation.passwordMin")),
 			}),
 		},
 	});
@@ -54,9 +56,9 @@ export default function SignInForm({
 		<div className="mx-auto w-full max-w-md">
 			<div className="bg-card border rounded-2xl shadow-xl p-8">
 				<div className="space-y-2 mb-8">
-					<h1 className="text-3xl font-bold">Welcome Back</h1>
+					<h1 className="text-3xl font-bold">{t("auth.signIn.title")}</h1>
 					<p className="text-muted-foreground">
-						Sign in to your account to continue
+						{t("auth.signIn.subtitle")}
 					</p>
 				</div>
 
@@ -73,13 +75,13 @@ export default function SignInForm({
 							{(field) => (
 								<div className="space-y-2">
 									<Label htmlFor={field.name} className="text-sm font-medium">
-										Email
+										{t("common.email")}
 									</Label>
 									<Input
 										id={field.name}
 										name={field.name}
 										type="email"
-										placeholder="you@example.com"
+										placeholder={t("auth.signIn.emailPlaceholder")}
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -100,13 +102,13 @@ export default function SignInForm({
 							{(field) => (
 								<div className="space-y-2">
 									<Label htmlFor={field.name} className="text-sm font-medium">
-										Password
+										{t("common.password")}
 									</Label>
 									<Input
 										id={field.name}
 										name={field.name}
 										type="password"
-										placeholder="••••••••"
+										placeholder={t("auth.signIn.passwordPlaceholder")}
 										value={field.state.value}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
@@ -129,7 +131,7 @@ export default function SignInForm({
 								className="w-full h-11 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
 								disabled={!state.canSubmit || state.isSubmitting}
 							>
-								{state.isSubmitting ? "Signing in..." : "Sign In"}
+								{state.isSubmitting ? t("auth.signIn.signingIn") : t("auth.signIn.signIn")}
 							</Button>
 						)}
 					</form.Subscribe>
@@ -137,13 +139,13 @@ export default function SignInForm({
 
 				<div className="mt-6 text-center">
 					<p className="text-sm text-muted-foreground">
-						Don't have an account?{" "}
+						{t("auth.signIn.noAccount")}{" "}
 						<Button
 							variant="link"
 							onClick={onSwitchToSignUp}
 							className="p-0 h-auto font-semibold text-blue-600 hover:text-blue-700"
 						>
-							Sign Up
+							{t("auth.signIn.signUp")}
 						</Button>
 					</p>
 				</div>

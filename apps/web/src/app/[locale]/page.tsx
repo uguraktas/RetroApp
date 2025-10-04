@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,25 +13,23 @@ import {
 import { trpc } from "@/utils/trpc";
 
 export default function Home() {
+  const t = useTranslations();
   const healthCheck = useQuery(trpc.healthCheck.queryOptions());
 
   const features = [
     {
-      title: "Fast & Reliable",
-      description:
-        "Built with Next.js and tRPC for maximum performance and type safety",
+      title: t("home.features.fastReliable.title"),
+      description: t("home.features.fastReliable.description"),
       icon: "⚡",
     },
     {
-      title: "Secure Authentication",
-      description:
-        "Enterprise-grade authentication with Better Auth integration",
+      title: t("home.features.secureAuth.title"),
+      description: t("home.features.secureAuth.description"),
       icon: "🔐",
     },
     {
-      title: "AI-Powered",
-      description:
-        "Integrated AI chat capabilities for enhanced user experience",
+      title: t("home.features.aiPowered.title"),
+      description: t("home.features.aiPowered.description"),
       icon: "🤖",
     },
   ] as const;
@@ -42,19 +41,18 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="space-y-4">
             <h1 className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text font-bold text-4xl text-transparent tracking-tight md:text-6xl">
-              Welcome to codebasehub
+              {t("home.hero.title")}
             </h1>
             <p className="mx-auto max-w-2xl text-muted-foreground text-xl md:text-2xl">
-              A modern, full-stack application with AI capabilities, secure
-              authentication, and beautiful design
+              {t("home.hero.subtitle")}
             </p>
           </div>
           <div className="mt-4 flex gap-4">
             <Button asChild size="lg">
-              <Link href="/dashboard">Get Started</Link>
+              <Link href="/dashboard">{t("home.hero.getStarted")}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/ai">Try AI Chat</Link>
+              <Link href="/ai">{t("home.hero.tryAiChat")}</Link>
             </Button>
           </div>
 
@@ -66,10 +64,10 @@ export default function Home() {
             <span className="font-medium text-sm">
               API{" "}
               {healthCheck.isLoading
-                ? "Checking..."
+                ? t("home.apiStatus.checking")
                 : healthCheck.data
-                  ? "Connected"
-                  : "Disconnected"}
+                  ? t("home.apiStatus.connected")
+                  : t("home.apiStatus.disconnected")}
             </span>
           </div>
         </div>
@@ -79,9 +77,11 @@ export default function Home() {
       <section className="container mx-auto max-w-6xl border-t px-4 py-16">
         <div className="space-y-8">
           <div className="space-y-2 text-center">
-            <h2 className="font-bold text-3xl md:text-4xl">Features</h2>
+            <h2 className="font-bold text-3xl md:text-4xl">
+              {t("home.features.title")}
+            </h2>
             <p className="text-lg text-muted-foreground">
-              Everything you need to build modern web applications
+              {t("home.features.subtitle")}
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -109,14 +109,13 @@ export default function Home() {
           <CardContent className="p-8 md:p-12">
             <div className="flex flex-col items-center gap-6 text-center">
               <h2 className="font-bold text-3xl md:text-4xl">
-                Ready to get started?
+                {t("home.cta.title")}
               </h2>
               <p className="max-w-xl text-lg text-muted-foreground">
-                Sign in to access your dashboard, manage your subscriptions, and
-                explore AI-powered features
+                {t("home.cta.subtitle")}
               </p>
               <Button asChild className="mt-2" size="lg">
-                <Link href="/dashboard">Go to Dashboard</Link>
+                <Link href="/dashboard">{t("home.cta.goToDashboard")}</Link>
               </Button>
             </div>
           </CardContent>

@@ -1,5 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,6 +19,7 @@ export default function Dashboard({
   customerState: ReturnType<typeof authClient.customer.state>;
   session: typeof authClient.$Infer.Session;
 }) {
+  const t = useTranslations();
   const privateData = useQuery(trpc.privateData.queryOptions());
 
   const hasProSubscription = customerState?.activeSubscriptions?.length! > 0;
@@ -31,7 +33,7 @@ export default function Dashboard({
         <Card className="border-2">
           <CardHeader className="pb-3">
             <CardTitle className="font-medium text-muted-foreground text-sm">
-              Account
+              {t("dashboard.account")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -59,7 +61,7 @@ export default function Dashboard({
         >
           <CardHeader className="pb-3">
             <CardTitle className="font-medium text-muted-foreground text-sm">
-              Current Plan
+              {t("dashboard.currentPlan")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -69,19 +71,19 @@ export default function Dashboard({
                   <>
                     <span className="text-2xl">⭐</span>
                     <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text font-bold text-2xl text-transparent">
-                      Pro
+                      {t("dashboard.pro")}
                     </span>
                   </>
                 ) : (
                   <>
                     <span className="text-2xl">🆓</span>
-                    <span className="font-bold text-2xl">Free</span>
+                    <span className="font-bold text-2xl">{t("dashboard.free")}</span>
                   </>
                 )}
               </div>
               {hasProSubscription && (
                 <p className="text-muted-foreground text-sm">
-                  Premium features enabled
+                  {t("dashboard.premiumEnabled")}
                 </p>
               )}
             </div>
@@ -92,7 +94,7 @@ export default function Dashboard({
         <Card className="border-2">
           <CardHeader className="pb-3">
             <CardTitle className="font-medium text-muted-foreground text-sm">
-              API Status
+              {t("dashboard.apiStatus")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -103,10 +105,10 @@ export default function Dashboard({
                 />
                 <span className="font-semibold">
                   {privateData.isLoading
-                    ? "Checking..."
+                    ? t("dashboard.checking")
                     : privateData.data
-                      ? "Connected"
-                      : "Disconnected"}
+                      ? t("dashboard.connected")
+                      : t("dashboard.disconnected")}
                 </span>
               </div>
               {privateData.data && (
@@ -122,11 +124,11 @@ export default function Dashboard({
       {/* Subscription Management */}
       <Card className="border-2">
         <CardHeader>
-          <CardTitle>Subscription Management</CardTitle>
+          <CardTitle>{t("dashboard.subscription.title")}</CardTitle>
           <CardDescription>
             {hasProSubscription
-              ? "Manage your Pro subscription, update payment methods, or view billing history"
-              : "Upgrade to Pro to unlock premium features and capabilities"}
+              ? t("dashboard.subscription.proDescription")
+              : t("dashboard.subscription.freeDescription")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -135,16 +137,18 @@ export default function Dashboard({
               <div className="rounded-lg border bg-gradient-to-r from-purple-50 to-blue-50 p-4 dark:from-purple-950/30 dark:to-blue-950/30">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <p className="font-semibold">Pro Plan Active</p>
+                    <p className="font-semibold">
+                      {t("dashboard.subscription.proActive")}
+                    </p>
                     <p className="text-muted-foreground text-sm">
-                      Access to all premium features
+                      {t("dashboard.subscription.proActiveDesc")}
                     </p>
                   </div>
                   <Button
                     onClick={async () => await authClient.customer.portal()}
                     variant="outline"
                   >
-                    Manage Subscription
+                    {t("dashboard.subscription.manageSubscription")}
                   </Button>
                 </div>
               </div>
@@ -155,24 +159,32 @@ export default function Dashboard({
                 <div className="space-y-4">
                   <div>
                     <h3 className="mb-2 font-semibold text-lg">
-                      Unlock Pro Features
+                      {t("dashboard.subscription.unlockPro")}
                     </h3>
                     <ul className="space-y-2 text-muted-foreground text-sm">
                       <li className="flex items-center gap-2">
                         <span className="text-green-500">✓</span>
-                        <span>Advanced AI capabilities</span>
+                        <span>
+                          {t("dashboard.subscription.features.advancedAi")}
+                        </span>
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="text-green-500">✓</span>
-                        <span>Priority support</span>
+                        <span>
+                          {t("dashboard.subscription.features.prioritySupport")}
+                        </span>
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="text-green-500">✓</span>
-                        <span>Unlimited access to all features</span>
+                        <span>
+                          {t("dashboard.subscription.features.unlimitedAccess")}
+                        </span>
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="text-green-500">✓</span>
-                        <span>Regular updates and new features</span>
+                        <span>
+                          {t("dashboard.subscription.features.regularUpdates")}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -183,7 +195,7 @@ export default function Dashboard({
                     }
                     size="lg"
                   >
-                    Upgrade to Pro
+                    {t("dashboard.subscription.upgradeToPro")}
                   </Button>
                 </div>
               </div>

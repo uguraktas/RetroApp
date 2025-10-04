@@ -54,106 +54,128 @@ export default function SignUpForm({
 	}
 
 	return (
-		<div className="mx-auto w-full mt-10 max-w-md p-6">
-			<h1 className="mb-6 text-center text-3xl font-bold">Create Account</h1>
-
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					form.handleSubmit();
-				}}
-				className="space-y-4"
-			>
-				<div>
-					<form.Field name="name">
-						{(field) => (
-							<div className="space-y-2">
-								<Label htmlFor={field.name}>Name</Label>
-								<Input
-									id={field.name}
-									name={field.name}
-									value={field.state.value}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-								/>
-								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
-										{error?.message}
-									</p>
-								))}
-							</div>
-						)}
-					</form.Field>
+		<div className="mx-auto w-full max-w-md">
+			<div className="bg-card border rounded-2xl shadow-xl p-8">
+				<div className="space-y-2 mb-8">
+					<h1 className="text-3xl font-bold">Create Account</h1>
+					<p className="text-muted-foreground">
+						Get started with your free account
+					</p>
 				</div>
 
-				<div>
-					<form.Field name="email">
-						{(field) => (
-							<div className="space-y-2">
-								<Label htmlFor={field.name}>Email</Label>
-								<Input
-									id={field.name}
-									name={field.name}
-									type="email"
-									value={field.state.value}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-								/>
-								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
-										{error?.message}
-									</p>
-								))}
-							</div>
-						)}
-					</form.Field>
-				</div>
-
-				<div>
-					<form.Field name="password">
-						{(field) => (
-							<div className="space-y-2">
-								<Label htmlFor={field.name}>Password</Label>
-								<Input
-									id={field.name}
-									name={field.name}
-									type="password"
-									value={field.state.value}
-									onBlur={field.handleBlur}
-									onChange={(e) => field.handleChange(e.target.value)}
-								/>
-								{field.state.meta.errors.map((error) => (
-									<p key={error?.message} className="text-red-500">
-										{error?.message}
-									</p>
-								))}
-							</div>
-						)}
-					</form.Field>
-				</div>
-
-				<form.Subscribe>
-					{(state) => (
-						<Button
-							type="submit"
-							className="w-full"
-							disabled={!state.canSubmit || state.isSubmitting}
-						>
-							{state.isSubmitting ? "Submitting..." : "Sign Up"}
-						</Button>
-					)}
-				</form.Subscribe>
-			</form>
-
-			<div className="mt-4 text-center">
-				<Button
-					variant="link"
-					onClick={onSwitchToSignIn}
-					className="text-indigo-600 hover:text-indigo-800"
+				<form
+					onSubmit={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						form.handleSubmit();
+					}}
+					className="space-y-5"
 				>
-					Already have an account? Sign In
-				</Button>
+					<div>
+						<form.Field name="name">
+							{(field) => (
+								<div className="space-y-2">
+									<Label htmlFor={field.name} className="text-sm font-medium">
+										Name
+									</Label>
+									<Input
+										id={field.name}
+										name={field.name}
+										placeholder="John Doe"
+										value={field.state.value}
+										onBlur={field.handleBlur}
+										onChange={(e) => field.handleChange(e.target.value)}
+										className="h-11"
+									/>
+									{field.state.meta.errors.map((error) => (
+										<p key={error?.message} className="text-sm text-destructive">
+											{error?.message}
+										</p>
+									))}
+								</div>
+							)}
+						</form.Field>
+					</div>
+
+					<div>
+						<form.Field name="email">
+							{(field) => (
+								<div className="space-y-2">
+									<Label htmlFor={field.name} className="text-sm font-medium">
+										Email
+									</Label>
+									<Input
+										id={field.name}
+										name={field.name}
+										type="email"
+										placeholder="you@example.com"
+										value={field.state.value}
+										onBlur={field.handleBlur}
+										onChange={(e) => field.handleChange(e.target.value)}
+										className="h-11"
+									/>
+									{field.state.meta.errors.map((error) => (
+										<p key={error?.message} className="text-sm text-destructive">
+											{error?.message}
+										</p>
+									))}
+								</div>
+							)}
+						</form.Field>
+					</div>
+
+					<div>
+						<form.Field name="password">
+							{(field) => (
+								<div className="space-y-2">
+									<Label htmlFor={field.name} className="text-sm font-medium">
+										Password
+									</Label>
+									<Input
+										id={field.name}
+										name={field.name}
+										type="password"
+										placeholder="••••••••"
+										value={field.state.value}
+										onBlur={field.handleBlur}
+										onChange={(e) => field.handleChange(e.target.value)}
+										className="h-11"
+									/>
+									{field.state.meta.errors.map((error) => (
+										<p key={error?.message} className="text-sm text-destructive">
+											{error?.message}
+										</p>
+									))}
+								</div>
+							)}
+						</form.Field>
+					</div>
+
+					<form.Subscribe>
+						{(state) => (
+							<Button
+								type="submit"
+								className="w-full h-11 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+								disabled={!state.canSubmit || state.isSubmitting}
+							>
+								{state.isSubmitting ? "Creating account..." : "Sign Up"}
+							</Button>
+						)}
+					</form.Subscribe>
+				</form>
+
+				<div className="mt-6 text-center">
+					<p className="text-sm text-muted-foreground">
+						Already have an account?{" "}
+						<Button
+							variant="link"
+							onClick={onSwitchToSignIn}
+							className="p-0 h-auto font-semibold text-blue-600 hover:text-blue-700"
+						>
+							Sign In
+						</Button>
+					</p>
+				</div>
 			</div>
 		</div>
 	);

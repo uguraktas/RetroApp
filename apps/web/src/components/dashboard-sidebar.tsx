@@ -18,6 +18,7 @@ import {
   Globe,
   Menu,
   X,
+  ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "next-themes";
@@ -43,7 +44,7 @@ interface MenuItem {
 export function DashboardSidebar({
   user,
 }: {
-  user: { name: string; email: string };
+  user: { name: string; email: string; role?: string };
 }) {
   const t = useTranslations();
   const pathname = usePathname();
@@ -84,6 +85,8 @@ export function DashboardSidebar({
     window.location.href = "/";
   };
 
+  const isAdmin = user.role === "admin";
+
   const menuItems: MenuItem[] = [
     {
       label: t("sidebar.overview"),
@@ -117,6 +120,15 @@ export function DashboardSidebar({
         },
       ],
     },
+    ...(isAdmin
+      ? [
+          {
+            label: t("sidebar.admin"),
+            href: "/dashboard/admin",
+            icon: ShieldCheck,
+          },
+        ]
+      : []),
   ];
 
   const renderMenuItem = (item: MenuItem, depth = 0) => {

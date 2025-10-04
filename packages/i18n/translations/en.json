@@ -250,5 +250,48 @@
       "confirmError": "Please type DELETE to confirm",
       "accountDeleted": "Account deleted successfully"
     }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "description": "Manage users and system settings",
+    "usersManagement": "Users Management",
+    "usersDescription": "View and manage all users in the system",
+    "searchByEmail": "Search by email",
+    "emailPlaceholder": "user@example.com",
+    "noUsers": "No users found",
+    "confirmDelete": "Are you sure you want to remove this user? This action cannot be undone.",
+    "role": "Role",
+    "banned": "Banned",
+    "adminBadge": "Admin",
+    "verified": "Verified",
+    "banReason": "Ban reason",
+    "banReasonPlaceholder": "Enter reason for ban...",
+    "ban": "Ban User",
+    "unban": "Unban User",
+    "confirmBan": "Confirm Ban",
+    "removeUser": "Remove User",
+    "stats": {
+      "totalUsers": "Total Users",
+      "admins": "Admins",
+      "bannedUsers": "Banned Users"
+    },
+    "roles": {
+      "user": "User",
+      "admin": "Admin"
+    },
+    "success": {
+      "roleUpdated": "User role updated successfully",
+      "userBanned": "User banned successfully",
+      "userUnbanned": "User unbanned successfully",
+      "userRemoved": "User removed successfully"
+    },
+    "errors": {
+      "loadUsers": "Failed to load users",
+      "setRole": "Failed to update user role",
+      "banUser": "Failed to ban user",
+      "unbanUser": "Failed to unban user",
+      "removeUser": "Failed to remove user",
+      "banReasonRequired": "Please provide a reason for banning this user"
+    }
   }
 }

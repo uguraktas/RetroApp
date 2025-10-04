@@ -8,6 +8,8 @@ import { logger } from "hono/logger";
 import { auth } from "./lib/auth.js";
 import { createContext } from "./lib/context.js";
 import { appRouter } from "./routers/index.js";
+import { db } from "./db/index.js";
+import { user } from "./db/schema/auth.js";
 
 const app = new Hono();
 
@@ -41,6 +43,29 @@ app.post("/ai", async (c) => {
   });
 
   return result.toUIMessageStreamResponse();
+});
+
+// Admin endpoint to list all users
+app.get("/api/admin/list-users", async (c) => {
+  try {
+    // Get session from auth
+    const session = await auth.api.getSession({
+      headers: c.req.raw.headers,
+    });
+
+    // Check if user is authenticated and is admin
+    if (!session?.user || session.user.role !== "admin") {
+      return c.json({ error: "Unauthorized" }, 403);
+    }
+
+    // Fetch all users from database
+    const users = await db.select().from(user);
+
+    return c.json(users);
+  } catch (error) {
+    console.error("Error listing users:", error);
+    return c.json({ error: "Internal server error" }, 500);
+  }
 });
 
 app.get("/", (c) => c.text("OK"));

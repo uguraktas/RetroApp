@@ -246,5 +246,48 @@
       "confirmError": "Lütfen onaylamak için DELETE yazın",
       "accountDeleted": "Hesap başarıyla silindi"
     }
+  },
+  "admin": {
+    "title": "Yönetici Paneli",
+    "description": "Kullanıcıları ve sistem ayarlarını yönetin",
+    "usersManagement": "Kullanıcı Yönetimi",
+    "usersDescription": "Sistemdeki tüm kullanıcıları görüntüleyin ve yönetin",
+    "searchByEmail": "E-posta ile ara",
+    "emailPlaceholder": "kullanici@ornek.com",
+    "noUsers": "Kullanıcı bulunamadı",
+    "confirmDelete": "Bu kullanıcıyı kaldırmak istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "role": "Rol",
+    "banned": "Yasaklı",
+    "adminBadge": "Yönetici",
+    "verified": "Doğrulanmış",
+    "banReason": "Yasaklama nedeni",
+    "banReasonPlaceholder": "Yasaklama nedenini girin...",
+    "ban": "Kullanıcıyı Yasakla",
+    "unban": "Yasağı Kaldır",
+    "confirmBan": "Yasaklamayı Onayla",
+    "removeUser": "Kullanıcıyı Kaldır",
+    "stats": {
+      "totalUsers": "Toplam Kullanıcı",
+      "admins": "Yöneticiler",
+      "bannedUsers": "Yasaklı Kullanıcılar"
+    },
+    "roles": {
+      "user": "Kullanıcı",
+      "admin": "Yönetici"
+    },
+    "success": {
+      "roleUpdated": "Kullanıcı rolü başarıyla güncellendi",
+      "userBanned": "Kullanıcı başarıyla yasaklandı",
+      "userUnbanned": "Kullanıcı yasağı başarıyla kaldırıldı",
+      "userRemoved": "Kullanıcı başarıyla kaldırıldı"
+    },
+    "errors": {
+      "loadUsers": "Kullanıcılar yüklenemedi",
+      "setRole": "Kullanıcı rolü güncellenemedi",
+      "banUser": "Kullanıcı yasaklanamadı",
+      "unbanUser": "Kullanıcı yasağı kaldırılamadı",
+      "removeUser": "Kullanıcı kaldırılamadı",
+      "banReasonRequired": "Lütfen bu kullanıcıyı yasaklamak için bir neden belirtin"
+    }
   }
 }

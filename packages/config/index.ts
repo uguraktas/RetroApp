@@ -36,6 +36,7 @@ export const config: AppConfig = {
         appsFlyer: false,
         oneSignal: false,
         postHog: false,
+        revenueCat:false
       },
     },
   },

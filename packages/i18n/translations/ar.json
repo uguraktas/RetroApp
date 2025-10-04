@@ -3,6 +3,162 @@
     "back": "العودة إلى المدونة"
   },
   "changelog": {
-    "title": "التغييرات"
+    "title": "سجل التغييرات"
+  },
+  "common": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "continue": "متابعة",
+    "submit": "إرسال",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "name": "الاسم"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "aiChat": "دردشة AI",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "myAccount": "حسابي"
+  },
+  "home": {
+    "hero": {
+      "title": "أهلاً بك في codebasehub",
+      "subtitle": "تطبيق حديث متكامل مع قدرات الذكاء الاصطناعي والمصادقة الآمنة والتصميم الجميل",
+      "getStarted": "ابدأ الآن",
+      "tryAiChat": "جرب دردشة AI"
+    },
+    "apiStatus": {
+      "checking": "جارٍ الفحص...",
+      "connected": "متصل",
+      "disconnected": "غير متصل"
+    },
+    "features": {
+      "title": "المميزات",
+      "subtitle": "كل ما تحتاجه لبناء تطبيقات ويب حديثة",
+      "fastReliable": {
+        "title": "سريع وموثوق",
+        "description": "مبني بـ Next.js و tRPC لأقصى أداء وأمان للأنواع"
+      },
+      "secureAuth": {
+        "title": "مصادقة آمنة",
+        "description": "مصادقة على مستوى المؤسسة مع تكامل Better Auth"
+      },
+      "aiPowered": {
+        "title": "مدعوم بالذكاء الاصطناعي",
+        "description": "قدرات دردشة AI متكاملة لتجربة المستخدم المحسنة"
+      }
+    },
+    "cta": {
+      "title": "هل أنت مستعد للبدء؟",
+      "subtitle": "سجل الدخول للوصول إلى لوحة التحكم وإدارة اشتراكاتك واستكشاف المميزات المدعومة بـ AI",
+      "goToDashboard": "اذهب إلى لوحة التحكم"
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "أهلاً بعودتك",
+      "subtitle": "سجل الدخول إلى حسابك للمتابعة",
+      "emailPlaceholder": "البريد@مثال.com",
+      "passwordPlaceholder": "••••••••",
+      "signingIn": "جارٍ تسجيل الدخول...",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "إنشاء حساب",
+      "success": "تم تسجيل الدخول بنجاح"
+    },
+    "signUp": {
+      "title": "إنشاء حساب",
+      "subtitle": "ابدأ بحسابك المجاني",
+      "namePlaceholder": "أحمد محمد",
+      "emailPlaceholder": "البريد@مثال.com",
+      "passwordPlaceholder": "••••••••",
+      "creatingAccount": "جارٍ إنشاء الحساب...",
+      "signUp": "إنشاء حساب",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "signIn": "تسجيل الدخول",
+      "success": "تم إنشاء الحساب بنجاح"
+    },
+    "validation": {
+      "invalidEmail": "عنوان بريد إلكتروني غير صالح",
+      "passwordMin": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+      "nameMin": "يجب أن يتكون الاسم من حرفين على الأقل"
+    }
+  },
+  "dashboard": {
+    "account": "الحساب",
+    "currentPlan": "الخطة الحالية",
+    "apiStatus": "حالة API",
+    "free": "مجاني",
+    "pro": "برو",
+    "premiumEnabled": "تم تفعيل المميزات المدفوعة",
+    "checking": "جارٍ الفحص...",
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "subscription": {
+      "title": "إدارة الاشتراك",
+      "proDescription": "أدر اشتراكك في Pro وحدث طرق الدفع أو اعرض تاريخ الفواتير",
+      "freeDescription": "اترقي إلى Pro لفتح المميزات والقدرات المدفوعة",
+      "proActive": "خطة Pro نشطة",
+      "proActiveDesc": "الوصول إلى جميع المميزات المدفوعة",
+      "manageSubscription": "إدارة الاشتراك",
+      "unlockPro": "فتح مميزات Pro",
+      "upgradeToPro": "الترقية إلى Pro",
+      "features": {
+        "advancedAi": "قدرات AI متقدمة",
+        "prioritySupport": "الدعم الأولوي",
+        "unlimitedAccess": "وصول غير محدود لجميع المميزات",
+        "regularUpdates": "تحديثات منتظمة ومميزات جديدة"
+      }
+    }
+  },
+  "ai": {
+    "title": "دردشة AI",
+    "placeholder": "اسأل أي شيء للبدء!",
+    "inputPlaceholder": "اكتب رسالتك...",
+    "you": "أنت",
+    "assistant": "مساعد AI"
+  },
+  "login": {
+    "branding": {
+      "subtitle": "طور بشكل أسرع مع منصتنا الحديثة المتكاملة التي تتضمن قدرات AI ومصادقة آمنة ومكونات UI جميلة.",
+      "features": {
+        "lightningFast": {
+          "title": "سريع كالبرق",
+          "description": "مبني بـ Next.js والأدوات الحديثة"
+        },
+        "secureByDefault": {
+          "title": "آمن افتراضياً",
+          "description": "مصادقة على مستوى المؤسسة"
+        },
+        "aiPowered": {
+          "title": "مدعوم بـ AI",
+          "description": "قدرات دردشة AI متكاملة"
+        }
+      }
+    }
+  },
+  "success": {
+    "title": "تم الدفع بنجاح!",
+    "subtitle": "شكراً لك على شراءك. تم معالجة دفعتك بنجاح.",
+    "transactionDetails": "تفاصيل المعاملة",
+    "checkoutId": "معرف الدفع",
+    "saveRecord": "احفظ هذا المعرف لسجلاتك",
+    "backToDashboard": "العودة إلى لوحة التحكم",
+    "needHelp": "هل تحتاج مساعدة؟ اتصل بـ",
+    "supportTeam": "فريق الدعم",
+    "copySuccess": "تم نسخ معرف الدفع إلى الحافظة!"
   }
 }

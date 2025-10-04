@@ -19,6 +19,16 @@ import { formatDistanceToNow, format, isValid } from "date-fns";
 
 interface Session {
   id: string;
+  userAgent?: string | null;
+  ipAddress?: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  expiresAt: Date;
+  token: string;
+}
+
+interface DisplaySession {
+  id: string;
   userAgent: string;
   ip: string;
   lastActiveAt: Date;
@@ -31,7 +41,7 @@ export function SecuritySettings() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sessions, setSessions] = useState<Session[]>([]);
+  const [sessions, setSessions] = useState<DisplaySession[]>([]);
   const [loadingSessions, setLoadingSessions] = useState(true);
   const [revokingAll, setRevokingAll] = useState(false);
 
@@ -43,7 +53,20 @@ export function SecuritySettings() {
     try {
       const response = await authClient.listSessions();
       if (response.data) {
-        setSessions(response.data as Session[]);
+        // Get current session token
+        const currentToken = await authClient.getSession();
+        const currentSessionToken = currentToken?.data?.session?.token;
+
+        // Transform sessions to display format
+        const displaySessions: DisplaySession[] = response.data.map((session: Session) => ({
+          id: session.id,
+          userAgent: session.userAgent || "Unknown Device",
+          ip: session.ipAddress || "Unknown IP",
+          lastActiveAt: session.updatedAt,
+          isCurrent: session.token === currentSessionToken,
+        }));
+
+        setSessions(displaySessions);
       }
     } catch (error) {
       console.error("Failed to load sessions:", error);

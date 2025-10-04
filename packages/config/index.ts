@@ -1,6 +1,6 @@
 import type { AppConfig } from "./types";
 
-export const config: AppConfig = {
+export const appConfig: AppConfig = {
   appName: "Your App Name",
   description: "A Full-stack starter kit for building web and mobile app",
   author: "Your Name",
@@ -43,3 +43,6 @@ export const config: AppConfig = {
 };
 
 export type { AppConfig as Config, I18nConfig, Locale } from "./types";
+
+// Re-export as config for backward compatibility
+export { appConfig as config };

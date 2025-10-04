@@ -9,7 +9,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import Link from "next/link";
 
 export default function UserMenu() {

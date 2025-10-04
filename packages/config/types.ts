@@ -28,6 +28,7 @@ export type MobileSettings = {
     appsFlyer: boolean;
     oneSignal: boolean;
     postHog: boolean;
+    revenueCat: boolean;
   };
 };
 

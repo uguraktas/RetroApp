@@ -54,7 +54,14 @@ app.get("/api/admin/list-users", async (c) => {
     });
 
     // Check if user is authenticated and is admin
-    if (!session?.user || session.user.role !== "admin") {
+    if (!session?.user) {
+      return c.json({ error: "Unauthorized" }, 403);
+    }
+
+    // Type assertion for role property added by admin plugin
+    const userWithRole = session.user as typeof session.user & { role?: string | null };
+
+    if (userWithRole.role !== "admin") {
       return c.json({ error: "Unauthorized" }, 403);
     }
 

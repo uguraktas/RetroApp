@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 
 export function GeneralSettings({
   user,
@@ -20,6 +22,7 @@ export function GeneralSettings({
   user: { name: string; email: string };
 }) {
   const t = useTranslations();
+  const router = useRouter();
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,11 +31,35 @@ export function GeneralSettings({
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Validate name input
+      if (!name.trim()) {
+        toast.error(t("settings.general.nameRequired"));
+        setIsLoading(false);
+        return;
+      }
 
-    toast.success(t("settings.general.saved"));
-    setIsLoading(false);
+      // Update only the name (email cannot be updated)
+      const response = await authClient.updateUser({
+        name: name.trim(),
+      });
+
+      if (response.error) {
+        toast.error(response.error.message || t("settings.general.updateFailed"));
+        setIsLoading(false);
+        return;
+      }
+
+      toast.success(t("settings.general.saved"));
+
+      // Refresh the page to show updated data
+      router.refresh();
+    } catch (error) {
+      console.error("Profile update error:", error);
+      toast.error(t("settings.general.updateFailed"));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -79,10 +106,12 @@ export function GeneralSettings({
                 id="email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("settings.general.emailPlaceholder")}
-                className="text-base"
+                disabled
+                className="cursor-not-allowed bg-muted text-base text-muted-foreground"
               />
+              <p className="text-muted-foreground text-xs">
+                {t("settings.general.emailCannotChange")}
+              </p>
             </div>
 
             <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">

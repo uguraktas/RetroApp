@@ -180,11 +180,15 @@
       "title": "General Settings",
       "description": "Manage your account information and preferences",
       "profileInfo": "Profile Information",
-      "profileDescription": "Update your name and email address",
+      "profileDescription": "Update your name",
       "namePlaceholder": "Enter your name",
       "emailPlaceholder": "Enter your email",
       "saved": "Settings saved successfully",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "updateFailed": "Failed to update profile. Please try again.",
+      "emailCannotChange": "Email cannot be changed for security reasons"
     },
     "security": {
       "title": "Security Settings",

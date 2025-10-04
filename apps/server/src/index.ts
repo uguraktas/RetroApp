@@ -1,8 +1,8 @@
 import "dotenv/config";
 import { trpcServer } from "@hono/trpc-server";
-import { createContext } from "./lib/context.js";
-import { appRouter } from "./routers/index.js";
-import { auth } from "./lib/auth.js";
+import { createContext } from "./lib/context";
+import { appRouter } from "./routers/index";
+import { auth } from "./lib/auth";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
@@ -38,7 +38,7 @@ app.post("/ai", async (c) => {
 	const body = await c.req.json();
 	const uiMessages = body.messages || [];
 	const result = streamText({
-		model: google("gemini-1.5-flash"),
+		model: google("gemini-2.5-flash"),
 		messages: convertToModelMessages(uiMessages),
 	});
 

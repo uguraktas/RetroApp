@@ -2,9 +2,9 @@ import { expo } from "@better-auth/expo";
 import { checkout, polar, portal } from "@polar-sh/better-auth";
 import { type BetterAuthOptions, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "../db/index.js";
-import * as schema from "../db/schema/auth.js";
-import { polarClient } from "./payments.js";
+import { db } from "../db";
+import * as schema from "../db/schema/auth";
+import { polarClient } from "./payments";
 
 export const auth = betterAuth<BetterAuthOptions>({
   database: drizzleAdapter(db, {

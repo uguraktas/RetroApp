@@ -14,12 +14,11 @@ import { authClient } from "@/lib/auth-client";
 export function BillingSettings({
   customerState,
 }: {
-  customerState: Awaited<
-    ReturnType<typeof authClient.customer.state>
-  >["data"];
+  customerState: Awaited<ReturnType<typeof authClient.customer.state>>["data"];
 }) {
   const t = useTranslations();
-  const hasProSubscription = (customerState?.activeSubscriptions?.length ?? 0) > 0;
+  const hasProSubscription =
+    (customerState?.activeSubscriptions?.length ?? 0) > 0;
 
   return (
     <div className="space-y-6">
@@ -79,10 +78,10 @@ export function BillingSettings({
                   </Button>
                 ) : (
                   <Button
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                     onClick={async () =>
                       await authClient.checkout({ slug: "pro" })
                     }
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                   >
                     {t("settings.billing.upgrade")}
                   </Button>
@@ -92,46 +91,6 @@ export function BillingSettings({
           </div>
         </CardContent>
       </Card>
-
-      {/* Payment Method */}
-      {hasProSubscription && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("settings.billing.paymentMethod")}</CardTitle>
-            <CardDescription>
-              {t("settings.billing.paymentDescription")}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button
-              onClick={async () => await authClient.customer.portal()}
-              variant="outline"
-            >
-              {t("settings.billing.managePayment")}
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Billing History */}
-      {hasProSubscription && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("settings.billing.history")}</CardTitle>
-            <CardDescription>
-              {t("settings.billing.historyDescription")}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button
-              onClick={async () => await authClient.customer.portal()}
-              variant="outline"
-            >
-              {t("settings.billing.viewHistory")}
-            </Button>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

@@ -192,7 +192,7 @@
     },
     "security": {
       "title": "Security Settings",
-      "description": "Manage your password, two-factor authentication, and active sessions",
+      "description": "Manage your password and active sessions",
       "changePassword": "Change Password",
       "passwordDescription": "Update your password to keep your account secure",
       "currentPassword": "Current Password",
@@ -202,15 +202,19 @@
       "updating": "Updating...",
       "passwordChanged": "Password changed successfully",
       "passwordMismatch": "Passwords do not match",
-      "twoFactor": "Two-Factor Authentication",
-      "twoFactorDescription": "Add an extra layer of security to your account",
-      "enable2FA": "Enable 2FA",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "allFieldsRequired": "All fields are required",
+      "passwordChangeFailed": "Failed to change password. Please try again.",
       "activeSessions": "Active Sessions",
       "sessionsDescription": "Manage devices that are currently signed in to your account",
       "currentDevice": "Current Device",
       "lastActive": "Last active",
       "active": "Active",
-      "revokeAllSessions": "Revoke All Other Sessions"
+      "revokeAllSessions": "Revoke All Other Sessions",
+      "revoking": "Revoking...",
+      "sessionsRevoked": "All other sessions have been revoked",
+      "revokeFailed": "Failed to revoke sessions. Please try again.",
+      "noSessions": "No active sessions found"
     },
     "billing": {
       "title": "Billing Settings",

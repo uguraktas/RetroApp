@@ -45,21 +45,6 @@ export function DangerZoneSettings() {
         </p>
       </div>
 
-      {/* Export Data */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("settings.dangerZone.exportData")}</CardTitle>
-          <CardDescription>
-            {t("settings.dangerZone.exportDescription")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button variant="outline">
-            {t("settings.dangerZone.downloadData")}
-          </Button>
-        </CardContent>
-      </Card>
-
       {/* Delete Account */}
       <Card className="border-destructive">
         <CardHeader>

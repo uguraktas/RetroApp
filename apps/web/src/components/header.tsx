@@ -9,8 +9,11 @@ export default function Header() {
   const pathname = usePathname();
   const links = [
     { to: "/", label: "Home" },
-    { to: "/dashboard", label: "Dashboard" },
     { to: "/ai", label: "AI Chat" },
+    { to: "/docs", label: "Docs" },
+    { to: "/blog", label: "Blog" },
+    { to: "/changelog", label: "Changelog" },
+    { to: "/contact", label: "Contact" },
   ] as const;
 
   return (

@@ -6,10 +6,11 @@ import Header from "@/components/header";
 export function ConditionalHeader() {
   const pathname = usePathname();
 
-  // Hide header on dashboard pages
+  // Hide header on dashboard and docs pages
   const isDashboard = pathname?.includes("/dashboard");
+  const isDocs = pathname?.includes("/docs");
 
-  if (isDashboard) {
+  if (isDashboard || isDocs) {
     return null;
   }
 

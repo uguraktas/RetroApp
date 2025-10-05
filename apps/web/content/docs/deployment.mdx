@@ -1,0 +1,253 @@
+---
+title: Deployment
+description: Deploy your CodeBaseHub application to production
+---
+
+## Overview
+
+CodeBaseHub can be deployed to various platforms. This guide covers the most popular options.
+
+> **Warning:** Make sure you have set up your production database and environment variables before deploying.
+
+---
+
+## Vercel (Recommended)
+
+Vercel is the recommended platform for deploying Next.js applications.
+
+### Steps
+
+1. **Connect Repository**
+   - Go to [Vercel](https://vercel.com)
+   - Click "Add New Project"
+   - Import your Git repository
+
+2. **Configure Build Settings**
+   
+   Vercel automatically detects Next.js:
+   
+   ```bash
+   # Build Command
+   pnpm build
+   
+   # Output Directory
+   .next
+   
+   # Install Command
+   pnpm install
+   ```
+
+3. **Set Environment Variables**
+   
+   ```bash
+   DATABASE_URL=your-production-database-url
+   AUTH_SECRET=your-secret-key
+   AUTH_TRUST_HOST=true
+   NEXT_PUBLIC_APP_URL=https://your-domain.com
+   ```
+
+4. **Deploy**
+   
+   Click "Deploy" and Vercel will build your application.
+
+### Custom Domain
+
+1. Go to project settings
+2. Navigate to "Domains"
+3. Add your custom domain
+4. Update DNS records as instructed
+
+---
+
+## Railway
+
+Railway provides easy deployment with databases.
+
+### Steps
+
+1. **Create Project**
+   - Go to [Railway](https://railway.app)
+   - Click "New Project"
+   - Select "Deploy from GitHub repo"
+
+2. **Add PostgreSQL**
+   
+   Railway automatically provisions a database and sets `DATABASE_URL`.
+
+3. **Set Environment Variables**
+   
+   ```bash
+   AUTH_SECRET=your-secret-key
+   AUTH_TRUST_HOST=true
+   ```
+
+4. **Deploy**
+   
+   Railway automatically deploys on every push.
+
+---
+
+## Docker
+
+Deploy using Docker for maximum flexibility.
+
+### Dockerfile
+
+```dockerfile
+FROM node:18-alpine AS base
+
+# Install dependencies
+FROM base AS deps
+RUN corepack enable && corepack prepare pnpm@latest --activate
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+
+# Build
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN corepack enable && pnpm build
+
+# Production
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY --from=builder /app/apps/web/.next/standalone ./
+COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
+
+EXPOSE 3000
+CMD ["node", "apps/web/server.js"]
+```
+
+### Docker Compose
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/myapp
+      - AUTH_SECRET=your-secret-key
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=myapp
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+### Commands
+
+```bash
+# Build
+docker build -t codebasehub .
+
+# Run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+---
+
+## Environment Variables
+
+### Required
+
+```bash
+DATABASE_URL="postgresql://user:password@host:5432/database"
+AUTH_SECRET="your-long-random-secret-key"
+AUTH_TRUST_HOST="true"
+NEXT_PUBLIC_APP_URL="https://your-domain.com"
+```
+
+### Optional
+
+```bash
+# OAuth
+GITHUB_CLIENT_ID="..."
+GITHUB_CLIENT_SECRET="..."
+
+# Email
+SMTP_HOST="smtp.example.com"
+SMTP_USER="..."
+SMTP_PASSWORD="..."
+```
+
+---
+
+## Database Migration
+
+Before deploying, run migrations:
+
+```bash
+# Generate migration
+pnpm db:generate
+
+# Push to production
+pnpm db:push
+```
+
+---
+
+## Post-Deployment Checklist
+
+- [ ] Application loads correctly
+- [ ] Database connection works
+- [ ] Authentication works
+- [ ] Environment variables set
+- [ ] Custom domain configured
+- [ ] SSL certificate active
+- [ ] Error tracking set up
+
+---
+
+## Troubleshooting
+
+### Build Fails
+
+Run `pnpm type-check` locally to find type errors.
+
+### Database Connection Errors
+
+Verify `DATABASE_URL` is correct and accessible.
+
+### Authentication Not Working
+
+Ensure `AUTH_TRUST_HOST=true` and `NEXT_PUBLIC_APP_URL` matches your domain.
+
+---
+
+## Performance
+
+### Image Optimization
+
+```typescript
+const nextConfig = {
+  images: {
+    domains: ['your-cdn.com'],
+    formats: ['image/avif', 'image/webp'],
+  },
+};
+```
+
+### Caching
+
+```typescript
+export const revalidate = 3600; // Revalidate every hour
+```

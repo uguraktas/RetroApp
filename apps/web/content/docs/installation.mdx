@@ -1,79 +1,180 @@
 ---
 title: Installation
-description: How to install and set up the application
+description: Step-by-step guide to install and set up CodeBaseHub
 ---
 
-## Installation
+## Prerequisites
 
-Follow these steps to install the application.
+Before you begin, ensure you have the following installed:
+
+> **Required:** Node.js 18.x or higher and pnpm package manager
 
 ### System Requirements
 
-- **Operating System**: macOS, Windows, or Linux
-- **Node.js**: Version 18.x or higher
-- **Package Manager**: pnpm (recommended), npm, or yarn
+| Requirement | Version | Notes |
+|------------|---------|-------|
+| **Node.js** | 18.x or higher | [Download](https://nodejs.org) |
+| **pnpm** | 8.x or higher | Recommended package manager |
+| **PostgreSQL** | 14.x or higher | For database (optional) |
+| **Git** | Latest | For version control |
 
-### Step 1: Clone the Repository
+### Install pnpm
 
 ```bash
-git clone https://github.com/your-org/your-repo.git
-cd your-repo
+# macOS/Linux
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+# Windows
+iwr https://get.pnpm.io/install.ps1 -useb | iex
+
+# Using npm
+npm install -g pnpm
 ```
 
-### Step 2: Install Dependencies
+---
 
-Using pnpm (recommended):
+## Installation Steps
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-org/codebasehub.git
+cd codebasehub
+```
+
+### 2. Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-Or using npm:
+This will install all dependencies for the monorepo.
 
-```bash
-npm install
-```
-
-### Step 3: Set Up Environment Variables
-
-Copy the example environment file:
+### 3. Set Up Environment Variables
 
 ```bash
 cp .env.example .env
 ```
 
-Edit the `.env` file with your configuration:
+Edit the `.env` file:
 
 ```bash
-DATABASE_URL="your-database-url"
-NEXT_PUBLIC_API_URL="your-api-url"
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/codebasehub"
+
+# Authentication
+AUTH_SECRET="your-super-secret-key-min-32-chars"
+AUTH_TRUST_HOST="true"
+
+# App Configuration
+NEXT_PUBLIC_APP_URL="http://localhost:3001"
 ```
 
-### Step 4: Run the Development Server
+> **Tip:** Generate a strong AUTH_SECRET using: `openssl rand -base64 32`
+
+### 4. Set Up the Database (Optional)
+
+**Using Docker:**
+
+```bash
+docker run -d \
+  --name codebasehub-db \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=codebasehub \
+  -p 5432:5432 \
+  postgres:15-alpine
+
+pnpm db:push
+```
+
+**Using Local PostgreSQL:**
+
+```bash
+# macOS
+brew install postgresql@15
+brew services start postgresql@15
+
+# Create database
+createdb codebasehub
+
+# Run migrations
+pnpm db:push
+```
+
+### 5. Run the Development Server
 
 ```bash
 pnpm dev
 ```
 
-Your application should now be running at [http://localhost:3001](http://localhost:3001).
+Open [http://localhost:3001](http://localhost:3001) in your browser.
+
+---
+
+## Project Structure
+
+```
+codebasehub/
+├── apps/
+│   └── web/                    # Next.js web application
+│       ├── src/
+│       │   ├── app/           # App router pages
+│       │   ├── components/    # React components
+│       │   └── lib/          # Utilities
+│       └── content/           # Documentation (MDX)
+├── packages/
+│   └── config/                # Shared configuration
+└── .env                       # Environment variables
+```
+
+---
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run linter |
+| `pnpm format` | Format code |
+| `pnpm type-check` | Check TypeScript types |
+| `pnpm db:push` | Push schema to database |
+
+---
 
 ## Troubleshooting
 
-### Common Issues
-
-**Port already in use**: If port 3001 is already in use, you can change it in `package.json`:
-
-```json
-{
-  "scripts": {
-    "dev": "next dev --port=3002"
-  }
-}
-```
-
-**Module not found errors**: Try removing `node_modules` and reinstalling:
+### Port 3001 is already in use
 
 ```bash
-rm -rf node_modules
+# Kill process on port 3001 (macOS/Linux)
+lsof -ti:3001 | xargs kill
+
+# Or change the port
+pnpm dev --port 3002
+```
+
+### Module not found errors
+
+```bash
+rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
+
+### Database connection errors
+
+Verify your `DATABASE_URL` is correct and the database is running.
+
+### Authentication errors
+
+Make sure `AUTH_SECRET` is set and at least 32 characters long.
+
+---
+
+## Next Steps
+
+1. **Explore the App**: Navigate through the homepage and dashboard
+2. **Read the Features**: Learn about [all available features](/docs/features)
+3. **Configure**: Customize settings in [Configuration](/docs/configuration)
+4. **Deploy**: Check the [Deployment Guide](/docs/deployment)

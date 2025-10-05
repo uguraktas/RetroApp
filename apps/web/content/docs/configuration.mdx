@@ -1,40 +1,58 @@
 ---
 title: Configuration
-description: Configure your application settings
+description: Configure your CodeBaseHub application settings
 ---
 
-## Configuration
+## Overview
 
-Learn how to configure the application to fit your needs.
+CodeBaseHub is highly configurable to fit your specific needs. This guide covers all configuration options.
 
-### Environment Variables
+---
 
-The application uses environment variables for configuration. Create a `.env` file in the root directory:
+## Environment Variables
+
+All environment variables should be in a `.env` file at the project root.
+
+> **Warning:** Never commit your `.env` file to version control.
+
+### Required Variables
 
 ```bash
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+DATABASE_URL="postgresql://user:password@localhost:5432/codebasehub"
 
 # Authentication
-AUTH_SECRET="your-secret-key"
+AUTH_SECRET="your-super-secret-key-min-32-chars"
 AUTH_TRUST_HOST="true"
 
-# API Configuration
-NEXT_PUBLIC_API_URL="http://localhost:3001/api"
-
-# Feature Flags
-NEXT_PUBLIC_ENABLE_ANALYTICS="false"
+# Application
+NEXT_PUBLIC_APP_URL="http://localhost:3001"
 ```
 
-### Application Config
+### Optional OAuth Variables
 
-The main configuration is located in `packages/config/index.ts`:
+```bash
+# GitHub OAuth
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+---
+
+## Application Configuration
+
+The main configuration is in `packages/config/index.ts`:
 
 ```typescript
-export const appConfig: AppConfig = {
-  appName: "Your App Name",
-  description: "A Full-stack starter kit",
+export const config = {
+  appName: "CodeBaseHub",
+  description: "A production-ready SaaS starter kit",
   author: "Your Name",
+  
   i18n: {
     default: "en",
     locales: {
@@ -46,43 +64,104 @@ export const appConfig: AppConfig = {
 };
 ```
 
-### Internationalization (i18n)
+---
 
-The application supports multiple languages:
+## Theme Configuration
 
-- **Default Language**: English (en)
-- **Supported Languages**: Turkish (tr), Arabic (ar)
-
-To add a new language:
-
-1. Update the config in `packages/config/index.ts`
-2. Add translations in the appropriate files
-3. Update the middleware matcher in `apps/web/src/middleware.ts`
-
-### Theme Configuration
-
-Configure the theme in your components:
+Customize colors in `tailwind.config.ts`:
 
 ```typescript
-import { ThemeProvider } from "next-themes";
-
-<ThemeProvider
-  attribute="class"
-  defaultTheme="system"
-  enableSystem
->
-  {children}
-</ThemeProvider>
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: "#3b82f6",
+          foreground: "#ffffff",
+        },
+      },
+    },
+  },
+};
 ```
 
-### Build Configuration
+---
 
-Customize the Next.js build in `next.config.ts`:
+## Database Configuration
+
+### Connection String
+
+```bash
+# PostgreSQL (recommended)
+DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+
+# MySQL
+DATABASE_URL="mysql://user:password@localhost:3306/dbname"
+```
+
+### Drizzle Configuration
+
+```typescript
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./apps/web/src/lib/db/schema.ts",
+  out: "./apps/web/drizzle",
+  driver: "pg",
+  dbCredentials: {
+    connectionString: process.env.DATABASE_URL!,
+  },
+});
+```
+
+---
+
+## Internationalization
+
+### Adding a New Language
+
+1. Update config in `packages/config/index.ts`
+2. Create `apps/web/messages/{locale}.json`
+3. Add translations:
+
+```json
+{
+  "common": {
+    "welcome": "Welcome",
+    "signIn": "Sign In"
+  }
+}
+```
+
+---
+
+## Next.js Configuration
 
 ```typescript
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  transpilePackages: ["shiki", "@repo/config"],
-  // Add your custom configuration here
+  transpilePackages: ["@repo/config"],
+  
+  images: {
+    domains: ["yourdomain.com"],
+    formats: ["image/avif", "image/webp"],
+  },
 };
 ```
+
+---
+
+## Build & Development
+
+```bash
+# Start development
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Start production
+pnpm start
+```
+
+> **Tip:** Always test your production build locally before deploying.

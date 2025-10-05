@@ -1,0 +1,135 @@
+---
+title: Features
+description: Explore all the features included in CodeBaseHub starter kit
+---
+
+## Authentication
+
+CodeBaseHub includes a complete authentication system powered by **Better Auth**, supporting multiple authentication methods and security features.
+
+### Email/Password Authentication
+
+```typescript
+import { authClient } from "@/lib/auth-client";
+
+// Sign up
+await authClient.signUp.email({
+  email: "user@example.com",
+  password: "secure-password",
+  name: "John Doe",
+});
+
+// Sign in
+await authClient.signIn.email({
+  email: "user@example.com",
+  password: "secure-password",
+});
+```
+
+### OAuth Authentication
+
+```typescript
+// Sign in with OAuth providers
+await authClient.signIn.social({
+  provider: "github",
+  callbackURL: "/dashboard",
+});
+
+// Supported providers:
+// - GitHub
+// - Google
+// - Discord
+```
+
+### Two-Factor Authentication
+
+```typescript
+// Enable 2FA
+await authClient.twoFactor.enable({
+  password: "user-password",
+});
+
+// Verify 2FA code
+await authClient.twoFactor.verify({
+  code: "123456",
+});
+```
+
+> **Note:** All authentication routes are protected with CSRF tokens and secure session management.
+
+---
+
+## Internationalization (i18n)
+
+Built-in support for multiple languages with **next-intl**, making it easy to reach a global audience.
+
+### Supported Languages
+
+- 🇬🇧 English (en)
+- 🇹🇷 Turkish (tr)
+- 🇸🇦 Arabic (ar)
+
+### Usage Example
+
+```typescript
+import { useTranslations } from 'next-intl';
+
+export function MyComponent() {
+  const t = useTranslations();
+  return <h1>{t('welcome.title')}</h1>;
+}
+```
+
+---
+
+## User Interface
+
+Modern, accessible UI components built with **shadcn/ui** and **Tailwind CSS**.
+
+All components are fully accessible, keyboard navigable, and screen reader friendly.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+export function Example() {
+  return (
+    <Card>
+      <Button variant="default">Click me</Button>
+    </Card>
+  );
+}
+```
+
+---
+
+## TypeScript
+
+Full type safety across the entire application with strict TypeScript configuration.
+
+---
+
+## Database
+
+PostgreSQL database with **Drizzle ORM** for type-safe database queries.
+
+```typescript
+import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+```
+
+---
+
+## More Features
+
+- **Theme System**: Beautiful dark mode support
+- **Dashboard**: Full-featured admin panel
+- **Documentation**: Built with Fumadocs
+- **Code Quality**: Biome, TypeScript, ESLint
+- **Monorepo**: Organized with Turborepo

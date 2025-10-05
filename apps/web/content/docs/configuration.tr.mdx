@@ -1,0 +1,88 @@
+---
+title: Yapılandırma
+description: Uygulama ayarlarınızı yapılandırın
+---
+
+## Yapılandırma
+
+Uygulamayı ihtiyaçlarınıza göre nasıl yapılandıracağınızı öğrenin.
+
+### Ortam Değişkenleri
+
+Uygulama, yapılandırma için ortam değişkenlerini kullanır. Kök dizinde bir `.env` dosyası oluşturun:
+
+```bash
+# Veritabanı
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+
+# Kimlik Doğrulama
+AUTH_SECRET="gizli-anahtarınız"
+AUTH_TRUST_HOST="true"
+
+# API Yapılandırması
+NEXT_PUBLIC_API_URL="http://localhost:3001/api"
+
+# Özellik Bayrakları
+NEXT_PUBLIC_ENABLE_ANALYTICS="false"
+```
+
+### Uygulama Yapılandırması
+
+Ana yapılandırma `packages/config/index.ts` içinde bulunur:
+
+```typescript
+export const appConfig: AppConfig = {
+  appName: "Uygulama Adınız",
+  description: "Full-stack başlangıç kiti",
+  author: "Adınız",
+  i18n: {
+    default: "en",
+    locales: {
+      en: "English",
+      tr: "Türkçe",
+      ar: "العربية",
+    },
+  },
+};
+```
+
+### Uluslararasılaştırma (i18n)
+
+Uygulama birden fazla dili destekler:
+
+- **Varsayılan Dil**: İngilizce (en)
+- **Desteklenen Diller**: Türkçe (tr), Arapça (ar)
+
+Yeni bir dil eklemek için:
+
+1. `packages/config/index.ts` içindeki yapılandırmayı güncelleyin
+2. Uygun dosyalara çevirileri ekleyin
+3. `apps/web/src/middleware.ts` içindeki middleware eşleştiricisini güncelleyin
+
+### Tema Yapılandırması
+
+Bileşenlerinizde temayı yapılandırın:
+
+```typescript
+import { ThemeProvider } from "next-themes";
+
+<ThemeProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+>
+  {children}
+</ThemeProvider>
+```
+
+### Derleme Yapılandırması
+
+`next.config.ts` içinde Next.js derlemesini özelleştirin:
+
+```typescript
+const nextConfig: NextConfig = {
+  typedRoutes: true,
+  transpilePackages: ["shiki", "@repo/config"],
+  // Özel yapılandırmanızı buraya ekleyin
+};
+```

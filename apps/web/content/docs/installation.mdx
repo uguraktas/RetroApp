@@ -1,0 +1,79 @@
+---
+title: Installation
+description: How to install and set up the application
+---
+
+## Installation
+
+Follow these steps to install the application.
+
+### System Requirements
+
+- **Operating System**: macOS, Windows, or Linux
+- **Node.js**: Version 18.x or higher
+- **Package Manager**: pnpm (recommended), npm, or yarn
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
+
+### Step 2: Install Dependencies
+
+Using pnpm (recommended):
+
+```bash
+pnpm install
+```
+
+Or using npm:
+
+```bash
+npm install
+```
+
+### Step 3: Set Up Environment Variables
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file with your configuration:
+
+```bash
+DATABASE_URL="your-database-url"
+NEXT_PUBLIC_API_URL="your-api-url"
+```
+
+### Step 4: Run the Development Server
+
+```bash
+pnpm dev
+```
+
+Your application should now be running at [http://localhost:3001](http://localhost:3001).
+
+## Troubleshooting
+
+### Common Issues
+
+**Port already in use**: If port 3001 is already in use, you can change it in `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "next dev --port=3002"
+  }
+}
+```
+
+**Module not found errors**: Try removing `node_modules` and reinstalling:
+
+```bash
+rm -rf node_modules
+pnpm install
+```

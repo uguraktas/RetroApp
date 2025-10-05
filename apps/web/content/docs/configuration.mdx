@@ -1,0 +1,88 @@
+---
+title: Configuration
+description: Configure your application settings
+---
+
+## Configuration
+
+Learn how to configure the application to fit your needs.
+
+### Environment Variables
+
+The application uses environment variables for configuration. Create a `.env` file in the root directory:
+
+```bash
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+
+# Authentication
+AUTH_SECRET="your-secret-key"
+AUTH_TRUST_HOST="true"
+
+# API Configuration
+NEXT_PUBLIC_API_URL="http://localhost:3001/api"
+
+# Feature Flags
+NEXT_PUBLIC_ENABLE_ANALYTICS="false"
+```
+
+### Application Config
+
+The main configuration is located in `packages/config/index.ts`:
+
+```typescript
+export const appConfig: AppConfig = {
+  appName: "Your App Name",
+  description: "A Full-stack starter kit",
+  author: "Your Name",
+  i18n: {
+    default: "en",
+    locales: {
+      en: "English",
+      tr: "Türkçe",
+      ar: "العربية",
+    },
+  },
+};
+```
+
+### Internationalization (i18n)
+
+The application supports multiple languages:
+
+- **Default Language**: English (en)
+- **Supported Languages**: Turkish (tr), Arabic (ar)
+
+To add a new language:
+
+1. Update the config in `packages/config/index.ts`
+2. Add translations in the appropriate files
+3. Update the middleware matcher in `apps/web/src/middleware.ts`
+
+### Theme Configuration
+
+Configure the theme in your components:
+
+```typescript
+import { ThemeProvider } from "next-themes";
+
+<ThemeProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+>
+  {children}
+</ThemeProvider>
+```
+
+### Build Configuration
+
+Customize the Next.js build in `next.config.ts`:
+
+```typescript
+const nextConfig: NextConfig = {
+  typedRoutes: true,
+  transpilePackages: ["shiki", "@repo/config"],
+  // Add your custom configuration here
+};
+```

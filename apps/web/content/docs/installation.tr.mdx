@@ -1,0 +1,79 @@
+---
+title: Kurulum
+description: Uygulamayı nasıl kuracağınızı ve ayarlayacağınızı öğrenin
+---
+
+## Kurulum
+
+Uygulamayı kurmak için aşağıdaki adımları izleyin.
+
+### Sistem Gereksinimleri
+
+- **İşletim Sistemi**: macOS, Windows veya Linux
+- **Node.js**: Sürüm 18.x veya üzeri
+- **Paket Yöneticisi**: pnpm (önerilen), npm veya yarn
+
+### Adım 1: Depoyu Klonlayın
+
+```bash
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
+
+### Adım 2: Bağımlılıkları Yükleyin
+
+pnpm kullanarak (önerilen):
+
+```bash
+pnpm install
+```
+
+Veya npm kullanarak:
+
+```bash
+npm install
+```
+
+### Adım 3: Ortam Değişkenlerini Ayarlayın
+
+Örnek ortam dosyasını kopyalayın:
+
+```bash
+cp .env.example .env
+```
+
+`.env` dosyasını yapılandırmanızla düzenleyin:
+
+```bash
+DATABASE_URL="veritabanı-url'niz"
+NEXT_PUBLIC_API_URL="api-url'niz"
+```
+
+### Adım 4: Geliştirme Sunucusunu Çalıştırın
+
+```bash
+pnpm dev
+```
+
+Uygulamanız artık [http://localhost:3001](http://localhost:3001) adresinde çalışıyor olmalıdır.
+
+## Sorun Giderme
+
+### Yaygın Sorunlar
+
+**Port zaten kullanımda**: 3001 portu zaten kullanılıyorsa, `package.json` içinde değiştirebilirsiniz:
+
+```json
+{
+  "scripts": {
+    "dev": "next dev --port=3002"
+  }
+}
+```
+
+**Modül bulunamadı hataları**: `node_modules` klasörünü silip yeniden yüklemeyi deneyin:
+
+```bash
+rm -rf node_modules
+pnpm install
+```

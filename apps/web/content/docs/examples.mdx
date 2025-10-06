@@ -1,0 +1,324 @@
+---
+title: Code Examples
+description: Beautiful code examples with fumadocs codeblock components
+---
+
+## Code Block Features
+
+Our documentation uses **fumadocs codeblock components** for beautiful, interactive code blocks with copy buttons, syntax highlighting, and file names.
+
+### React Components
+
+Here's how to create a simple React component:
+
+```tsx title="components/welcome-banner.tsx"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+interface WelcomeBannerProps {
+  title: string;
+  subtitle?: string;
+  onGetStarted?: () => void;
+}
+
+export function WelcomeBanner({ 
+  title, 
+  subtitle, 
+  onGetStarted 
+}: WelcomeBannerProps) {
+  return (
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader className="text-center">
+        <CardTitle className="text-3xl font-bold gradient-text">
+          {title}
+        </CardTitle>
+        {subtitle && (
+          <p className="text-lg text-muted-foreground mt-2">
+            {subtitle}
+          </p>
+        )}
+      </CardHeader>
+      <CardContent className="text-center">
+        <Button 
+          onClick={onGetStarted}
+          size="lg"
+          className="px-8"
+        >
+          Get Started
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### API Routes
+
+Create powerful API endpoints with Next.js:
+
+```typescript title="app/api/users/route.ts"
+import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { users } from '@/lib/schema';
+import { eq } from 'drizzle-orm';
+
+export async function GET(request: NextRequest) {
+  try {
+    // Authenticate the request
+    const session = await auth.getSession();
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' }, 
+        { status: 401 }
+      );
+    }
+
+    // Query users from database
+    const allUsers = await db
+      .select({
+        id: users.id,
+        email: users.email,
+        name: users.name,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .where(eq(users.active, true));
+
+    return NextResponse.json({ users: allUsers });
+  } catch (error) {
+    console.error('Failed to fetch users:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const session = await auth.getSession();
+    if (!session?.user?.isAdmin) {
+      return NextResponse.json(
+        { error: 'Admin access required' }, 
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { email, name, role } = body;
+
+    const newUser = await db
+      .insert(users)
+      .values({ email, name, role })
+      .returning();
+
+    return NextResponse.json(
+      { message: 'User created', user: newUser[0] },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Failed to create user:', error);
+    return NextResponse.json(
+      { error: 'Failed to create user' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Database Schema
+
+Define your database schema with Drizzle ORM:
+
+```typescript title="lib/schema.ts"
+import { 
+  pgTable, 
+  text, 
+  timestamp, 
+  boolean, 
+  integer,
+  uuid,
+  index 
+} from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+
+export const users = pgTable("users", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  role: text("role").default("user").notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  emailIdx: index("email_idx").on(table.email),
+  createdAtIdx: index("created_at_idx").on(table.createdAt),
+}));
+
+export const posts = pgTable("posts", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  authorId: uuid("author_id").references(() => users.id),
+  published: boolean("published").default(false).notNull(),
+  views: integer("views").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const usersRelations = relations(users, ({ many }) => ({
+  posts: many(posts),
+}));
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  author: one(users, {
+    fields: [posts.authorId],
+    references: [users.id],
+  }),
+}));
+```
+
+### Configuration Files
+
+Set up your application configuration:
+
+```typescript title="lib/config.ts"
+import { z } from 'zod';
+
+const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  DATABASE_URL: z.string().url(),
+  AUTH_SECRET: z.string().min(32),
+  AUTH_TRUST_HOST: z.string().default('true'),
+  NEXT_PUBLIC_APP_URL: z.string().url(),
+  RESEND_API_KEY: z.string().optional(),
+  UPLOADTHING_SECRET: z.string().optional(),
+  UPLOADTHING_APP_ID: z.string().optional(),
+});
+
+export const env = envSchema.parse(process.env);
+
+export const config = {
+  app: {
+    name: 'CodeBaseHub',
+    description: 'Production-ready SaaS starter kit',
+    url: env.NEXT_PUBLIC_APP_URL,
+  },
+  database: {
+    url: env.DATABASE_URL,
+  },
+  auth: {
+    secret: env.AUTH_SECRET,
+    trustHost: env.AUTH_TRUST_HOST === 'true',
+  },
+  features: {
+    email: !!env.RESEND_API_KEY,
+    fileUpload: !!(env.UPLOADTHING_SECRET && env.UPLOADTHING_APP_ID),
+  },
+} as const;
+```
+
+### Docker Setup
+
+Containerize your application:
+
+```dockerfile title="Dockerfile"
+FROM node:20-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy dependency files
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml ./
+COPY apps/web/package.json ./apps/web/
+COPY packages/config/package.json ./packages/config/
+COPY packages/i18n/package.json ./packages/i18n/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+```
+
+### Package Configuration
+
+Set up your development environment:
+
+```json title="package.json"
+{
+  "name": "codebasehub",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint",
+    "format": "biome format --write .",
+    "type-check": "turbo type-check",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "turbo": "^2.5.8",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
+```
+
+## Features
+
+- ✅ **Copy Button** - One-click copying for all code blocks
+- ✅ **Syntax Highlighting** - Beautiful syntax highlighting for 100+ languages
+- ✅ **File Names** - Display file names/paths as titles
+- ✅ **Language Detection** - Automatic language detection and styling
+- ✅ **Responsive Design** - Perfect on mobile and desktop
+- ✅ **Dark Mode Support** - Seamless theme integration
+
+> **Tip:** All code blocks include a copy button in the top-right corner. Click it to copy the code to your clipboard!

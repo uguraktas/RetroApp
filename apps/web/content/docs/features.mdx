@@ -9,7 +9,7 @@ CodeBaseHub includes a complete authentication system powered by **Better Auth**
 
 ### Email/Password Authentication
 
-```typescript
+```typescript title="lib/auth.ts"
 import { authClient } from "@/lib/auth-client";
 
 // Sign up
@@ -28,7 +28,7 @@ await authClient.signIn.email({
 
 ### OAuth Authentication
 
-```typescript
+```typescript title="components/oauth-login.tsx"
 // Sign in with OAuth providers
 await authClient.signIn.social({
   provider: "github",
@@ -71,7 +71,7 @@ Built-in support for multiple languages with **next-intl**, making it easy to re
 
 ### Usage Example
 
-```typescript
+```typescript title="components/welcome.tsx"
 import { useTranslations } from 'next-intl';
 
 export function MyComponent() {
@@ -88,7 +88,7 @@ Modern, accessible UI components built with **shadcn/ui** and **Tailwind CSS**.
 
 All components are fully accessible, keyboard navigable, and screen reader friendly.
 
-```tsx
+```tsx title="components/example.tsx"
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -113,7 +113,7 @@ Full type safety across the entire application with strict TypeScript configurat
 
 PostgreSQL database with **Drizzle ORM** for type-safe database queries.
 
-```typescript
+```typescript title="lib/schema.ts"
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {

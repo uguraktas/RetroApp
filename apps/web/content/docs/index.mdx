@@ -33,28 +33,40 @@ Beautiful dark mode support out of the box.
 
 ### 1. Clone the Repository
 
-```bash
+```bash title="Terminal"
 git clone https://github.com/your-org/codebasehub.git
 cd codebasehub
 ```
 
 ### 2. Install Dependencies
 
-```bash
+```bash title="Terminal"
 pnpm install
 ```
 
 ### 3. Set Up Environment Variables
 
-```bash
+```bash title="Terminal"
 cp .env.example .env
 ```
 
-Update the `.env` file with your configuration.
+Update the `.env` file with your configuration:
+
+```bash title=".env"
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/codebasehub"
+
+# Authentication
+AUTH_SECRET="your-super-secret-key-min-32-chars"
+AUTH_TRUST_HOST="true"
+
+# App Configuration
+NEXT_PUBLIC_APP_URL="http://localhost:3001"
+```
 
 ### 4. Run the Development Server
 
-```bash
+```bash title="Terminal"
 pnpm dev
 ```
 

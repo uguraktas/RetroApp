@@ -37,14 +37,14 @@ npm install -g pnpm
 
 ### 1. Clone the Repository
 
-```bash
+```bash title="Terminal"
 git clone https://github.com/your-org/codebasehub.git
 cd codebasehub
 ```
 
 ### 2. Install Dependencies
 
-```bash
+```bash title="Terminal"
 pnpm install
 ```
 
@@ -52,13 +52,13 @@ This will install all dependencies for the monorepo.
 
 ### 3. Set Up Environment Variables
 
-```bash
+```bash title="Terminal"
 cp .env.example .env
 ```
 
 Edit the `.env` file:
 
-```bash
+```bash title=".env"
 # Database
 DATABASE_URL="postgresql://user:password@localhost:5432/codebasehub"
 
@@ -76,7 +76,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3001"
 
 **Using Docker:**
 
-```bash
+```bash title="Terminal - Docker Setup"
 docker run -d \
   --name codebasehub-db \
   -e POSTGRES_PASSWORD=password \
@@ -89,7 +89,7 @@ pnpm db:push
 
 **Using Local PostgreSQL:**
 
-```bash
+```bash title="Terminal - Local PostgreSQL"
 # macOS
 brew install postgresql@15
 brew services start postgresql@15
@@ -103,7 +103,7 @@ pnpm db:push
 
 ### 5. Run the Development Server
 
-```bash
+```bash title="Terminal"
 pnpm dev
 ```
 

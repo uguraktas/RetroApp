@@ -1,53 +1,53 @@
-import { getPage, getPages } from "@/lib/source";
+import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import type { Metadata } from "next";
-import { DocsPage, DocsBody } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
+import { getPage, getPages } from "@/lib/source";
 import { useMDXComponents } from "../../../../../mdx-components";
 
 type PageProps = {
-	params: Promise<{ slug?: string[]; locale: string }>;
+  params: Promise<{ slug?: string[]; locale: string }>;
 };
 
 export default async function Page({ params }: PageProps) {
-	const { slug, locale } = await params;
-	const page = getPage(slug, locale);
+  const { slug, locale } = await params;
+  const page = getPage(slug, locale);
 
-	if (!page) {
-		notFound();
-	}
+  if (!page) {
+    notFound();
+  }
 
-	const MDX = page.data.body;
+  const Mdx = page.data.body;
 
-	return (
-		<DocsPage toc={page.data.toc} full={page.data.full}>
-			<DocsBody>
-				<h1>{page.data.title}</h1>
-				{page.data.description && <p>{page.data.description}</p>}
-				<MDX components={useMDXComponents({})} />
-			</DocsBody>
-		</DocsPage>
-	);
+  return (
+    <DocsPage full={page.data.full} toc={page.data.toc}>
+      <DocsBody>
+        <h1>{page.data.title}</h1>
+        {page.data.description && <p>{page.data.description}</p>}
+        <Mdx components={useMDXComponents({})} />
+      </DocsBody>
+    </DocsPage>
+  );
 }
 
 export async function generateStaticParams() {
-	return getPages().map((page) => ({
-		slug: page.slugs,
-		locale: page.locale,
-	}));
+  return getPages().map((page) => ({
+    slug: page.slugs,
+    locale: page.locale,
+  }));
 }
 
 export async function generateMetadata({
-	params,
+  params,
 }: PageProps): Promise<Metadata> {
-	const { slug, locale } = await params;
-	const page = getPage(slug, locale);
+  const { slug, locale } = await params;
+  const page = getPage(slug, locale);
 
-	if (!page) {
-		notFound();
-	}
+  if (!page) {
+    notFound();
+  }
 
-	return {
-		title: page.data.title,
-		description: page.data.description,
-	};
+  return {
+    title: page.data.title,
+    description: page.data.description,
+  };
 }

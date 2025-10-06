@@ -1,9 +1,18 @@
 {
-  "title": "Web Development",
+  "title": "Web",
   "icon": "Globe",
   "pages": [
+    "index",
+    "---[Rocket]Getting Started---",
+    "installation",
+    "---[Code]Features---",
+    "features",
+    "examples",
+    "---[Blocks]Components---",
     "overview",
     "components",
-    "routing"
+    "routing",
+    "---[Settings]Advanced---",
+    "deployment"
   ]
 }

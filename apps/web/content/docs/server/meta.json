@@ -1,8 +1,7 @@
 {
-  "title": "Server",
+  "title": "Server Development",
   "icon": "Server",
   "pages": [
-    "index",
     "api-routes",
     "database",
     "authentication"

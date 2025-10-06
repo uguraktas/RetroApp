@@ -1,0 +1,190 @@
+---
+title: Tauri Desktop App
+description: Build native desktop applications with Tauri
+---
+
+## Desktop Application
+
+CodeBaseHub includes Tauri integration for building native desktop applications.
+
+<Callout>
+Tauri allows you to build lightweight, secure desktop apps using web technologies.
+</Callout>
+
+### Benefits
+
+<Cards>
+  <Card title="Lightweight" icon="Zap">
+    Smaller bundle size compared to Electron (3-5 MB vs 50+ MB).
+  </Card>
+
+  <Card title="Secure" icon="Settings">
+    Built with Rust for enhanced security and performance.
+  </Card>
+
+  <Card title="Native" icon="Box">
+    Access native OS features and APIs.
+  </Card>
+
+  <Card title="Cross-platform" icon="Globe">
+    Build for Windows, macOS, and Linux from one codebase.
+  </Card>
+</Cards>
+
+### Development
+
+<Tabs items={['Commands', 'Configuration', 'APIs']}>
+  <Tab value="Commands">
+    ```bash
+    # Start desktop development
+    pnpm desktop:dev
+
+    # Build desktop app
+    pnpm desktop:build
+    ```
+
+    <Steps>
+      <Step>
+        ### Development Mode
+
+        Runs both Next.js dev server and Tauri in development mode with hot reload.
+      </Step>
+
+      <Step>
+        ### Production Build
+
+        Creates optimized bundles for your target platforms.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab value="Configuration">
+    ```json title="src-tauri/tauri.conf.json"
+    {
+      "productName": "CodeBaseHub",
+      "version": "1.0.0",
+      "identifier": "com.codebasehub.app",
+      "build": {
+        "beforeDevCommand": "pnpm dev",
+        "beforeBuildCommand": "pnpm build",
+        "devUrl": "http://localhost:3001",
+        "frontendDist": "../out"
+      },
+      "bundle": {
+        "active": true,
+        "targets": ["dmg", "msi", "deb"],
+        "icon": [
+          "icons/32x32.png",
+          "icons/128x128.png",
+          "icons/icon.icns",
+          "icons/icon.ico"
+        ]
+      }
+    }
+    ```
+  </Tab>
+
+  <Tab value="APIs">
+    ```tsx title="hooks/use-tauri.ts"
+    import { invoke } from '@tauri-apps/api/core';
+    import { open } from '@tauri-apps/plugin-dialog';
+
+    export function useTauri() {
+      const greet = async (name: string) => {
+        return await invoke<string>('greet', { name });
+      };
+
+      const openFile = async () => {
+        const file = await open({
+          multiple: false,
+          directory: false,
+        });
+        return file;
+      };
+
+      return { greet, openFile };
+    }
+    ```
+
+    Use Tauri APIs in your components:
+
+    ```tsx
+    import { useTauri } from '@/hooks/use-tauri';
+
+    export function TauriExample() {
+      const { greet, openFile } = useTauri();
+
+      return (
+        <div>
+          <button type="button" onClick={() => greet('World')}>
+            Greet
+          </button>
+          <button type="button" onClick={openFile}>
+            Open File
+          </button>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Platform-specific Features
+
+<Accordions>
+  <Accordion title="File System">
+    Access the file system with Tauri's fs plugin:
+
+    ```tsx
+    import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
+
+    const content = await readTextFile('file.txt');
+    await writeTextFile('output.txt', 'Hello World');
+    ```
+  </Accordion>
+
+  <Accordion title="Shell Commands">
+    Execute shell commands:
+
+    ```tsx
+    import { Command } from '@tauri-apps/plugin-shell';
+
+    const output = await Command.create('exec-sh', ['ls', '-la']).execute();
+    ```
+  </Accordion>
+
+  <Accordion title="System Tray">
+    Create system tray icons:
+
+    ```rust
+    use tauri::Manager;
+
+    fn main() {
+      tauri::Builder::default()
+        .setup(|app| {
+          let tray = app.tray_by_id("main").unwrap();
+          Ok(())
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Notifications">
+    Send native notifications:
+
+    ```tsx
+    import { sendNotification } from '@tauri-apps/plugin-notification';
+
+    await sendNotification({
+      title: 'Hello',
+      body: 'This is a notification',
+    });
+    ```
+  </Accordion>
+</Accordions>
+
+<Callout type="warn">
+Tauri apps require Rust to be installed. See [Tauri prerequisites](https://tauri.app/start/prerequisites/) for setup instructions.
+</Callout>

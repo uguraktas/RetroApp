@@ -1,0 +1,173 @@
+---
+title: Database & ORM
+description: PostgreSQL with Drizzle ORM for type-safe database queries
+---
+
+## Database Setup
+
+CodeBaseHub uses PostgreSQL with Drizzle ORM for a fully type-safe database layer.
+
+<Callout>
+Drizzle ORM provides excellent TypeScript support and a SQL-like query builder.
+</Callout>
+
+### Schema Definition
+
+<Tabs items={['Tables', 'Relations', 'Indexes']}>
+  <Tab value="Tables">
+    ```tsx title="lib/schema.ts"
+    import { pgTable, text, timestamp, uuid, boolean } from "drizzle-orm/pg-core";
+
+    export const users = pgTable("users", {
+      id: uuid("id").defaultRandom().primaryKey(),
+      email: text("email").notNull().unique(),
+      name: text("name").notNull(),
+      role: text("role").default("user").notNull(),
+      active: boolean("active").default(true).notNull(),
+      createdAt: timestamp("created_at").defaultNow().notNull(),
+      updatedAt: timestamp("updated_at").defaultNow().notNull(),
+    });
+
+    export const posts = pgTable("posts", {
+      id: uuid("id").defaultRandom().primaryKey(),
+      title: text("title").notNull(),
+      content: text("content").notNull(),
+      authorId: uuid("author_id").references(() => users.id),
+      published: boolean("published").default(false).notNull(),
+      createdAt: timestamp("created_at").defaultNow().notNull(),
+    });
+    ```
+  </Tab>
+
+  <Tab value="Relations">
+    ```tsx title="lib/schema.ts"
+    import { relations } from "drizzle-orm";
+
+    export const usersRelations = relations(users, ({ many }) => ({
+      posts: many(posts),
+    }));
+
+    export const postsRelations = relations(posts, ({ one }) => ({
+      author: one(users, {
+        fields: [posts.authorId],
+        references: [users.id],
+      }),
+    }));
+    ```
+  </Tab>
+
+  <Tab value="Indexes">
+    ```tsx title="lib/schema.ts"
+    import { pgTable, text, index } from "drizzle-orm/pg-core";
+
+    export const users = pgTable("users", {
+      id: uuid("id").defaultRandom().primaryKey(),
+      email: text("email").notNull().unique(),
+      name: text("name").notNull(),
+    }, (table) => ({
+      emailIdx: index("email_idx").on(table.email),
+      nameIdx: index("name_idx").on(table.name),
+    }));
+    ```
+  </Tab>
+</Tabs>
+
+### Queries
+
+<Accordions>
+  <Accordion title="Select Queries">
+    ```tsx
+    // Find all users
+    const allUsers = await db.query.users.findMany();
+
+    // Find user by ID
+    const user = await db.query.users.findFirst({
+      where: eq(users.id, userId),
+    });
+
+    // Select specific fields
+    const userEmails = await db
+      .select({ email: users.email })
+      .from(users);
+
+    // With relations
+    const userWithPosts = await db.query.users.findFirst({
+      where: eq(users.id, userId),
+      with: {
+        posts: true,
+      },
+    });
+    ```
+  </Accordion>
+
+  <Accordion title="Insert Queries">
+    ```tsx
+    // Insert single record
+    const newUser = await db
+      .insert(users)
+      .values({ email: "user@example.com", name: "John Doe" })
+      .returning();
+
+    // Insert multiple records
+    const newUsers = await db
+      .insert(users)
+      .values([
+        { email: "user1@example.com", name: "User 1" },
+        { email: "user2@example.com", name: "User 2" },
+      ])
+      .returning();
+    ```
+  </Accordion>
+
+  <Accordion title="Update Queries">
+    ```tsx
+    // Update record
+    const updated = await db
+      .update(users)
+      .set({ name: "New Name" })
+      .where(eq(users.id, userId))
+      .returning();
+    ```
+  </Accordion>
+
+  <Accordion title="Delete Queries">
+    ```tsx
+    // Delete record
+    await db
+      .delete(users)
+      .where(eq(users.id, userId));
+    ```
+  </Accordion>
+</Accordions>
+
+### Migrations
+
+<Steps>
+  <Step>
+    ### Generate Migration
+
+    ```bash
+    pnpm db:generate
+    ```
+  </Step>
+
+  <Step>
+    ### Apply Migration
+
+    ```bash
+    pnpm db:migrate
+    ```
+  </Step>
+
+  <Step>
+    ### Studio (GUI)
+
+    ```bash
+    pnpm db:studio
+    ```
+  </Step>
+</Steps>
+
+<Callout type="warn">
+Always create migrations for schema changes. Never modify the database directly in production.
+</Callout>

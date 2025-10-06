@@ -1,0 +1,116 @@
+---
+title: UI Components
+description: Beautiful, accessible components built with Radix UI
+---
+
+## Component Library
+
+CodeBaseHub uses shadcn/ui components built on top of Radix UI primitives.
+
+### Available Components
+
+<Accordions>
+  <Accordion title="Forms & Inputs">
+    - Input
+    - Textarea
+    - Select
+    - Checkbox
+    - Radio Group
+    - Switch
+    - Date Picker
+    - Form (with react-hook-form)
+  </Accordion>
+
+  <Accordion title="Data Display">
+    - Table
+    - Card
+    - Badge
+    - Avatar
+    - Separator
+    - Skeleton
+    - Progress
+  </Accordion>
+
+  <Accordion title="Feedback">
+    - Toast (Sonner)
+    - Alert
+    - Dialog
+    - Alert Dialog
+    - Tooltip
+    - Loading Spinner
+  </Accordion>
+
+  <Accordion title="Navigation">
+    - Tabs
+    - Dropdown Menu
+    - Navigation Menu
+    - Breadcrumb
+    - Pagination
+  </Accordion>
+</Accordions>
+
+### Example Usage
+
+<Tabs items={['Button', 'Card', 'Form']}>
+  <Tab value="Button">
+    ```tsx
+    import { Button } from "@/components/ui/button";
+
+    export function Example() {
+      return (
+        <Button variant="default" size="lg">
+          Click me
+        </Button>
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab value="Card">
+    ```tsx
+    import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+    export function Example() {
+      return (
+        <Card>
+          <CardHeader>
+            <CardTitle>Card Title</CardTitle>
+            <CardDescription>Card description</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Card content goes here</p>
+          </CardContent>
+        </Card>
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab value="Form">
+    ```tsx
+    import { useForm } from "@tanstack/react-form";
+    import { Button } from "@/components/ui/button";
+    import { Input } from "@/components/ui/input";
+
+    export function Example() {
+      const form = useForm({
+        defaultValues: { email: "" },
+        onSubmit: async ({ value }) => {
+          console.log(value);
+        },
+      });
+
+      return (
+        <form onSubmit={(e) => { e.preventDefault(); form.handleSubmit(); }}>
+          <Input type="email" placeholder="Email" />
+          <Button type="submit">Submit</Button>
+        </form>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Callout>
+All components are fully typed with TypeScript and support dark mode out of the box.
+</Callout>

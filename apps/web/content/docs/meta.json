@@ -1,4 +1,17 @@
 {
   "title": "Documentation",
-  "pages": ["index", "getting-started", "installation"]
+  "pages": [
+    "index",
+    "---[Rocket]Getting Started---",
+    "installation",
+    "---[Code]Features---",
+    "features",
+    "examples",
+    "---[Settings]Advanced---",
+    "deployment",
+    "---[Blocks]Platforms---",
+    "web",
+    "server",
+    "mobile"
+  ]
 }

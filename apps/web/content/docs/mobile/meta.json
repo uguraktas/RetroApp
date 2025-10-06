@@ -1,0 +1,8 @@
+{
+  "title": "Mobile Development",
+  "icon": "Smartphone",
+  "pages": [
+    "tauri-desktop",
+    "responsive-design"
+  ]
+}

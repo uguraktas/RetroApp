@@ -1,0 +1,9 @@
+{
+  "title": "Server Development",
+  "icon": "Server",
+  "pages": [
+    "api-routes",
+    "database",
+    "authentication"
+  ]
+}

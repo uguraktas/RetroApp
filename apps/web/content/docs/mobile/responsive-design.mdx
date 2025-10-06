@@ -1,0 +1,158 @@
+---
+title: Responsive Design
+description: Build responsive interfaces that work on all devices
+---
+
+## Responsive Design System
+
+CodeBaseHub uses Tailwind CSS for building responsive, mobile-first interfaces.
+
+### Breakpoints
+
+<Tabs items={['Sizes', 'Usage', 'Custom']}>
+  <Tab value="Sizes">
+    | Breakpoint | Min Width | Devices |
+    |------------|-----------|---------|
+    | `sm` | 640px | Small tablets, large phones |
+    | `md` | 768px | Tablets |
+    | `lg` | 1024px | Laptops |
+    | `xl` | 1280px | Desktops |
+    | `2xl` | 1536px | Large desktops |
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+      Responsive width
+    </div>
+
+    <div className="text-sm md:text-base lg:text-lg">
+      Responsive text size
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      Responsive grid
+    </div>
+    ```
+  </Tab>
+
+  <Tab value="Custom">
+    ```ts title="tailwind.config.ts"
+    import type { Config } from "tailwindcss";
+
+    export default {
+      theme: {
+        screens: {
+          'tablet': '640px',
+          'laptop': '1024px',
+          'desktop': '1280px',
+        },
+      },
+    } satisfies Config;
+    ```
+  </Tab>
+</Tabs>
+
+### Mobile-First Approach
+
+<Callout>
+Always design for mobile first, then enhance for larger screens.
+</Callout>
+
+<Steps>
+  <Step>
+    ### Start with Mobile Layout
+
+    ```tsx
+    <div className="p-4 text-sm">
+      Mobile layout
+    </div>
+    ```
+  </Step>
+
+  <Step>
+    ### Add Tablet Styles
+
+    ```tsx
+    <div className="p-4 text-sm md:p-6 md:text-base">
+      Tablet enhancements
+    </div>
+    ```
+  </Step>
+
+  <Step>
+    ### Add Desktop Styles
+
+    ```tsx
+    <div className="p-4 text-sm md:p-6 md:text-base lg:p-8 lg:text-lg">
+      Desktop enhancements
+    </div>
+    ```
+  </Step>
+</Steps>
+
+### Common Patterns
+
+<Accordions>
+  <Accordion title="Responsive Navigation">
+    ```tsx
+    <nav className="flex flex-col md:flex-row gap-4">
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+      <Link href="/contact">Contact</Link>
+    </nav>
+    ```
+  </Accordion>
+
+  <Accordion title="Responsive Grid">
+    ```tsx
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {items.map(item => (
+        <Card key={item.id}>{item.content}</Card>
+      ))}
+    </div>
+    ```
+  </Accordion>
+
+  <Accordion title="Responsive Typography">
+    ```tsx
+    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+      Responsive Heading
+    </h1>
+
+    <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+      Responsive paragraph text
+    </p>
+    ```
+  </Accordion>
+
+  <Accordion title="Responsive Container">
+    ```tsx
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl">
+        Content
+      </div>
+    </div>
+    ```
+  </Accordion>
+</Accordions>
+
+### Touch Optimization
+
+<Cards>
+  <Card title="Touch Targets" icon="Smartphone">
+    Ensure buttons and links are at least 44x44px for easy tapping.
+  </Card>
+
+  <Card title="Gestures" icon="Zap">
+    Support common touch gestures like swipe and pinch-to-zoom.
+  </Card>
+
+  <Card title="Spacing" icon="Box">
+    Add adequate spacing between interactive elements.
+  </Card>
+</Cards>
+
+<Callout type="info">
+Test your responsive design on real devices, not just browser DevTools.
+</Callout>

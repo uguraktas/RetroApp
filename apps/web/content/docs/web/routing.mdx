@@ -1,0 +1,113 @@
+---
+title: Routing & Navigation
+description: File-based routing with Next.js App Router
+---
+
+## App Router
+
+CodeBaseHub uses the Next.js App Router for a modern routing experience.
+
+### File Structure
+
+```
+app/
+├── [locale]/
+│   ├── page.tsx              # Home page
+│   ├── layout.tsx            # Root layout
+│   ├── dashboard/
+│   │   ├── page.tsx          # /dashboard
+│   │   └── settings/
+│   │       └── page.tsx      # /dashboard/settings
+│   └── docs/
+│       └── [[...slug]]/
+│           └── page.tsx      # /docs/...
+```
+
+### Route Types
+
+<Tabs items={['Static', 'Dynamic', 'Catch-all']}>
+  <Tab value="Static">
+    **Static Routes**
+
+    ```tsx title="app/about/page.tsx"
+    export default function AboutPage() {
+      return <div>About Us</div>;
+    }
+    ```
+
+    URL: `/about`
+  </Tab>
+
+  <Tab value="Dynamic">
+    **Dynamic Routes**
+
+    ```tsx title="app/blog/[slug]/page.tsx"
+    type Props = {
+      params: Promise<{ slug: string }>;
+    };
+
+    export default async function BlogPost({ params }: Props) {
+      const { slug } = await params;
+      return <div>Post: {slug}</div>;
+    }
+    ```
+
+    URL: `/blog/hello-world`
+  </Tab>
+
+  <Tab value="Catch-all">
+    **Catch-all Routes**
+
+    ```tsx title="app/docs/[[...slug]]/page.tsx"
+    type Props = {
+      params: Promise<{ slug?: string[] }>;
+    };
+
+    export default async function DocsPage({ params }: Props) {
+      const { slug } = await params;
+      return <div>Docs: {slug?.join('/')}</div>;
+    }
+    ```
+
+    URL: `/docs/getting-started/installation`
+  </Tab>
+</Tabs>
+
+### Navigation
+
+<Steps>
+  <Step>
+    ### Using Link Component
+
+    ```tsx
+    import Link from "next/link";
+
+    <Link href="/dashboard">Dashboard</Link>
+    ```
+  </Step>
+
+  <Step>
+    ### Programmatic Navigation
+
+    ```tsx
+    import { useRouter } from "next/navigation";
+
+    const router = useRouter();
+    router.push('/dashboard');
+    ```
+  </Step>
+
+  <Step>
+    ### With Internationalization
+
+    ```tsx
+    import { Link } from "@/i18n/routing";
+
+    <Link href="/about">About</Link>
+    ```
+  </Step>
+</Steps>
+
+<Callout type="warn">
+Always use the internationalized Link component from `@/i18n/routing` to maintain language context.
+</Callout>

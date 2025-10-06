@@ -1,0 +1,149 @@
+---
+title: API Routes
+description: Build RESTful APIs with Next.js Route Handlers
+---
+
+## Route Handlers
+
+Create backend APIs directly in your Next.js application using Route Handlers.
+
+### HTTP Methods
+
+<Tabs items={['GET', 'POST', 'PUT', 'DELETE']}>
+  <Tab value="GET">
+    ```tsx title="app/api/users/route.ts"
+    import { NextRequest, NextResponse } from 'next/server';
+
+    export async function GET(request: NextRequest) {
+      const users = await db.query.users.findMany();
+
+      return NextResponse.json({ users });
+    }
+    ```
+  </Tab>
+
+  <Tab value="POST">
+    ```tsx title="app/api/users/route.ts"
+    import { NextRequest, NextResponse } from 'next/server';
+
+    export async function POST(request: NextRequest) {
+      const body = await request.json();
+      const user = await db.insert(users).values(body).returning();
+
+      return NextResponse.json({ user }, { status: 201 });
+    }
+    ```
+  </Tab>
+
+  <Tab value="PUT">
+    ```tsx title="app/api/users/[id]/route.ts"
+    import { NextRequest, NextResponse } from 'next/server';
+
+    type Props = {
+      params: Promise<{ id: string }>;
+    };
+
+    export async function PUT(request: NextRequest, { params }: Props) {
+      const { id } = await params;
+      const body = await request.json();
+
+      const user = await db
+        .update(users)
+        .set(body)
+        .where(eq(users.id, id))
+        .returning();
+
+      return NextResponse.json({ user });
+    }
+    ```
+  </Tab>
+
+  <Tab value="DELETE">
+    ```tsx title="app/api/users/[id]/route.ts"
+    import { NextRequest, NextResponse } from 'next/server';
+
+    type Props = {
+      params: Promise<{ id: string }>;
+    };
+
+    export async function DELETE(request: NextRequest, { params }: Props) {
+      const { id } = await params;
+
+      await db.delete(users).where(eq(users.id, id));
+
+      return NextResponse.json({ success: true });
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Authentication
+
+<Callout type="info">
+All API routes should verify authentication before processing requests.
+</Callout>
+
+```tsx title="app/api/protected/route.ts"
+import { auth } from '@/lib/auth';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  const session = await auth.getSession();
+
+  if (!session?.user) {
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+
+  return NextResponse.json({ data: 'Protected data' });
+}
+```
+
+### Error Handling
+
+<Steps>
+  <Step>
+    ### Wrap in Try-Catch
+
+    ```tsx
+    try {
+      // API logic
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    }
+    ```
+  </Step>
+
+  <Step>
+    ### Validate Input
+
+    ```tsx
+    import { z } from 'zod';
+
+    const schema = z.object({
+      email: z.string().email(),
+      name: z.string().min(2),
+    });
+
+    const result = schema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ error: result.error }, { status: 400 });
+    }
+    ```
+  </Step>
+
+  <Step>
+    ### Return Proper Status Codes
+
+    - `200` - Success
+    - `201` - Created
+    - `400` - Bad Request
+    - `401` - Unauthorized
+    - `403` - Forbidden
+    - `404` - Not Found
+    - `500` - Server Error
+  </Step>
+</Steps>

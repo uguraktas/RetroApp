@@ -9,6 +9,7 @@ export default async function DashboardPage() {
       headers: await headers(),
     },
   });
+  console.log("NEXT_PUBLIC_SERVER_URL", process.env.NEXT_PUBLIC_SERVER_URL);
   console.log("🚀 ~ DashboardPage ~ session:", session);
 
   if (!session.data) {
@@ -26,7 +27,9 @@ export default async function DashboardPage() {
       {/* Header */}
       <div>
         <h1 className="font-semibold text-2xl">Dashboard</h1>
-        <p className="text-muted-foreground text-sm">Welcome back, {session.data.user.name}</p>
+        <p className="text-muted-foreground text-sm">
+          Welcome back, {session.data.user.name}
+        </p>
       </div>
 
       {/* Dashboard Content */}

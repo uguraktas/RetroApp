@@ -144,22 +144,30 @@ export function DashboardSidebar({
             type="button"
             onClick={() => toggleExpanded(item.label)}
             className={cn(
-              "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all",
-              "hover:bg-accent/80 hover:text-accent-foreground",
-              isActive && "bg-accent text-accent-foreground"
+              "flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+              "hover:bg-gradient-to-r hover:from-primary/5 hover:to-orange-500/5 hover:text-primary",
+              "group relative",
+              pathname.startsWith(item.href) && "bg-gradient-to-r from-primary/10 via-primary/5 to-orange-500/10 text-primary border border-primary/20 shadow-sm"
             )}
           >
-            <Icon className="h-4 w-4 shrink-0" />
+            <div className={cn(
+              "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
+              pathname.startsWith(item.href) 
+                ? "bg-gradient-to-br from-primary/20 to-orange-500/20 text-primary" 
+                : "bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+            )}>
+              <Icon className="h-4 w-4 shrink-0" />
+            </div>
             <span className="flex-1 text-left">{item.label}</span>
             {isExpanded ? (
-              <ChevronDown className="h-4 w-4 transition-transform" />
+              <ChevronDown className="h-4 w-4 transition-transform text-muted-foreground" />
             ) : (
-              <ChevronRight className="h-4 w-4 transition-transform" />
+              <ChevronRight className="h-4 w-4 transition-transform text-muted-foreground" />
             )}
           </button>
 
           {isExpanded && (
-            <div className="ml-4 mt-1 space-y-1 border-l-2 border-muted pl-4">
+            <div className="ml-6 mt-2 space-y-1 border-l-2 border-gradient-to-b border-primary/20 pl-4">
               {item.subItems?.map((subItem) => renderMenuItem(subItem, depth + 1))}
             </div>
           )}
@@ -172,14 +180,28 @@ export function DashboardSidebar({
         key={item.href}
         href={item.href}
         className={cn(
-          "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all",
-          "hover:bg-accent/80 hover:text-accent-foreground",
-          isActive && "bg-accent text-accent-foreground shadow-sm",
-          depth > 0 && "text-muted-foreground hover:text-foreground"
+          "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+          "hover:bg-gradient-to-r hover:from-primary/5 hover:to-orange-500/5 hover:text-primary",
+          "group relative",
+          isActive 
+            ? "bg-gradient-to-r from-primary/10 via-primary/5 to-orange-500/10 text-primary border border-primary/20 shadow-sm" 
+            : "",
+          depth > 0 ? "text-muted-foreground hover:text-foreground" : ""
         )}
       >
-        <Icon className="h-4 w-4 shrink-0" />
+        <div className={cn(
+          "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
+          isActive 
+            ? "bg-gradient-to-br from-primary/20 to-orange-500/20 text-primary" 
+            : "bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary",
+          depth > 0 && "h-6 w-6"
+        )}>
+          <Icon className={cn("shrink-0", depth > 0 ? "h-3 w-3" : "h-4 w-4")} />
+        </div>
         <span>{item.label}</span>
+        {isActive && depth === 0 && (
+          <div className="absolute right-0 top-1/2 h-4 w-1 -translate-y-1/2 rounded-l bg-gradient-to-b from-primary to-orange-500" />
+        )}
       </Link>
     );
   };
@@ -187,108 +209,144 @@ export function DashboardSidebar({
   const SidebarContent = () => (
     <>
       {/* Logo/Brand */}
-      <div className="border-b p-6">
-        <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-            <span className="font-bold text-lg text-primary-foreground">C</span>
+      <div className="border-b border-border/50 p-6 bg-gradient-to-r from-background to-muted/20">
+        <Link href="/dashboard" className="flex items-center gap-3 group">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg group-hover:scale-105 transition-transform">
+            <span className="font-bold text-xl text-primary-foreground">C</span>
           </div>
           <div>
-            <span className="font-bold text-xl">codebasehub</span>
-            <p className="text-muted-foreground text-xs">Development Platform</p>
+            <span className="font-bold text-xl bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+              codebasehub
+            </span>
+            <p className="text-muted-foreground text-xs -mt-0.5">Dashboard</p>
           </div>
         </Link>
       </div>
 
       {/* User Profile with Logout */}
-      <div className="border-b p-4">
-        <div className="flex items-center gap-3 rounded-xl border bg-gradient-to-r from-muted/30 to-muted/50 p-4 shadow-sm">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-            <span className="font-semibold text-primary-foreground">
-              {user.name?.charAt(0).toUpperCase()}
-            </span>
+      <div className="border-b border-border/50 p-5">
+        <div className="relative overflow-hidden rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 via-background to-orange-500/5 p-4 shadow-sm">
+          <div className="absolute -top-6 -right-6 h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-orange-500/10" />
+          <div className="relative flex items-center gap-3">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg border-2 border-white/20">
+              <span className="font-bold text-lg text-primary-foreground">
+                {user.name?.charAt(0).toUpperCase()}
+              </span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-semibold text-base">{user.name}</p>
+              <p className="truncate text-muted-foreground text-xs">
+                {user.email}
+              </p>
+              {user.role && (
+                <span className="inline-block mt-1 px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-md font-medium capitalize">
+                  {user.role}
+                </span>
+              )}
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleSignOut}
+              className="h-10 w-10 shrink-0 rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all"
+              title="Sign Out"
+            >
+              <LogOut className="h-4 w-4" />
+            </Button>
           </div>
-          <div className="min-w-0 flex-1">
-            <p className="truncate font-semibold">{user.name}</p>
-            <p className="truncate text-muted-foreground text-sm">
-              {user.email}
-            </p>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleSignOut}
-            className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive transition-colors"
-            title="Sign Out"
-          >
-            <LogOut className="h-4 w-4" />
-          </Button>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 overflow-auto p-4">
-        {menuItems.map((item) => renderMenuItem(item))}
+      <nav className="flex-1 space-y-2 overflow-auto p-5">
+        <div className="space-y-1">
+          <p className="px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            Navigation
+          </p>
+          {menuItems.map((item) => renderMenuItem(item))}
+        </div>
       </nav>
 
       {/* Settings & Footer */}
-      <div className="border-t p-4">
-        <div className="mb-4 flex items-center justify-center gap-2">
-          {/* Theme Toggle */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="h-9 w-9">
-                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                {t("sidebar.light")}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                {t("sidebar.dark")}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                {t("sidebar.system")}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Language Switcher */}
-          {supportedLocales.length > 1 && (
+      <div className="border-t border-border/50 p-5 bg-gradient-to-r from-muted/10 to-background">
+        <div className="space-y-3">
+          <p className="px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            Preferences
+          </p>
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-9 w-9"
-                  disabled={isPending}
-                >
-                  <Globe className="h-4 w-4" />
-                  <span className="sr-only">Select language</span>
+                <Button variant="ghost" className="h-10 flex-1 justify-start gap-2 rounded-xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-orange-500/5 hover:text-primary">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
+                    <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </div>
+                  <span className="text-sm">Theme</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {supportedLocales.map((locale) => {
-                  const isActive = currentLocale === locale;
-                  return (
-                    <DropdownMenuItem
-                      key={locale}
-                      className={isActive ? "bg-accent" : ""}
-                      onClick={() => handleLocaleChange(locale)}
-                    >
-                      {localeNames[locale as keyof typeof localeNames] || locale.toUpperCase()}
-                    </DropdownMenuItem>
-                  );
-                })}
+              <DropdownMenuContent align="start" className="w-48">
+                <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2">
+                  <Sun className="h-4 w-4" />
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2">
+                  <Moon className="h-4 w-4" />
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")} className="gap-2">
+                  <Settings className="h-4 w-4" />
+                  System
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          )}
+
+            {/* Language Switcher */}
+            {supportedLocales.length > 1 && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="h-10 flex-1 justify-start gap-2 rounded-xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-orange-500/5 hover:text-primary"
+                    disabled={isPending}
+                  >
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/50">
+                      <Globe className="h-4 w-4" />
+                    </div>
+                    <span className="text-sm">Language</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48">
+                  {supportedLocales.map((locale) => {
+                    const isActive = currentLocale === locale;
+                    return (
+                      <DropdownMenuItem
+                        key={locale}
+                        className={cn("gap-2", isActive && "bg-accent")}
+                        onClick={() => handleLocaleChange(locale)}
+                      >
+                        <div className={cn("h-2 w-2 rounded-full", isActive ? "bg-primary" : "bg-transparent")} />
+                        {localeNames[locale as keyof typeof localeNames] || locale.toUpperCase()}
+                      </DropdownMenuItem>
+                    );
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
         </div>
-        <p className="text-center text-muted-foreground text-xs">
-          {t("sidebar.footer")}
-        </p>
+        
+        <div className="mt-4 pt-4 border-t border-border/30">
+          <div className="flex items-center justify-between">
+            <p className="text-muted-foreground text-xs">
+              CodeBaseHub Dashboard
+            </p>
+            <div className="flex items-center gap-1">
+              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs text-muted-foreground">Online</span>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

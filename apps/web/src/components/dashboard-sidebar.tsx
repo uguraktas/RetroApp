@@ -188,25 +188,28 @@ export function DashboardSidebar({
     <>
       {/* Logo/Brand */}
       <div className="border-b p-6">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-            <span className="font-bold text-lg text-white">C</span>
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+            <span className="font-bold text-lg text-primary-foreground">C</span>
           </div>
-          <span className="font-bold text-lg">CodeBaseHub</span>
+          <div>
+            <span className="font-bold text-xl">codebasehub</span>
+            <p className="text-muted-foreground text-xs">Development Platform</p>
+          </div>
         </Link>
       </div>
 
       {/* User Profile with Logout */}
       <div className="border-b p-4">
-        <div className="flex items-center gap-3 rounded-lg bg-muted/50 p-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
-            <span className="font-semibold text-sm text-white">
+        <div className="flex items-center gap-3 rounded-xl border bg-gradient-to-r from-muted/30 to-muted/50 p-4 shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+            <span className="font-semibold text-primary-foreground">
               {user.name?.charAt(0).toUpperCase()}
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <p className="truncate font-semibold text-sm">{user.name}</p>
-            <p className="truncate text-muted-foreground text-xs">
+            <p className="truncate font-semibold">{user.name}</p>
+            <p className="truncate text-muted-foreground text-sm">
               {user.email}
             </p>
           </div>
@@ -214,8 +217,8 @@ export function DashboardSidebar({
             variant="ghost"
             size="icon"
             onClick={handleSignOut}
-            className="h-8 w-8 shrink-0 text-muted-foreground hover:text-destructive"
-            title={t("navigation.signOut")}
+            className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive transition-colors"
+            title="Sign Out"
           >
             <LogOut className="h-4 w-4" />
           </Button>
@@ -295,10 +298,10 @@ export function DashboardSidebar({
       {/* Mobile Menu Button */}
       <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between border-b bg-card p-4 lg:hidden">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-            <span className="font-bold text-white">C</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-primary/90 to-orange-500">
+            <span className="font-bold text-primary-foreground">C</span>
           </div>
-          <span className="font-bold">CodeBaseHub</span>
+          <span className="font-bold">codebasehub</span>
         </Link>
         <Button
           variant="ghost"

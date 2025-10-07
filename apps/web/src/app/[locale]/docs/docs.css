@@ -1,1 +1,194 @@
-/* Fumadocs styles are now imported in the main index.css */
+/* Custom fumadocs styling to match our design system */
+
+/* Enhanced sidebar styling */
+[data-sidebar] {
+  --fd-sidebar-width: 280px;
+}
+
+/* Custom header styling for better branding */
+.docs-header {
+  border-bottom: 1px solid hsl(var(--border));
+  backdrop-filter: blur(8px);
+}
+
+/* Enhanced code blocks with gradient borders */
+pre[data-rehype-pretty-code-fragment] {
+  @apply border-2 border-transparent;
+  background: linear-gradient(to right, hsl(var(--primary) / 0.05), hsl(var(--primary) / 0.05));
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+pre[data-rehype-pretty-code-fragment]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--primary)) 30%, transparent 70%, hsl(var(--primary)));
+  border-radius: 12px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.1;
+}
+
+/* Enhanced callout styles */
+.nd-callout {
+  border-radius: 12px;
+  border-width: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nd-callout[data-type="note"] {
+  background: linear-gradient(to right, hsl(var(--primary) / 0.05), hsl(var(--primary) / 0.05));
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+.nd-callout[data-type="tip"] {
+  @apply bg-green-50 border-green-200;
+}
+
+.dark .nd-callout[data-type="tip"] {
+  @apply bg-green-950 border-green-800;
+}
+
+.nd-callout[data-type="warning"] {
+  @apply bg-yellow-50 border-yellow-200;
+}
+
+.dark .nd-callout[data-type="warning"] {
+  @apply bg-yellow-950 border-yellow-800;
+}
+
+.nd-callout[data-type="danger"] {
+  @apply bg-red-50 border-red-200;
+}
+
+.dark .nd-callout[data-type="danger"] {
+  @apply bg-red-950 border-red-800;
+}
+
+/* Enhanced navigation items */
+[data-sidebar] a[data-active="true"] {
+  background: linear-gradient(to right, hsl(var(--primary) / 0.1), hsl(var(--primary) / 0.1));
+  @apply border-r-2 border-primary text-primary font-medium;
+}
+
+[data-sidebar] a:hover:not([data-active="true"]) {
+  @apply bg-muted/50;
+}
+
+/* Table of contents styling */
+.toc a[data-active="true"] {
+  @apply text-primary font-medium;
+}
+
+.toc a:hover {
+  @apply text-primary;
+}
+
+/* Search styling */
+[data-search-dialog] {
+  --fd-primary: hsl(var(--primary));
+}
+
+/* Page navigation styling */
+.pager-item {
+  @apply border-2 rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg;
+}
+
+.pager-item:hover {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--primary) / 0.05));
+}
+
+/* Custom heading anchor styling */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply relative;
+}
+
+.prose h1:hover .anchor, 
+.prose h2:hover .anchor, 
+.prose h3:hover .anchor, 
+.prose h4:hover .anchor, 
+.prose h5:hover .anchor, 
+.prose h6:hover .anchor {
+  @apply text-primary;
+}
+
+/* Enhanced card styling for docs */
+.docs-card {
+  @apply border-2 rounded-xl transition-all duration-300 hover:shadow-lg bg-card;
+  background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted) / 0.2));
+}
+
+.docs-card:hover {
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+/* Custom breadcrumb styling */
+.breadcrumb {
+  @apply text-muted-foreground;
+}
+
+.breadcrumb a:hover {
+  @apply text-primary;
+}
+
+/* Footer gradient enhancement */
+[data-sidebar] [data-footer] {
+  background: linear-gradient(to bottom, transparent, hsl(var(--muted))/20);
+}
+
+/* Enhanced mobile header */
+@media (max-width: 1023px) {
+  .docs-header {
+    backdrop-filter: blur(12px);
+    background: hsl(var(--background))/95;
+  }
+}
+
+/* Smooth scrolling for internal links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+[data-sidebar] a:focus-visible {
+  @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* Custom prose styling for better readability */
+.prose {
+  @apply text-foreground;
+}
+
+.prose p {
+  @apply leading-7 text-muted-foreground;
+}
+
+.prose strong {
+  @apply text-foreground font-semibold;
+}
+
+.prose a {
+  @apply text-primary hover:text-primary/80 transition-colors font-medium;
+}
+
+.prose a:hover {
+  @apply underline;
+}
+
+/* Enhanced list styling */
+.prose ul, .prose ol {
+  @apply text-muted-foreground;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+/* Code inline styling */
+.prose :not(pre) > code {
+  @apply bg-muted px-2 py-1 rounded-md text-foreground font-mono text-sm border;
+}

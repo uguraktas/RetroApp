@@ -42,6 +42,7 @@ export default function LanguageSwitcher() {
 					size="icon"
 					type="button"
 					variant="ghost"
+					className="rounded-xl hover:bg-primary/10"
 				>
 					<Globe className="h-5 w-5" />
 				</Button>

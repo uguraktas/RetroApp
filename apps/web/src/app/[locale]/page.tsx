@@ -161,6 +161,293 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-24">
+        <div className="container mx-auto max-w-7xl px-4">
+          <div className="mb-16 space-y-4 text-center">
+            <div className="flex items-center justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+                <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+              </div>
+            </div>
+            <h2 className="font-bold text-4xl md:text-5xl">
+              Simple,{" "}
+              <span className="bg-gradient-to-r from-primary via-primary/90 to-orange-500 bg-clip-text text-transparent">
+                transparent pricing
+              </span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-muted-foreground text-xl">
+              Choose the plan that's right for you. Start free, upgrade when you need more.
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {/* Starter Plan */}
+            <Card className="relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/30 hover:shadow-lg bg-gradient-to-br from-card to-card/50">
+              <CardHeader className="pb-8">
+                <div className="mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-muted to-muted/50">
+                    <svg className="h-6 w-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">Starter</CardTitle>
+                  <CardDescription className="text-base mt-2">
+                    Perfect for personal projects and learning
+                  </CardDescription>
+                </div>
+                <div className="mt-6">
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-bold text-4xl">$0</span>
+                    <span className="text-muted-foreground text-sm">/month</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-1">Forever free</p>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Full codebase access</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Basic authentication</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Community support</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Up to 2 projects</span>
+                  </div>
+                </div>
+                <Button className="w-full h-12 rounded-xl border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground transition-all">
+                  Get Started Free
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Pro Plan - Popular */}
+            <Card className="relative overflow-hidden border-2 border-primary/50 transition-all duration-300 hover:border-primary hover:shadow-2xl bg-gradient-to-br from-card to-primary/5 scale-105">
+              <div className="absolute -top-px left-1/2 -translate-x-1/2">
+                <div className="rounded-b-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 px-4 py-2 text-primary-foreground text-xs font-semibold shadow-lg">
+                  Most Popular
+                </div>
+              </div>
+              <CardHeader className="pb-8 pt-12">
+                <div className="mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+                    <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">Pro</CardTitle>
+                  <CardDescription className="text-base mt-2">
+                    Best for growing businesses and teams
+                  </CardDescription>
+                </div>
+                <div className="mt-6">
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-bold text-4xl">$29</span>
+                    <span className="text-muted-foreground text-sm">/month</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-1">Billed annually</p>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Everything in Starter</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Advanced AI features</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Priority support</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Unlimited projects</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Team collaboration</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Custom integrations</span>
+                  </div>
+                </div>
+                <Button className="w-full h-12 rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 hover:from-primary/90 hover:to-orange-600 shadow-lg transition-all hover:scale-105 font-semibold">
+                  Start Free Trial
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Plan */}
+            <Card className="relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/30 hover:shadow-lg bg-gradient-to-br from-card to-card/50">
+              <CardHeader className="pb-8">
+                <div className="mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg">
+                    <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">Enterprise</CardTitle>
+                  <CardDescription className="text-base mt-2">
+                    For large teams and organizations
+                  </CardDescription>
+                </div>
+                <div className="mt-6">
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-bold text-4xl">Custom</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-1">Contact for pricing</p>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Everything in Pro</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">White-label solution</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Dedicated support</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">SLA guarantees</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Custom development</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
+                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">On-premise deployment</span>
+                  </div>
+                </div>
+                <Button className="w-full h-12 rounded-xl border-2 border-purple-500 bg-transparent text-purple-600 hover:bg-purple-500 hover:text-white transition-all">
+                  Contact Sales
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Pricing FAQ */}
+          <div className="mt-16 text-center">
+            <Card className="mx-auto max-w-2xl border bg-gradient-to-r from-muted/20 to-muted/10">
+              <CardContent className="p-8">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 text-primary">
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-xl">Questions?</h3>
+                  <p className="text-muted-foreground">
+                    All plans include our core starter kit with full source code access. 
+                    Upgrade anytime as your needs grow. Cancel or downgrade at any time.
+                  </p>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+                    <Button variant="outline" size="sm" asChild className="rounded-xl">
+                      <Link href="/contact">Contact Support</Link>
+                    </Button>
+                    <Button variant="outline" size="sm" asChild className="rounded-xl">
+                      <Link href="/docs">View Documentation</Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Code Example Section */}
       <section className="py-24">
         <div className="container mx-auto max-w-7xl px-4">

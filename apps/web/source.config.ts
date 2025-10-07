@@ -14,3 +14,7 @@ export default defineConfig({
 export const { docs, meta } = defineDocs({
 	dir: "content/docs",
 });
+
+export const { docs: blog, meta: blogMeta } = defineDocs({
+	dir: "content/blog",
+});

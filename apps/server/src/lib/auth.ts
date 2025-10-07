@@ -14,12 +14,12 @@ export const auth = betterAuth<BetterAuthOptions>({
     schema,
   }),
   trustedOrigins: [
-    process.env.CORS_ORIGIN || "",
-    process.env.NEXT_PUBLIC_APP_URL || "",
-    process.env.BETTER_AUTH_URL || "",
+    ...(process.env.CORS_ORIGIN ? [process.env.CORS_ORIGIN] : []),
+    ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
     "codebasehubapp://",
     "exp://",
   ],
+
   emailAndPassword: {
     enabled: true,
   },

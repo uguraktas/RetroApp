@@ -5,6 +5,7 @@ import { ModeToggle } from "./mode-toggle";
 import UserMenu from "./user-menu";
 import LanguageSwitcher from "./language-switcher";
 import { Button } from "./ui/button";
+import { Logo } from "./logo";
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -51,18 +52,9 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between px-4 lg:px-6">
           {/* Logo */}
           <div className="flex items-center gap-8">
-            <Link className="flex items-center gap-3 group" href="/">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg transition-transform group-hover:scale-105">
-                <span className="font-bold text-lg text-primary-foreground">C</span>
-              </div>
-              <div className="hidden sm:block">
-                <span className="font-bold text-xl bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
-                  codebasehub
-                </span>
-                <p className="text-xs text-muted-foreground -mt-1">
-                  SaaS Starter Kit
-                </p>
-              </div>
+            <Link href="/" className="group">
+              <Logo withLabel={false} className="sm:hidden" />
+              <Logo withLabel className="hidden sm:flex transition-transform group-hover:scale-105" />
             </Link>
             
             {/* Desktop Navigation */}

@@ -21,6 +21,8 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { config } from "@repo/config";
 import { useRouter, usePathname, Link } from "@/i18n/routing";
+import { ClientPreferences } from "./client-preferences";
+import { Logo } from "./logo";
 
 interface MenuItem {
   label: string;
@@ -56,24 +58,9 @@ export function DashboardSidebar({
       icon: LayoutDashboard,
     },
     {
-      label: t("sidebar.general"),
-      href: "/dashboard/settings/general",
-      icon: User,
-    },
-    {
-      label: t("sidebar.security"),
-      href: "/dashboard/settings/security",
-      icon: Shield,
-    },
-    {
-      label: t("sidebar.billing"),
-      href: "/dashboard/settings/billing",
-      icon: CreditCard,
-    },
-    {
-      label: t("sidebar.dangerZone"),
-      href: "/dashboard/settings/danger-zone",
-      icon: AlertTriangle,
+      label: "Settings",
+      href: "/dashboard/settings",
+      icon: Settings,
     },
     ...(isAdmin
       ? [
@@ -110,11 +97,8 @@ export function DashboardSidebar({
     <>
       {/* Logo/Brand */}
       <div className="border-b p-4">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <span className="font-bold text-sm">C</span>
-          </div>
-          <span className="font-semibold">codebasehub</span>
+        <Link href="/dashboard">
+          <Logo withLabel />
         </Link>
       </div>
 
@@ -147,6 +131,11 @@ export function DashboardSidebar({
         <div className="space-y-1">
           {menuItems.map((item) => renderMenuItem(item))}
         </div>
+        
+        {/* Theme and Language Controls */}
+        <div className="mt-6 pt-4 border-t">
+          <ClientPreferences />
+        </div>
       </nav>
     </>
   );
@@ -155,11 +144,8 @@ export function DashboardSidebar({
     <>
       {/* Mobile Menu Button */}
       <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between border-b bg-card p-4 lg:hidden">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded bg-primary text-primary-foreground">
-            <span className="font-bold text-xs">C</span>
-          </div>
-          <span className="font-semibold">codebasehub</span>
+        <Link href="/dashboard">
+          <Logo withLabel />
         </Link>
         <Button
           variant="ghost"

@@ -1,0 +1,229 @@
+---
+title: "Getting Started with CodeBaseHub: Your Modern SaaS Starter Kit"
+description: "Learn how to quickly set up and customize CodeBaseHub for your next SaaS project. From installation to deployment, we'll guide you through everything you need to know."
+date: "2024-10-07"
+category: "Tutorial"
+author: "CodeBaseHub Team"
+icon: "🚀"
+---
+
+# Getting Started with CodeBaseHub
+
+Welcome to CodeBaseHub! This comprehensive guide will help you get up and running with our modern SaaS starter kit in just a few minutes. Whether you're building your first SaaS application or your tenth, CodeBaseHub provides the solid foundation you need to ship fast.
+
+## What Makes CodeBaseHub Special?
+
+CodeBaseHub isn't just another template—it's a production-ready platform built with modern best practices:
+
+- **⚡ Lightning Fast**: Built with Next.js 15, TypeScript, and optimized for performance
+- **🔐 Secure by Default**: Enterprise-grade authentication with Better Auth
+- **🤖 AI-Ready**: Integrated AI chat functionality out of the box  
+- **🌍 Global**: Multi-language support with i18n
+- **🎨 Beautiful**: Modern UI with shadcn/ui and Tailwind CSS
+
+## Quick Start Guide
+
+Let's get your CodeBaseHub instance running locally:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-org/codebasehub.git
+cd codebasehub
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+pnpm install
+# or
+yarn install
+```
+
+### 3. Set Up Environment Variables
+
+Copy the example environment file and configure your settings:
+
+```bash
+cp .env.example .env.local
+```
+
+Update your `.env.local` file with your database URL and other configuration:
+
+```bash
+DATABASE_URL="your-database-url"
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+### 4. Initialize the Database
+
+Run the database migrations to set up your schema:
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+### 5. Start Development Server
+
+```bash
+npm run dev
+```
+
+Your application will be available at `http://localhost:3000`.
+
+## Key Features Overview
+
+### Authentication System
+
+CodeBaseHub uses [Better Auth](https://better-auth.com) for authentication, providing:
+
+- Email/password authentication
+- OAuth providers (Google, GitHub, etc.)
+- Two-factor authentication
+- Session management
+- Role-based access control
+
+### AI Integration
+
+The built-in AI chat system includes:
+
+- Streaming responses
+- Context awareness
+- Modern chat UI
+- Easy provider switching
+
+### Database & API
+
+The platform includes:
+
+- **Prisma ORM** for type-safe database access
+- **tRPC** for end-to-end type safety
+- **PostgreSQL** ready (works with other databases too)
+- **API routes** with proper error handling
+
+## Customization Guide
+
+### Branding & Theme
+
+1. **Update Colors**: Modify `tailwind.config.ts` to match your brand
+2. **Logo & Assets**: Replace assets in the `public` folder
+3. **Typography**: Customize fonts in `layout.tsx`
+
+### Adding New Pages
+
+Create new pages in the `src/app` directory:
+
+```tsx
+// src/app/my-page/page.tsx
+export default function MyPage() {
+  return (
+    <div className="container mx-auto px-4 py-16">
+      <h1 className="text-4xl font-bold">My New Page</h1>
+    </div>
+  );
+}
+```
+
+### Database Schema
+
+Update your database schema in `prisma/schema.prisma`:
+
+```prisma
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+Then run migrations:
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import your repository in Vercel
+3. Set your environment variables
+4. Deploy!
+
+### Docker
+
+```dockerfile
+# Use the official Node.js image
+FROM node:18-alpine
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## Best Practices
+
+### Security
+
+- Always use environment variables for sensitive data
+- Enable CSRF protection
+- Validate all user inputs
+- Use proper authentication flows
+
+### Performance
+
+- Optimize images with Next.js Image component
+- Use dynamic imports for large components
+- Implement proper caching strategies
+- Monitor bundle size
+
+### Code Quality
+
+- Use TypeScript for type safety
+- Follow ESLint and Prettier configurations
+- Write tests for critical functionality
+- Use meaningful commit messages
+
+## What's Next?
+
+Now that you have CodeBaseHub running, here are some next steps:
+
+1. **Explore the Dashboard**: Check out the user dashboard and admin features
+2. **Try the AI Chat**: Test the AI integration with your own API keys
+3. **Customize the Design**: Make it match your brand
+4. **Add Your Features**: Build your unique SaaS functionality
+5. **Deploy to Production**: Get your app live
+
+## Getting Help
+
+If you need assistance:
+
+- 📚 [Browse our Documentation](/docs)
+- 💬 [Try our AI Assistant](/ai)
+- 📧 [Contact our Support Team](/contact)
+- 🐙 [Report Issues on GitHub](https://github.com/your-org/codebasehub)
+
+## Conclusion
+
+CodeBaseHub gives you everything you need to build a modern SaaS application. From authentication to AI integration, from beautiful UI to production deployment—we've got you covered.
+
+Start building something amazing today! 🚀
+
+---
+
+*This post was written by the CodeBaseHub team. Follow us for more tutorials and updates about modern SaaS development.*

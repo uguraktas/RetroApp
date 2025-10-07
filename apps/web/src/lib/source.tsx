@@ -83,7 +83,7 @@ export const searchAPI = createI18nSearchAPI("advanced", {
 });
 
 // Blog search API
-export const blogSearchAPI = createI18nSearchAPI("blog", {
+export const blogSearchAPI = createI18nSearchAPI("advanced", {
 	i18n: {
 		languages: ["en", "tr", "ar"],
 		defaultLanguage: "en",

@@ -1,0 +1,124 @@
+---
+title: "CodeBaseHub ile Başlarken: Modern SaaS Başlangıç Kiti"
+description: "Bir sonraki SaaS projeniz için CodeBaseHub'ı nasıl hızlıca kurup özelleştireceğinizi öğrenin. Kurulumdan dağıtıma kadar bilmeniz gereken her şeyde size rehberlik edeceğiz."
+date: "2024-10-07"
+category: "Eğitim"
+author: "CodeBaseHub Ekibi"
+icon: "🚀"
+---
+
+# CodeBaseHub ile Başlarken
+
+CodeBaseHub'a hoş geldiniz! Bu kapsamlı rehber, modern SaaS başlangıç kitimizle sadece birkaç dakikada çalışmaya başlamanıza yardımcı olacak. İster ilk SaaS uygulamanızı ister onuncunuzu oluşturuyor olun, CodeBaseHub hızla kargo etmek için ihtiyacınız olan sağlam temeli sağlar.
+
+## CodeBaseHub'ı Özel Yapan Nedir?
+
+CodeBaseHub sadece başka bir şablon değil—modern en iyi uygulamalarla oluşturulmuş üretime hazır bir platformdur:
+
+- **⚡ Yıldırım Hızında**: Next.js 15, TypeScript ile oluşturulmuş ve performans için optimize edilmiş
+- **🔐 Varsayılan Olarak Güvenli**: Better Auth ile kurumsal düzeyde kimlik doğrulama
+- **🤖 AI Hazır**: Kutuda entegre AI sohbet işlevselliği
+- **🌍 Küresel**: i18n ile çok dilli destek
+- **🎨 Güzel**: shadcn/ui ve Tailwind CSS ile modern UI
+
+## Hızlı Başlangıç Rehberi
+
+CodeBaseHub örneğinizi yerel olarak çalıştıralım:
+
+### 1. Depoyu Klonlayın
+
+```bash
+git clone https://github.com/your-org/codebasehub.git
+cd codebasehub
+```
+
+### 2. Bağımlılıkları Yükleyin
+
+```bash
+npm install
+# veya
+pnpm install
+# veya
+yarn install
+```
+
+### 3. Ortam Değişkenlerini Ayarlayın
+
+Örnek ortam dosyasını kopyalayın ve ayarlarınızı yapılandırın:
+
+```bash
+cp .env.example .env.local
+```
+
+`.env.local` dosyanızı veritabanı URL'niz ve diğer yapılandırmalarla güncelleyin:
+
+```bash
+DATABASE_URL="veritabani-url-niz"
+NEXTAUTH_SECRET="gizli-anahtariniz"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+### 4. Veritabanını Başlatın
+
+Şemanızı kurmak için veritabanı migrasyonlarını çalıştırın:
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+### 5. Geliştirme Sunucusunu Başlatın
+
+```bash
+npm run dev
+```
+
+Uygulamanız `http://localhost:3000` adresinde mevcut olacak.
+
+## Temel Özellikler Genel Bakış
+
+### Kimlik Doğrulama Sistemi
+
+CodeBaseHub kimlik doğrulama için [Better Auth](https://better-auth.com) kullanır ve şunları sağlar:
+
+- E-posta/şifre kimlik doğrulaması
+- OAuth sağlayıcıları (Google, GitHub, vb.)
+- İki faktörlü kimlik doğrulama
+- Oturum yönetimi
+- Rol tabanlı erişim kontrolü
+
+### AI Entegrasyonu
+
+Yerleşik AI sohbet sistemi şunları içerir:
+
+- Akış yanıtları
+- Bağlam farkındalığı
+- Modern sohbet UI'ı
+- Kolay sağlayıcı değiştirme
+
+### Veritabanı ve API
+
+Platform şunları içerir:
+
+- Tür güvenli veritabanı erişimi için **Prisma ORM**
+- Uçtan uca tür güvenliği için **tRPC**
+- **PostgreSQL** hazır (diğer veritabanlarıyla da çalışır)
+- Uygun hata işleme ile **API rotaları**
+
+## Özelleştirme Rehberi
+
+### Marka ve Tema
+
+1. **Renkleri Güncelle**: Markanızla eşleşecek şekilde `tailwind.config.ts`'yi değiştirin
+2. **Logo ve Varlıklar**: `public` klasöründeki varlıkları değiştirin
+3. **Tipografi**: `layout.tsx`'de fontları özelleştirin
+
+## Sonuç
+
+CodeBaseHub, modern bir SaaS uygulaması oluşturmak için ihtiyacınız olan her şeyi size verir. Kimlik doğrulamadan AI entegrasyonuna, güzel UI'dan üretim dağıtımına kadar—sizi destekliyoruz.
+
+Bugün harika bir şeyler inşa etmeye başlayın! 🚀
+
+---
+
+*Bu gönderi CodeBaseHub ekibi tarafından yazılmıştır. Modern SaaS geliştirme hakkında daha fazla öğretici ve güncelleme için bizi takip edin.*

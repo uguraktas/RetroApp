@@ -10,6 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { trpc } from "@/utils/trpc";
 
 export default function Home() {
@@ -59,6 +65,41 @@ export default function Home() {
     { name: "shadcn/ui", description: "Components" },
     { name: "tRPC", description: "Type-safe API" },
     { name: "Prisma", description: "Database ORM" },
+  ] as const;
+
+  const faqs = [
+    {
+      question: "What's included in the starter kit?",
+      answer: "You get a complete Next.js application with authentication, database setup, AI chat functionality, admin dashboard, beautiful UI components, multi-language support, and full TypeScript support. Everything is production-ready and well-documented."
+    },
+    {
+      question: "How does the pricing work?",
+      answer: "The Starter plan is completely free and includes the full source code. Pro plan adds premium templates and priority support. Enterprise includes custom development and on-premise deployment assistance. All plans include lifetime updates."
+    },
+    {
+      question: "Can I customize the design and functionality?",
+      answer: "Absolutely! You get full source code access, so you can customize everything - colors, layout, components, database schema, and add your own features. The codebase is well-structured and documented to make modifications easy."
+    },
+    {
+      question: "What databases are supported?",
+      answer: "We use Prisma ORM which supports PostgreSQL, MySQL, SQLite, MongoDB, and SQL Server. The default setup uses PostgreSQL, but you can easily switch by updating the database URL and running migrations."
+    },
+    {
+      question: "Is there ongoing support and updates?",
+      answer: "Yes! The starter kit receives regular updates with new features, security patches, and framework updates. Pro and Enterprise plans include priority email support, while the community plan has access to documentation and community forums."
+    },
+    {
+      question: "How do I deploy my application?",
+      answer: "The kit is optimized for deployment on Vercel, Netlify, and other modern hosting platforms. We include Docker configuration for self-hosting and detailed deployment guides for various platforms including AWS, DigitalOcean, and Railway."
+    },
+    {
+      question: "Can I use this for commercial projects?",
+      answer: "Yes! All plans include commercial usage rights. You can build and sell applications using the starter kit. There are no restrictions on the number of projects or revenue generated from applications built with CodeBaseHub."
+    },
+    {
+      question: "What if I need help getting started?",
+      answer: "We provide comprehensive documentation, video tutorials, and example implementations. Pro plan users get email support, while Enterprise users get dedicated support channels and optional consultation calls."
+    }
   ] as const;
 
   return (
@@ -527,6 +568,91 @@ export const userRouter = {
                 </pre>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gradient-to-br from-muted/20 to-muted/5">
+        <div className="container mx-auto max-w-4xl px-4">
+          <div className="space-y-12">
+            {/* Section Header */}
+            <div className="text-center space-y-6">
+              <div className="flex items-center justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+                  <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h2 className="font-bold text-4xl md:text-5xl tracking-tight">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-primary via-primary/90 to-orange-500 bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  Everything you need to know about CodeBaseHub. Can't find what you're looking for? 
+                  <Link href="/contact" className="text-primary hover:underline ml-1">
+                    Contact our support team
+                  </Link>.
+                </p>
+              </div>
+            </div>
+
+            {/* FAQ Accordion */}
+            <Card className="border-2 bg-card/50 backdrop-blur">
+              <CardContent className="p-8">
+                <Accordion type="single" collapsible className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem 
+                      key={index} 
+                      value={`item-${index}`}
+                      className="border border-border/50 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all duration-200"
+                    >
+                      <AccordionTrigger className="text-left py-6 hover:no-underline hover:text-primary transition-colors">
+                        <span className="font-semibold text-lg">{faq.question}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-6 pt-0">
+                        <div className="text-muted-foreground leading-relaxed text-base pl-2 border-l-2 border-primary/20">
+                          {faq.answer}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+
+            {/* FAQ CTA */}
+            <div className="text-center">
+              <Card className="border-2 bg-gradient-to-r from-primary/5 via-primary/5 to-orange-500/5 border-primary/20">
+                <CardContent className="py-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
+                        <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-xl">Still have questions?</h3>
+                    <p className="text-muted-foreground max-w-md mx-auto">
+                      Our team is here to help you succeed. Get personalized support and guidance for your project.
+                    </p>
+                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+                      <Button asChild variant="outline" className="rounded-xl">
+                        <Link href="/contact">📧 Contact Support</Link>
+                      </Button>
+                      <Button asChild className="rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 hover:from-primary/90 hover:to-orange-600">
+                        <Link href="/docs">📚 Browse Docs</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

@@ -21,72 +21,63 @@ export default function SuccessPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 to-blue-50 px-4 py-8 dark:from-gray-900 dark:to-gray-800">
-      <div className="w-full max-w-md space-y-8">
-        {/* Success Icon */}
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-8">
+      <div className="w-full max-w-md space-y-6">
+        {/* Success Icon & Message */}
         <div className="text-center">
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
             <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
-          <h1 className="mb-2 font-bold text-3xl text-gray-900 dark:text-gray-100">
-            {t("success.title")}
+          <h1 className="mb-2 font-semibold text-2xl">
+            Payment Successful!
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            {t("success.subtitle")}
+          <p className="text-muted-foreground">
+            Thank you for your purchase. Your payment has been processed successfully.
           </p>
         </div>
 
-        {/* Checkout ID Card */}
+        {/* Transaction Details Card */}
         {checkoutId && (
-          <Card className="border-green-200 dark:border-green-800">
+          <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-center text-lg">
-                {t("success.transactionDetails")}
-              </CardTitle>
+              <CardTitle className="text-center text-lg">Transaction Details</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
-                <p className="mb-1 text-gray-500 text-sm dark:text-gray-400">
-                  {t("success.checkoutId")}
-                </p>
+              <div className="rounded-lg bg-muted/50 p-4">
+                <p className="mb-2 text-sm text-muted-foreground">Checkout ID</p>
                 <div className="flex items-center justify-between">
-                  <code className="break-all font-mono text-gray-900 text-sm dark:text-gray-100">
-                    {checkoutId}
-                  </code>
+                  <code className="break-all font-mono text-sm">{checkoutId}</code>
                   <Button
-                    className="ml-2 shrink-0"
                     onClick={copyToClipboard}
                     size="sm"
-                    type="button"
                     variant="ghost"
+                    className="ml-2 h-8 w-8 p-0"
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
-              <p className="text-center text-gray-500 text-xs dark:text-gray-400">
-                {t("success.saveRecord")}
+              <p className="text-center text-xs text-muted-foreground">
+                Save this ID for your records
               </p>
             </CardContent>
           </Card>
         )}
 
-        {/* Action Buttons */}
-        <div className="space-y-3">
-          <Button asChild className="w-full" size="lg" variant="outline">
-            <Link href="/dashboard">
-              <Home className="h-4 w-4" />
-              {t("success.backToDashboard")}
-            </Link>
-          </Button>
-        </div>
+        {/* Action Button */}
+        <Button asChild className="w-full" size="lg">
+          <Link href="/dashboard">
+            <Home className="mr-2 h-4 w-4" />
+            Go to Dashboard
+          </Link>
+        </Button>
 
-        {/* Footer Message */}
+        {/* Support Link */}
         <div className="text-center">
-          <p className="text-gray-500 text-sm dark:text-gray-400">
-            {t("success.needHelp")}{" "}
-            <Link className="text-primary hover:underline" href="/contact">
-              {t("success.supportTeam")}
+          <p className="text-sm text-muted-foreground">
+            Need help? {" "}
+            <Link className="text-primary hover:underline font-medium" href="/contact">
+              Contact support
             </Link>
           </p>
         </div>

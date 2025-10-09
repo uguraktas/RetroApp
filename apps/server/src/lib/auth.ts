@@ -8,6 +8,7 @@ import * as schema from "../db/schema/auth.js";
 import { polarClient } from "./payments.js";
 
 export const auth = betterAuth<BetterAuthOptions>({
+  baseURL: process.env.BETTER_AUTH_URL || "",
   database: drizzleAdapter(db, {
     provider: "pg",
 
@@ -30,6 +31,9 @@ export const auth = betterAuth<BetterAuthOptions>({
       sameSite: "none",
       secure: true,
       httpOnly: true,
+    },
+    crossSubDomainCookies: {
+      enabled: true,
     },
   },
   plugins: [

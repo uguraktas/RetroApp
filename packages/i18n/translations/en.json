@@ -106,6 +106,14 @@
     "email": "Email",
     "now": "just now"
   },
+  "docs": {
+    "wasHelpful": "Was this page helpful?",
+    "yes": "Yes",
+    "no": "No",
+    "needHelp": "Need Help?",
+    "joinCommunity": "Join our community for support",
+    "getSupport": "Get Support"
+  },
   "sidebar": {
     "overview": "Overview",
     "settings": "Settings",

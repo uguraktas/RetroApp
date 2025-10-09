@@ -106,6 +106,14 @@
     "email": "E-posta",
     "now": "şimdi"
   },
+  "docs": {
+    "wasHelpful": "Bu sayfa yardımcı oldu mu?",
+    "yes": "Evet",
+    "no": "Hayır",
+    "needHelp": "Yardıma mı ihtiyacınız var?",
+    "joinCommunity": "Destek için topluluğumuza katılın",
+    "getSupport": "Destek Alın"
+  },
   "sidebar": {
     "overview": "Genel Bakış",
     "settings": "Ayarlar",

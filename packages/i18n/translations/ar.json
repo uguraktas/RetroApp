@@ -106,6 +106,51 @@
     "email": "البريد الإلكتروني",
     "now": "الآن"
   },
+  "auth": {
+    "signIn": {
+      "title": "مرحبًا بعودتك",
+      "description": "أدخل بيانات اعتمادك للوصول إلى حسابك",
+      "emailLabel": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+      "forgotPassword": "هل نسيت كلمة المرور؟",
+      "signingIn": "جاري تسجيل الدخول...",
+      "signInButton": "تسجيل الدخول",
+      "orContinueWith": "أو تابع مع",
+      "continueWithGoogle": "تابع مع Google",
+      "noAccount": "ليس لديك حساب؟",
+      "createAccount": "إنشاء حساب",
+      "success": "تم تسجيل الدخول بنجاح"
+    },
+    "signUp": {
+      "title": "إنشاء حسابك",
+      "description": "ابدأ بحسابك المجاني في ثوانٍ",
+      "fullNameLabel": "الاسم الكامل",
+      "fullNamePlaceholder": "أحمد محمد",
+      "emailLabel": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "أنشئ كلمة مرور قوية",
+      "passwordHint": "يجب أن تكون 8 أحرف على الأقل",
+      "creatingAccount": "جاري إنشاء الحساب...",
+      "createAccountButton": "إنشاء حساب",
+      "orContinueWith": "أو تابع مع",
+      "continueWithGoogle": "تابع مع Google",
+      "termsAgreement": "بإنشاء حساب، فإنك توافق على",
+      "termsOfService": "شروط الخدمة",
+      "and": "و",
+      "privacyPolicy": "سياسة الخصوصية",
+      "hasAccount": "هل لديك حساب بالفعل؟",
+      "signIn": "تسجيل الدخول",
+      "success": "تم إنشاء الحساب بنجاح"
+    },
+    "validation": {
+      "nameMin": "يجب أن يكون الاسم حرفين على الأقل",
+      "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+      "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل"
+    }
+  },
   "docs": {
     "wasHelpful": "هل كانت هذه الصفحة مفيدة؟",
     "yes": "نعم",

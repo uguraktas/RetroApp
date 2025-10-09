@@ -106,6 +106,51 @@
     "email": "E-posta",
     "now": "şimdi"
   },
+  "auth": {
+    "signIn": {
+      "title": "Tekrar hoş geldiniz",
+      "description": "Hesabınıza erişmek için kimlik bilgilerinizi girin",
+      "emailLabel": "E-posta adresi",
+      "emailPlaceholder": "siz@ornek.com",
+      "passwordLabel": "Şifre",
+      "passwordPlaceholder": "Şifrenizi girin",
+      "forgotPassword": "Şifrenizi mi unuttunuz?",
+      "signingIn": "Giriş yapılıyor...",
+      "signInButton": "Giriş yap",
+      "orContinueWith": "Veya şununla devam edin",
+      "continueWithGoogle": "Google ile devam et",
+      "noAccount": "Hesabınız yok mu?",
+      "createAccount": "Hesap oluştur",
+      "success": "Başarıyla giriş yapıldı"
+    },
+    "signUp": {
+      "title": "Hesabınızı oluşturun",
+      "description": "Saniyeler içinde ücretsiz hesabınızı başlatın",
+      "fullNameLabel": "Ad Soyad",
+      "fullNamePlaceholder": "Ahmet Yılmaz",
+      "emailLabel": "E-posta adresi",
+      "emailPlaceholder": "siz@ornek.com",
+      "passwordLabel": "Şifre",
+      "passwordPlaceholder": "Güçlü bir şifre oluşturun",
+      "passwordHint": "En az 8 karakter uzunluğunda olmalıdır",
+      "creatingAccount": "Hesap oluşturuluyor...",
+      "createAccountButton": "Hesap oluştur",
+      "orContinueWith": "Veya şununla devam edin",
+      "continueWithGoogle": "Google ile devam et",
+      "termsAgreement": "Bir hesap oluşturarak, bizim",
+      "termsOfService": "Hizmet Şartlarımızı",
+      "and": "ve",
+      "privacyPolicy": "Gizlilik Politikamızı",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "signIn": "Giriş yap",
+      "success": "Hesap başarıyla oluşturuldu"
+    },
+    "validation": {
+      "nameMin": "Ad en az 2 karakter olmalıdır",
+      "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+      "passwordMin": "Şifre en az 8 karakter olmalıdır"
+    }
+  },
   "docs": {
     "wasHelpful": "Bu sayfa yardımcı oldu mu?",
     "yes": "Evet",

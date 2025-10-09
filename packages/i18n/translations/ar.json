@@ -55,5 +55,51 @@
       "title": "وقت الاستجابة",
       "description": "نحن عادة نرد في غضون 24 ساعة خلال أيام العمل"
     }
+  },
+  "admin": {
+    "title": "لوحة الإدارة",
+    "description": "إدارة المستخدمين والأدوار والصلاحيات",
+    "stats": {
+      "totalUsers": "إجمالي المستخدمين",
+      "admins": "المسؤولون",
+      "bannedUsers": "المستخدمون المحظورون"
+    },
+    "usersManagement": "إدارة المستخدمين",
+    "usersDescription": "عرض وإدارة جميع المستخدمين المسجلين",
+    "searchByEmail": "البحث بالبريد الإلكتروني",
+    "emailPlaceholder": "user@example.com",
+    "noUsers": "لم يتم العثور على مستخدمين",
+    "banned": "محظور",
+    "adminBadge": "مسؤول",
+    "verified": "تم التحقق",
+    "banReason": "سبب الحظر",
+    "role": "الدور",
+    "roles": {
+      "user": "مستخدم",
+      "admin": "مسؤول"
+    },
+    "ban": "حظر",
+    "unban": "إلغاء الحظر",
+    "confirmBan": "تأكيد الحظر",
+    "banReasonPlaceholder": "أدخل سبب الحظر...",
+    "removeUser": "إزالة المستخدم",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء.",
+    "success": {
+      "roleUpdated": "تم تحديث دور المستخدم بنجاح",
+      "userBanned": "تم حظر المستخدم بنجاح",
+      "userUnbanned": "تم إلغاء حظر المستخدم بنجاح",
+      "userRemoved": "تم إزالة المستخدم بنجاح"
+    },
+    "errors": {
+      "loadUsers": "فشل تحميل المستخدمين",
+      "setRole": "فشل تحديث دور المستخدم",
+      "banUser": "فشل حظر المستخدم",
+      "unbanUser": "فشل إلغاء حظر المستخدم",
+      "removeUser": "فشل إزالة المستخدم",
+      "banReasonRequired": "يرجى إدخال سبب الحظر"
+    }
+  },
+  "common": {
+    "cancel": "إلغاء"
   }
 }

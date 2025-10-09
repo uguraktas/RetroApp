@@ -55,5 +55,51 @@
       "title": "Yanıt Süresi",
       "description": "Genellikle iş günlerinde 24 saat içinde yanıt veriyoruz"
     }
+  },
+  "admin": {
+    "title": "Yönetici Paneli",
+    "description": "Kullanıcıları, rolleri ve izinleri yönetin",
+    "stats": {
+      "totalUsers": "Toplam Kullanıcı",
+      "admins": "Yöneticiler",
+      "bannedUsers": "Yasaklı Kullanıcılar"
+    },
+    "usersManagement": "Kullanıcı Yönetimi",
+    "usersDescription": "Tüm kayıtlı kullanıcıları görüntüleyin ve yönetin",
+    "searchByEmail": "E-posta ile ara",
+    "emailPlaceholder": "kullanici@ornek.com",
+    "noUsers": "Kullanıcı bulunamadı",
+    "banned": "Yasaklı",
+    "adminBadge": "Yönetici",
+    "verified": "Doğrulandı",
+    "banReason": "Yasaklama Nedeni",
+    "role": "Rol",
+    "roles": {
+      "user": "Kullanıcı",
+      "admin": "Yönetici"
+    },
+    "ban": "Yasakla",
+    "unban": "Yasağı Kaldır",
+    "confirmBan": "Yasaklamayı Onayla",
+    "banReasonPlaceholder": "Yasaklama nedenini girin...",
+    "removeUser": "Kullanıcıyı Kaldır",
+    "confirmDelete": "Bu kullanıcıyı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "success": {
+      "roleUpdated": "Kullanıcı rolü başarıyla güncellendi",
+      "userBanned": "Kullanıcı başarıyla yasaklandı",
+      "userUnbanned": "Kullanıcı yasağı başarıyla kaldırıldı",
+      "userRemoved": "Kullanıcı başarıyla kaldırıldı"
+    },
+    "errors": {
+      "loadUsers": "Kullanıcılar yüklenemedi",
+      "setRole": "Kullanıcı rolü güncellenemedi",
+      "banUser": "Kullanıcı yasaklanamadı",
+      "unbanUser": "Kullanıcı yasağı kaldırılamadı",
+      "removeUser": "Kullanıcı kaldırılamadı",
+      "banReasonRequired": "Lütfen bir yasaklama nedeni girin"
+    }
+  },
+  "common": {
+    "cancel": "İptal"
   }
 }

@@ -19,6 +19,7 @@ export const auth = betterAuth<BetterAuthOptions>({
     "codebasehubapp://",
     "exp://",
     "https://my-better-t-appv11-server.vercel.app",
+    "https://my-better-t-appv11-web.vercel.app",
   ],
 
   emailAndPassword: {

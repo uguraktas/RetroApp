@@ -23,5 +23,37 @@
   "changelog": {
     "title": "Changelog",
     "description": "Stay updated with the latest features, improvements, and releases."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have questions, feedback, or need support? We'd love to hear from you. Choose your preferred way to connect with our team.",
+    "form": {
+      "title": "Send us a message",
+      "description": "Fill out the form below and we'll get back to you within 24 hours.",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell us more about your inquiry...",
+      "submit": "Send Message"
+    },
+    "methods": {
+      "title": "Contact Methods",
+      "description": "Choose your preferred way to reach us",
+      "email": {
+        "title": "Email Support",
+        "description": "Get help from our support team"
+      },
+      "chat": {
+        "title": "Live Chat",
+        "description": "Available 24/7 through our AI assistant",
+        "contact": "Chat with our AI bot"
+      }
+    },
+    "responseTime": {
+      "title": "Response Time",
+      "description": "We typically respond within 24 hours during business days"
+    }
   }
 }

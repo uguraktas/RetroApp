@@ -23,5 +23,37 @@
   "changelog": {
     "title": "Değişiklik Günlüğü",
     "description": "En son özellikler, iyileştirmeler ve sürümlerle güncel kalın."
+  },
+  "contact": {
+    "title": "İletişime Geçin",
+    "description": "Sorularınız, geri bildirimleriniz veya destek ihtiyacınız mı var? Sizden haber almak isteriz. Ekibimizle iletişime geçmek için tercih ettiğiniz yolu seçin.",
+    "form": {
+      "title": "Bize mesaj gönderin",
+      "description": "Aşağıdaki formu doldurun, 24 saat içinde size geri döneceğiz.",
+      "fullName": "Ad Soyad",
+      "fullNamePlaceholder": "Adınızı girin",
+      "email": "E-posta Adresi",
+      "emailPlaceholder": "ornek@email.com",
+      "message": "Mesaj",
+      "messagePlaceholder": "Talebiniz hakkında daha fazla bilgi verin...",
+      "submit": "Mesaj Gönder"
+    },
+    "methods": {
+      "title": "İletişim Yöntemleri",
+      "description": "Bize ulaşmak için tercih ettiğiniz yolu seçin",
+      "email": {
+        "title": "E-posta Desteği",
+        "description": "Destek ekibimizden yardım alın"
+      },
+      "chat": {
+        "title": "Canlı Sohbet",
+        "description": "Yapay zeka asistanımız aracılığıyla 7/24 hizmet",
+        "contact": "Yapay zeka botumuzla sohbet edin"
+      }
+    },
+    "responseTime": {
+      "title": "Yanıt Süresi",
+      "description": "Genellikle iş günlerinde 24 saat içinde yanıt veriyoruz"
+    }
   }
 }

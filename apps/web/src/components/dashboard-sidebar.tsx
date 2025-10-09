@@ -1,26 +1,25 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { useTransition, useEffect } from "react";
+import { config } from "@repo/config";
 import {
-  LayoutDashboard,
-  Settings,
-  User,
-  Shield,
-  CreditCard,
   AlertTriangle,
+  CreditCard,
+  LayoutDashboard,
   LogOut,
   Menu,
-  X,
+  Settings,
+  Shield,
   ShieldCheck,
+  User,
+  X,
 } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { authClient } from "@/lib/auth-client";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useEffect, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import { config } from "@repo/config";
-import { useRouter, usePathname, Link } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { authClient } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
 import { ClientPreferences } from "./client-preferences";
 import { Logo } from "./logo";
 
@@ -58,7 +57,7 @@ export function DashboardSidebar({
       icon: LayoutDashboard,
     },
     {
-      label: "Settings",
+      label: t("sidebar.settings"),
       href: "/dashboard/settings",
       icon: Settings,
     },
@@ -79,13 +78,15 @@ export function DashboardSidebar({
 
     return (
       <Link
-        key={item.href}
-        href={item.href}
         className={cn(
-          "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+          "flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-sm transition-colors",
           "hover:bg-accent hover:text-accent-foreground",
-          isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground"
+          isActive
+            ? "bg-accent text-accent-foreground"
+            : "text-muted-foreground"
         )}
+        href={item.href}
+        key={item.href}
       >
         <Icon className="h-4 w-4 shrink-0" />
         <span>{item.label}</span>
@@ -105,21 +106,23 @@ export function DashboardSidebar({
       {/* User Info */}
       <div className="border-b p-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 min-w-0">
-            <div className="flex h-6 w-6 items-center justify-center rounded bg-muted text-xs font-medium">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded bg-muted font-medium text-xs">
               {user.name?.charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0">
-              <p className="truncate text-sm font-medium">{user.name}</p>
-              <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+              <p className="truncate font-medium text-sm">{user.name}</p>
+              <p className="truncate text-muted-foreground text-xs">
+                {user.email}
+              </p>
             </div>
           </div>
           <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleSignOut}
             className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
-            title="Sign Out"
+            onClick={handleSignOut}
+            size="sm"
+            title={t("sidebar.signOut")}
+            variant="ghost"
           >
             <LogOut className="h-3 w-3" />
           </Button>
@@ -131,9 +134,9 @@ export function DashboardSidebar({
         <div className="space-y-1">
           {menuItems.map((item) => renderMenuItem(item))}
         </div>
-        
+
         {/* Theme and Language Controls */}
-        <div className="mt-6 pt-4 border-t">
+        <div className="mt-6 border-t pt-4">
           <ClientPreferences />
         </div>
       </nav>
@@ -143,15 +146,15 @@ export function DashboardSidebar({
   return (
     <>
       {/* Mobile Menu Button */}
-      <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between border-b bg-card p-4 lg:hidden">
+      <div className="fixed top-0 right-0 left-0 z-40 flex items-center justify-between border-b bg-card p-4 lg:hidden">
         <Link href="/dashboard">
           <Logo withLabel />
         </Link>
         <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          size="icon"
+          variant="ghost"
         >
           {isMobileMenuOpen ? (
             <X className="h-5 w-5" />
@@ -178,7 +181,7 @@ export function DashboardSidebar({
       <aside
         className={cn(
           "fixed top-0 left-0 z-50 h-full w-64 transform flex-col border-r bg-card shadow-xl transition-transform duration-300 ease-in-out lg:hidden",
-          isMobileMenuOpen ? "translate-x-0 flex" : "-translate-x-full"
+          isMobileMenuOpen ? "flex translate-x-0" : "-translate-x-full"
         )}
       >
         <SidebarContent />

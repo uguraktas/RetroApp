@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+import { getTranslations } from "next-intl/server";
 import { SettingsNavigation } from "@/components/settings/settings-navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default async function SettingsLayout({
   children,
@@ -18,13 +19,15 @@ export default async function SettingsLayout({
     redirect("/login");
   }
 
+  const t = await getTranslations();
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="font-semibold text-2xl">Settings</h1>
+        <h1 className="font-semibold text-2xl">{t("settings.title")}</h1>
         <p className="text-muted-foreground text-sm">
-          Manage your account settings and preferences
+          {t("settings.description")}
         </p>
       </div>
 
@@ -32,9 +35,7 @@ export default async function SettingsLayout({
       <SettingsNavigation />
 
       {/* Settings Content */}
-      <div className="mt-6">
-        {children}
-      </div>
+      <div className="mt-6">{children}</div>
     </div>
   );
 }

@@ -100,13 +100,51 @@
     }
   },
   "common": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "save": "Save",
+    "name": "Name",
+    "email": "Email",
+    "now": "just now"
+  },
+  "sidebar": {
+    "overview": "Overview",
+    "settings": "Settings",
+    "admin": "Admin",
+    "signOut": "Sign Out"
   },
   "dashboard": {
+    "title": "Dashboard",
+    "welcomeBack": "Welcome back, {name}",
     "pro": "Pro",
-    "free": "Free"
+    "free": "Free",
+    "account": "Account",
+    "plan": "Plan",
+    "apiStatus": "API Status",
+    "checking": "Checking...",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "activity": "Activity",
+    "active": "Active",
+    "subscription": "Subscription",
+    "manageProSubscription": "Manage your Pro subscription",
+    "upgradeToUnlock": "Upgrade to unlock premium features",
+    "proPlanActive": "Pro Plan Active",
+    "proPlanDescription": "You have access to all premium features",
+    "manageSubscription": "Manage Subscription",
+    "unlockProFeatures": "Unlock Pro Features",
+    "unlockProDescription": "Get access to advanced tools and priority support",
+    "advancedAiFeatures": "Advanced AI Features",
+    "prioritySupport": "Priority Support",
+    "unlimitedAccess": "Unlimited Access",
+    "upgradeToPro": "Upgrade to Pro",
+    "quickActions": "Quick Actions",
+    "aiChat": "AI Chat",
+    "settings": "Settings",
+    "documentation": "Documentation"
   },
   "settings": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences",
     "navigation": {
       "general": "General",
       "generalDescription": "Update your profile and personal information",

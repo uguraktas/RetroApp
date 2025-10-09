@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { authClient } from "@/lib/auth-client";
 import Dashboard from "./dashboard";
 
@@ -9,26 +10,26 @@ export default async function DashboardPage() {
       headers: await headers(),
     },
   });
-  console.log("NEXT_PUBLIC_SERVER_URL", process.env.NEXT_PUBLIC_SERVER_URL);
-  console.log("🚀 ~ DashboardPage ~ session:", session);
 
   if (!session.data) {
     redirect("/login");
   }
 
-  const { data: customerState, error } = await authClient.customer.state({
+  const { data: customerState } = await authClient.customer.state({
     fetchOptions: {
       headers: await headers(),
     },
   });
 
+  const t = await getTranslations();
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="font-semibold text-2xl">Dashboard</h1>
+        <h1 className="font-semibold text-2xl">{t("dashboard.title")}</h1>
         <p className="text-muted-foreground text-sm">
-          Welcome back, {session.data.user.name}
+          {t("dashboard.welcomeBack", { name: session.data.user.name })}
         </p>
       </div>
 

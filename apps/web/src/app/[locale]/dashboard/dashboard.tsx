@@ -33,11 +33,13 @@ export default function Dashboard({
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Account</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("dashboard.account")}
+                </p>
                 <p className="font-medium">{session.user.name}</p>
               </div>
-              <div className="h-8 w-8 rounded bg-muted flex items-center justify-center">
-                <span className="text-xs font-medium">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-muted">
+                <span className="font-medium text-xs">
                   {session.user.name?.charAt(0).toUpperCase()}
                 </span>
               </div>
@@ -50,10 +52,18 @@ export default function Dashboard({
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Plan</p>
-                <p className="font-medium">{hasProSubscription ? "Pro" : "Free"}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("dashboard.plan")}
+                </p>
+                <p className="font-medium">
+                  {hasProSubscription
+                    ? t("dashboard.pro")
+                    : t("dashboard.free")}
+                </p>
               </div>
-              <div className={`h-2 w-2 rounded-full ${hasProSubscription ? "bg-green-500" : "bg-gray-300"}`} />
+              <div
+                className={`h-2 w-2 rounded-full ${hasProSubscription ? "bg-green-500" : "bg-gray-300"}`}
+              />
             </div>
           </CardContent>
         </Card>
@@ -63,12 +73,20 @@ export default function Dashboard({
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">API Status</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("dashboard.apiStatus")}
+                </p>
                 <p className="font-medium">
-                  {privateData.isLoading ? "Checking..." : privateData.data ? "Connected" : "Disconnected"}
+                  {privateData.isLoading
+                    ? t("dashboard.checking")
+                    : privateData.data
+                      ? t("dashboard.connected")
+                      : t("dashboard.disconnected")}
                 </p>
               </div>
-              <div className={`h-2 w-2 rounded-full ${privateData.data ? "bg-green-500" : "bg-red-500"}`} />
+              <div
+                className={`h-2 w-2 rounded-full ${privateData.data ? "bg-green-500" : "bg-red-500"}`}
+              />
             </div>
           </CardContent>
         </Card>
@@ -78,8 +96,10 @@ export default function Dashboard({
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground">Activity</p>
-                <p className="font-medium">Active</p>
+                <p className="text-muted-foreground text-sm">
+                  {t("dashboard.activity")}
+                </p>
+                <p className="font-medium">{t("dashboard.active")}</p>
               </div>
               <div className="h-2 w-2 rounded-full bg-green-500" />
             </div>
@@ -93,64 +113,70 @@ export default function Dashboard({
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Subscription</CardTitle>
+              <CardTitle>{t("dashboard.subscription")}</CardTitle>
               <CardDescription>
                 {hasProSubscription
-                  ? "Manage your Pro subscription"
-                  : "Upgrade to unlock premium features"}
+                  ? t("dashboard.manageProSubscription")
+                  : t("dashboard.upgradeToUnlock")}
               </CardDescription>
             </CardHeader>
             <CardContent>
               {hasProSubscription ? (
                 <div className="space-y-4">
-                  <div className="p-4 border rounded-lg">
+                  <div className="rounded-lg border p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="font-medium">Pro Plan Active</h3>
-                        <p className="text-sm text-muted-foreground">
-                          You have access to all premium features
+                        <h3 className="font-medium">
+                          {t("dashboard.proPlanActive")}
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          {t("dashboard.proPlanDescription")}
                         </p>
                       </div>
                       <Button
                         onClick={async () => await authClient.customer.portal()}
                         variant="outline"
                       >
-                        Manage Subscription
+                        {t("dashboard.manageSubscription")}
                       </Button>
                     </div>
                   </div>
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="p-4 border rounded-lg">
+                  <div className="rounded-lg border p-4">
                     <div className="space-y-4">
                       <div>
-                        <h3 className="font-medium">Unlock Pro Features</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Get access to advanced tools and priority support
+                        <h3 className="font-medium">
+                          {t("dashboard.unlockProFeatures")}
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          {t("dashboard.unlockProDescription")}
                         </p>
                       </div>
-                      
+
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                          <span>Advanced AI Features</span>
+                          <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                          <span>{t("dashboard.advancedAiFeatures")}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                          <span>Priority Support</span>
+                          <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                          <span>{t("dashboard.prioritySupport")}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                          <span>Unlimited Access</span>
+                          <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                          <span>{t("dashboard.unlimitedAccess")}</span>
                         </div>
                       </div>
-                      
+
                       <Button
                         className="w-full"
-                        onClick={async () => await authClient.checkout({ slug: "pro" })}
+                        onClick={async () =>
+                          await authClient.checkout({ slug: "pro" })
+                        }
                       >
-                        Upgrade to Pro
+                        {t("dashboard.upgradeToPro")}
                       </Button>
                     </div>
                   </div>
@@ -164,17 +190,32 @@ export default function Dashboard({
         <div>
           <Card>
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
+              <CardTitle>{t("dashboard.quickActions")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                <a href="/ai">AI Chat</a>
+              <Button
+                asChild
+                className="w-full justify-start"
+                size="sm"
+                variant="outline"
+              >
+                <a href="/ai">{t("dashboard.aiChat")}</a>
               </Button>
-              <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                <a href="/dashboard/settings">Settings</a>
+              <Button
+                asChild
+                className="w-full justify-start"
+                size="sm"
+                variant="outline"
+              >
+                <a href="/dashboard/settings">{t("dashboard.settings")}</a>
               </Button>
-              <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                <a href="/docs">Documentation</a>
+              <Button
+                asChild
+                className="w-full justify-start"
+                size="sm"
+                variant="outline"
+              >
+                <a href="/docs">{t("dashboard.documentation")}</a>
               </Button>
             </CardContent>
           </Card>

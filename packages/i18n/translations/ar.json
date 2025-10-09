@@ -100,13 +100,51 @@
     }
   },
   "common": {
-    "cancel": "إلغاء"
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "now": "الآن"
+  },
+  "sidebar": {
+    "overview": "نظرة عامة",
+    "settings": "الإعدادات",
+    "admin": "المسؤول",
+    "signOut": "تسجيل الخروج"
   },
   "dashboard": {
+    "title": "لوحة التحكم",
+    "welcomeBack": "مرحبًا بعودتك، {name}",
     "pro": "Pro",
-    "free": "مجاني"
+    "free": "مجاني",
+    "account": "الحساب",
+    "plan": "الخطة",
+    "apiStatus": "حالة API",
+    "checking": "جاري الفحص...",
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "activity": "النشاط",
+    "active": "نشط",
+    "subscription": "الاشتراك",
+    "manageProSubscription": "إدارة اشتراك Pro الخاص بك",
+    "upgradeToUnlock": "قم بالترقية لفتح الميزات المميزة",
+    "proPlanActive": "خطة Pro نشطة",
+    "proPlanDescription": "لديك حق الوصول إلى جميع الميزات المميزة",
+    "manageSubscription": "إدارة الاشتراك",
+    "unlockProFeatures": "فتح ميزات Pro",
+    "unlockProDescription": "احصل على أدوات متقدمة ودعم ذو أولوية",
+    "advancedAiFeatures": "ميزات AI متقدمة",
+    "prioritySupport": "دعم ذو أولوية",
+    "unlimitedAccess": "وصول غير محدود",
+    "upgradeToPro": "الترقية إلى Pro",
+    "quickActions": "إجراءات سريعة",
+    "aiChat": "دردشة AI",
+    "settings": "الإعدادات",
+    "documentation": "التوثيق"
   },
   "settings": {
+    "title": "الإعدادات",
+    "description": "إدارة إعدادات حسابك وتفضيلاتك",
     "navigation": {
       "general": "عام",
       "generalDescription": "قم بتحديث ملفك الشخصي ومعلوماتك الشخصية",

@@ -100,13 +100,51 @@
     }
   },
   "common": {
-    "cancel": "İptal"
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "name": "Ad",
+    "email": "E-posta",
+    "now": "şimdi"
+  },
+  "sidebar": {
+    "overview": "Genel Bakış",
+    "settings": "Ayarlar",
+    "admin": "Yönetici",
+    "signOut": "Çıkış Yap"
   },
   "dashboard": {
+    "title": "Kontrol Paneli",
+    "welcomeBack": "Tekrar hoş geldiniz, {name}",
     "pro": "Pro",
-    "free": "Ücretsiz"
+    "free": "Ücretsiz",
+    "account": "Hesap",
+    "plan": "Plan",
+    "apiStatus": "API Durumu",
+    "checking": "Kontrol ediliyor...",
+    "connected": "Bağlı",
+    "disconnected": "Bağlantı kesildi",
+    "activity": "Aktivite",
+    "active": "Aktif",
+    "subscription": "Abonelik",
+    "manageProSubscription": "Pro aboneliğinizi yönetin",
+    "upgradeToUnlock": "Premium özelliklerin kilidini açmak için yükseltin",
+    "proPlanActive": "Pro Plan Aktif",
+    "proPlanDescription": "Tüm premium özelliklere erişiminiz var",
+    "manageSubscription": "Aboneliği Yönet",
+    "unlockProFeatures": "Pro Özelliklerin Kilidini Aç",
+    "unlockProDescription": "Gelişmiş araçlara ve öncelikli desteğe erişin",
+    "advancedAiFeatures": "Gelişmiş AI Özellikleri",
+    "prioritySupport": "Öncelikli Destek",
+    "unlimitedAccess": "Sınırsız Erişim",
+    "upgradeToPro": "Pro'ya Yükselt",
+    "quickActions": "Hızlı İşlemler",
+    "aiChat": "AI Sohbet",
+    "settings": "Ayarlar",
+    "documentation": "Dokümantasyon"
   },
   "settings": {
+    "title": "Ayarlar",
+    "description": "Hesap ayarlarınızı ve tercihlerinizi yönetin",
     "navigation": {
       "general": "Genel",
       "generalDescription": "Profil ve kişisel bilgilerinizi güncelleyin",

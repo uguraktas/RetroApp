@@ -1,6 +1,16 @@
 {
   "blog": {
-    "back": "Blog'a dön"
+    "back": "Blog'a dön",
+    "title": "Blogumuz",
+    "description": "CodeBaseHub ekibinden içgörüler, öğreticiler ve güncellemeler. Modern geliştirme uygulamaları hakkında bilgi edinin ve en son özelliklerimizden haberdar olun.",
+    "metaTitle": "Blog - CodeBaseHub",
+    "relatedPosts": "İlgili Gönderiler",
+    "readMore": "Devamını oku",
+    "clickToRead": "Devamını okumak için tıklayın...",
+    "clickToReadMore": "Bu gönderi hakkında daha fazla bilgi için tıklayın...",
+    "recent": "Yeni",
+    "emptyTitle": "Yakında Gelecek!",
+    "emptyDescription": "Harika blog gönderileri üzerinde çalışıyoruz. En son içgörüler ve öğreticiler için yakında tekrar kontrol edin."
   },
   "ai": {
     "title": "Yapay Zeka Asistanı",

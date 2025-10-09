@@ -1,9 +1,7 @@
-import { getBlogPage, getBlogPages } from "@/lib/source";
 import type { Metadata } from "next";
-import { DocsPage, DocsBody } from "fumadocs-ui/page";
-import { notFound } from "next/navigation";
-import { useMDXComponents } from "../../../../../mdx-components";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getBlogPage, getBlogPages } from "@/lib/source";
+import { useMDXComponents } from "../../../../../mdx-components";
 
 type PageProps = {
   params: Promise<{ slug?: string[]; locale: string }>;
@@ -19,27 +19,28 @@ type PageProps = {
 
 export default async function BlogPost({ params }: PageProps) {
   const { slug, locale } = await params;
-  
+  const t = await getTranslations();
+
   // If no slug provided, show blog listing
   if (!slug || slug.length === 0) {
     return <BlogListingPage locale={locale} />;
   }
-  
+
   const page = getBlogPage(slug, locale);
 
   if (!page) {
     notFound();
   }
 
-  const MDX = page.data.body;
-  
+  const Mdx = page.data.body;
+
   // Type assertion for blog metadata
   const blogData = page.data as any;
 
   // Get related posts (simple implementation)
-  const allPosts = getBlogPages().filter(p => 
-    p.locale === locale && p.url !== page.url
-  ).slice(0, 3);
+  const allPosts = getBlogPages()
+    .filter((p) => p.locale === locale && p.url !== page.url)
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
@@ -47,14 +48,24 @@ export default async function BlogPost({ params }: PageProps) {
         <div className="space-y-12">
           {/* Back to Blog */}
           <div className="flex items-center gap-2">
-            <Link 
+            <Link
+              className="inline-flex items-center gap-2 text-muted-foreground text-sm transition-colors hover:text-primary"
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15 19l-7-7 7-7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
               </svg>
-              Back to Blog
+              {t("blog.back")}
             </Link>
           </div>
 
@@ -71,12 +82,14 @@ export default async function BlogPost({ params }: PageProps) {
                   </div>
                 )}
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                    <span>{blogData.date || new Date().toLocaleDateString()}</span>
+                  <div className="mb-2 flex items-center gap-2 text-muted-foreground text-sm">
+                    <span>
+                      {blogData.date || new Date().toLocaleDateString()}
+                    </span>
                     {blogData.category && (
                       <>
                         <span>•</span>
-                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">
+                        <span className="rounded-md bg-primary/10 px-2 py-1 font-medium text-primary">
                           {blogData.category}
                         </span>
                       </>
@@ -84,13 +97,17 @@ export default async function BlogPost({ params }: PageProps) {
                     {blogData.author && (
                       <>
                         <span>•</span>
-                        <span>by {blogData.author}</span>
+                        <span>
+                          {t("blog.author")} {blogData.author}
+                        </span>
                       </>
                     )}
                   </div>
-                  <h1 className="font-bold text-4xl md:text-5xl tracking-tight leading-tight">{page.data.title}</h1>
+                  <h1 className="font-bold text-4xl leading-tight tracking-tight md:text-5xl">
+                    {page.data.title}
+                  </h1>
                   {page.data.description && (
-                    <p className="text-muted-foreground text-xl mt-4 leading-relaxed">
+                    <p className="mt-4 text-muted-foreground text-xl leading-relaxed">
                       {page.data.description}
                     </p>
                   )}
@@ -99,78 +116,30 @@ export default async function BlogPost({ params }: PageProps) {
             </div>
 
             {/* Featured image placeholder */}
-            <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 relative overflow-hidden border-2">
+            <div className="relative h-64 overflow-hidden rounded-2xl border-2 bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 md:h-80">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                  <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  <svg
+                    className="h-8 w-8 text-primary-foreground"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                    />
                   </svg>
                 </div>
               </div>
             </div>
 
             {/* Blog content */}
-            <div className="prose prose-neutral max-w-none dark:prose-invert prose-lg">
-              <MDX components={useMDXComponents({})} />
-            </div>
-
-            {/* Author and sharing section */}
-            <div className="border-t pt-8">
-              <Card className="bg-gradient-to-r from-muted/20 to-muted/10">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 text-primary">
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-semibold">{blogData.author || 'CodeBaseHub Team'}</p>
-                        <p className="text-sm text-muted-foreground">
-                          Building modern development tools
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">Share:</span>
-                      <Button variant="outline" size="sm" className="rounded-xl">
-                        <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                        </svg>
-                        Share
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Was this helpful section */}
-            <div className="border-t pt-8">
-              <div className="text-center space-y-4">
-                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Was this post helpful?</span>
-                </div>
-                <div className="flex justify-center gap-2">
-                  <Button variant="outline" size="sm" className="rounded-xl">
-                    <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                    </svg>
-                    Yes
-                  </Button>
-                  <Button variant="outline" size="sm" className="rounded-xl">
-                    <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018c.163 0 .326.02.485.06L17 4m-7 10v2a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2M5 4H3a2 2 0 00-2 2v6a2 2 0 002 2h2.5" />
-                    </svg>
-                    No
-                  </Button>
-                </div>
-              </div>
+            <div className="prose prose-neutral dark:prose-invert prose-lg max-w-none">
+              <Mdx components={useMDXComponents({})} />
             </div>
           </article>
 
@@ -178,27 +147,29 @@ export default async function BlogPost({ params }: PageProps) {
           {allPosts.length > 0 && (
             <div className="border-t pt-12">
               <div className="space-y-8">
-                <h2 className="font-bold text-2xl">Related Posts</h2>
+                <h2 className="font-bold text-2xl">{t("blog.relatedPosts")}</h2>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {allPosts.map((post) => {
                     const relatedPostData = post.data as any;
                     return (
-                      <Link key={post.url} href={post.url as any}>
-                        <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-lg bg-gradient-to-br from-card to-card/50 h-full">
-                          <div className="h-32 bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <Link href={post.url as any} key={post.url}>
+                        <Card className="group h-full border-2 bg-gradient-to-br from-card to-card/50 transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                          <div className="relative h-32 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                           </div>
                           <CardHeader className="pb-2">
-                            <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
+                            <CardTitle className="line-clamp-2 text-lg transition-colors group-hover:text-primary">
                               {post.data.title}
                             </CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <CardDescription className="text-sm line-clamp-2">
-                              {post.data.description || 'Click to read more...'}
+                            <CardDescription className="line-clamp-2 text-sm">
+                              {post.data.description || t("blog.clickToRead")}
                             </CardDescription>
-                            <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-                              <span>{relatedPostData.date || 'Recent'}</span>
+                            <div className="mt-3 flex items-center gap-2 text-muted-foreground text-xs">
+                              <span>
+                                {relatedPostData.date || t("blog.recent")}
+                              </span>
                               {relatedPostData.category && (
                                 <>
                                   <span>•</span>
@@ -232,25 +203,26 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  
+  const t = await getTranslations();
+
   // If no slug, return metadata for blog listing page
   if (!slug || slug.length === 0) {
     return {
-      title: 'Blog - CodeBaseHub',
-      description: 'Insights, tutorials, and updates from the CodeBaseHub team. Learn about modern development practices and stay up to date with our latest features.',
+      title: t("blog.metaTitle"),
+      description: t("blog.description"),
       openGraph: {
-        title: 'Blog - CodeBaseHub',
-        description: 'Insights, tutorials, and updates from the CodeBaseHub team. Learn about modern development practices and stay up to date with our latest features.',
-        type: 'website',
+        title: t("blog.metaTitle"),
+        description: t("blog.description"),
+        type: "website",
       },
       twitter: {
-        card: 'summary_large_image',
-        title: 'Blog - CodeBaseHub',
-        description: 'Insights, tutorials, and updates from the CodeBaseHub team. Learn about modern development practices and stay up to date with our latest features.',
+        card: "summary_large_image",
+        title: t("blog.metaTitle"),
+        description: t("blog.description"),
       },
     };
   }
-  
+
   const page = getBlogPage(slug, locale);
 
   if (!page) {
@@ -265,12 +237,12 @@ export async function generateMetadata({
     openGraph: {
       title: page.data.title,
       description: page.data.description,
-      type: 'article',
+      type: "article",
       publishedTime: blogData.date,
-      authors: blogData.author ? [blogData.author] : ['CodeBaseHub Team'],
+      authors: blogData.author ? [blogData.author] : ["CodeBaseHub Team"],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: page.data.title,
       description: page.data.description,
     },
@@ -278,10 +250,11 @@ export async function generateMetadata({
 }
 
 // Blog Listing Component
-function BlogListingPage({ locale }: { locale: string }) {
+async function BlogListingPage({ locale }: { locale: string }) {
+  const t = await getTranslations();
   // Get blog posts for the current locale
-  const blogPosts = getBlogPages().filter(page => 
-    page.locale === locale || (!page.locale && locale === 'en')
+  const blogPosts = getBlogPages().filter(
+    (page) => page.locale === locale || (!page.locale && locale === "en")
   );
 
   return (
@@ -292,20 +265,29 @@ function BlogListingPage({ locale }: { locale: string }) {
           <div className="space-y-6 text-center">
             <div className="flex items-center justify-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                <svg
+                  className="h-8 w-8 text-primary-foreground"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
                 </svg>
               </div>
             </div>
             <div className="space-y-4">
-              <h1 className="font-bold text-4xl md:text-6xl tracking-tight">
+              <h1 className="font-bold text-4xl tracking-tight md:text-6xl">
                 <span className="bg-gradient-to-r from-primary via-primary/90 to-orange-500 bg-clip-text text-transparent">
-                  Our Blog
+                  {t("blog.title")}
                 </span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Insights, tutorials, and updates from the CodeBaseHub team. 
-                Learn about modern development practices and stay up to date with our latest features.
+              <p className="mx-auto max-w-2xl text-muted-foreground text-xl leading-relaxed">
+                {t("blog.description")}
               </p>
             </div>
           </div>
@@ -316,56 +298,80 @@ function BlogListingPage({ locale }: { locale: string }) {
               {blogPosts.map((post) => {
                 const postData = post.data as any;
                 return (
-                  <Link key={post.url} href={post.url as any}>
-                    <Card className="group relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl bg-gradient-to-br from-card to-card/50 h-full">
+                  <Link href={post.url as any} key={post.url}>
+                    <Card className="group relative h-full overflow-hidden border-2 bg-gradient-to-br from-card to-card/50 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
                       {/* Featured Image Placeholder */}
-                      <div className="h-48 bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         <div className="absolute bottom-4 left-4">
                           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
                             {postData.icon ? (
-                              <span className="text-primary-foreground">{postData.icon}</span>
+                              <span className="text-primary-foreground">
+                                {postData.icon}
+                              </span>
                             ) : (
-                              <svg className="h-5 w-5 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                              <svg
+                                className="h-5 w-5 text-primary-foreground"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                />
                               </svg>
                             )}
                           </div>
                         </div>
                       </div>
-                      
+
                       <CardHeader className="pb-4">
                         <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <span>{postData.date || 'Recent'}</span>
+                          <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                            <span>{postData.date || t("blog.recent")}</span>
                             {postData.category && (
                               <>
                                 <span>•</span>
-                                <span className="bg-primary/10 text-primary px-2 py-1 rounded-md font-medium">
+                                <span className="rounded-md bg-primary/10 px-2 py-1 font-medium text-primary">
                                   {postData.category}
                                 </span>
                               </>
                             )}
                           </div>
-                          <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
+                          <CardTitle className="line-clamp-2 text-xl transition-colors group-hover:text-primary">
                             {post.data.title}
                           </CardTitle>
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent>
-                        <CardDescription className="text-base leading-relaxed line-clamp-3">
-                          {post.data.description || 'Click to read more about this post...'}
+                        <CardDescription className="line-clamp-3 text-base leading-relaxed">
+                          {post.data.description || t("blog.clickToReadMore")}
                         </CardDescription>
-                        
+
                         <div className="mt-4 flex items-center gap-2 text-sm">
-                          <span className="text-primary font-medium">Read more</span>
-                          <svg className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          <span className="font-medium text-primary">
+                            {t("blog.readMore")}
+                          </span>
+                          <svg
+                            className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                            />
                           </svg>
                         </div>
                       </CardContent>
-                      
+
                       <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-primary/20 via-primary/40 to-orange-500/40 opacity-0 transition-opacity group-hover:opacity-100" />
                     </Card>
                   </Link>
@@ -374,61 +380,38 @@ function BlogListingPage({ locale }: { locale: string }) {
             </div>
           ) : (
             // Empty state
-            <div className="text-center py-16">
+            <div className="py-16 text-center">
               <Card className="mx-auto max-w-md border bg-gradient-to-r from-muted/20 to-muted/10">
                 <CardContent className="p-8">
                   <div className="space-y-4">
                     <div className="flex items-center justify-center">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 text-primary">
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                          />
                         </svg>
                       </div>
                     </div>
-                    <h3 className="font-bold text-lg">Coming Soon!</h3>
+                    <h3 className="font-bold text-lg">
+                      {t("blog.emptyTitle")}
+                    </h3>
                     <p className="text-muted-foreground text-sm">
-                      We're working on some amazing blog posts. Check back soon for the latest insights and tutorials.
+                      {t("blog.emptyDescription")}
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </div>
           )}
-
-          {/* Newsletter CTA */}
-          <div className="text-center">
-            <Card className="border-2 bg-gradient-to-r from-primary/5 via-primary/5 to-orange-500/5 border-primary/20">
-              <CardContent className="py-8">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                      <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-xl">Stay Updated</h3>
-                  <p className="text-muted-foreground max-w-md mx-auto">
-                    Get notified when we publish new posts about modern development practices and product updates.
-                  </p>
-                  <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
-                    <Link 
-                      href="/contact" 
-                      className="inline-flex items-center justify-center rounded-xl border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-                    >
-                      📧 Subscribe to Updates
-                    </Link>
-                    <Link 
-                      href="/docs" 
-                      className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:from-primary/90 hover:to-orange-600 shadow-lg hover:scale-105"
-                    >
-                      📚 Browse Documentation
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </div>
     </div>

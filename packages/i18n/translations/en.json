@@ -1,6 +1,16 @@
 {
   "blog": {
-    "back": "Back to blog"
+    "back": "Back to blog",
+    "title": "Our Blog",
+    "description": "Insights, tutorials, and updates from the CodeBaseHub team. Learn about modern development practices and stay up to date with our latest features.",
+    "metaTitle": "Blog - CodeBaseHub",
+    "relatedPosts": "Related Posts",
+    "readMore": "Read more",
+    "clickToRead": "Click to read more...",
+    "clickToReadMore": "Click to read more about this post...",
+    "recent": "Recent",
+    "emptyTitle": "Coming Soon!",
+    "emptyDescription": "We're working on some amazing blog posts. Check back soon for the latest insights and tutorials."
   },
   "ai": {
     "title": "AI Assistant",

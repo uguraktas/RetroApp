@@ -107,6 +107,18 @@
     "free": "Free"
   },
   "settings": {
+    "general": {
+      "title": "General Settings",
+      "description": "Manage your profile information",
+      "profileInfo": "Profile Information",
+      "profileDescription": "Update your personal information",
+      "namePlaceholder": "Enter your name",
+      "emailCannotChange": "Email address cannot be changed",
+      "saving": "Saving...",
+      "saved": "Settings saved successfully",
+      "nameRequired": "Name is required",
+      "updateFailed": "Failed to update profile"
+    },
     "billing": {
       "title": "Billing & Subscription",
       "description": "Manage your subscription and billing information",

@@ -107,6 +107,18 @@
     "free": "مجاني"
   },
   "settings": {
+    "general": {
+      "title": "الإعدادات العامة",
+      "description": "إدارة معلومات ملفك الشخصي",
+      "profileInfo": "معلومات الملف الشخصي",
+      "profileDescription": "تحديث معلوماتك الشخصية",
+      "namePlaceholder": "أدخل اسمك",
+      "emailCannotChange": "لا يمكن تغيير عنوان البريد الإلكتروني",
+      "saving": "جاري الحفظ...",
+      "saved": "تم حفظ الإعدادات بنجاح",
+      "nameRequired": "الاسم مطلوب",
+      "updateFailed": "فشل تحديث الملف الشخصي"
+    },
     "billing": {
       "title": "الفوترة والاشتراك",
       "description": "إدارة الاشتراك ومعلومات الفوترة",

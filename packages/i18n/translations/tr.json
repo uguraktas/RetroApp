@@ -107,6 +107,18 @@
     "free": "Ücretsiz"
   },
   "settings": {
+    "general": {
+      "title": "Genel Ayarlar",
+      "description": "Profil bilgilerinizi yönetin",
+      "profileInfo": "Profil Bilgileri",
+      "profileDescription": "Kişisel bilgilerinizi güncelleyin",
+      "namePlaceholder": "Adınızı girin",
+      "emailCannotChange": "E-posta adresi değiştirilemez",
+      "saving": "Kaydediliyor...",
+      "saved": "Ayarlar başarıyla kaydedildi",
+      "nameRequired": "Ad gereklidir",
+      "updateFailed": "Profil güncellenemedi"
+    },
     "billing": {
       "title": "Faturalama ve Abonelik",
       "description": "Aboneliğinizi ve fatura bilgilerinizi yönetin",

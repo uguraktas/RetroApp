@@ -107,6 +107,16 @@
     "free": "مجاني"
   },
   "settings": {
+    "navigation": {
+      "general": "عام",
+      "generalDescription": "قم بتحديث ملفك الشخصي ومعلوماتك الشخصية",
+      "security": "الأمان",
+      "securityDescription": "إدارة كلمة المرور وإعدادات الأمان",
+      "billing": "الفوترة",
+      "billingDescription": "إدارة الاشتراك ومعلومات الفوترة",
+      "dangerZone": "منطقة الخطر",
+      "dangerZoneDescription": "احذف حسابك والإجراءات الأخرى التي لا رجعة فيها"
+    },
     "general": {
       "title": "الإعدادات العامة",
       "description": "إدارة معلومات ملفك الشخصي",
@@ -118,6 +128,32 @@
       "saved": "تم حفظ الإعدادات بنجاح",
       "nameRequired": "الاسم مطلوب",
       "updateFailed": "فشل تحديث الملف الشخصي"
+    },
+    "security": {
+      "title": "إعدادات الأمان",
+      "description": "إدارة كلمة المرور والجلسات النشطة",
+      "changePassword": "تغيير كلمة المرور",
+      "passwordDescription": "قم بتحديث كلمة المرور الخاصة بك للحفاظ على أمان حسابك",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "updating": "جاري التحديث...",
+      "updatePassword": "تحديث كلمة المرور",
+      "allFieldsRequired": "جميع الحقول مطلوبة",
+      "passwordMinLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "passwordMismatch": "كلمات المرور غير متطابقة",
+      "passwordChangeFailed": "فشل تغيير كلمة المرور",
+      "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+      "activeSessions": "الجلسات النشطة",
+      "sessionsDescription": "إدارة الأجهزة التي قامت بتسجيل الدخول حاليًا إلى حسابك",
+      "currentDevice": "هذا الجهاز",
+      "lastActive": "آخر نشاط",
+      "active": "نشط",
+      "revokeAllSessions": "إلغاء جميع الجلسات الأخرى",
+      "revoking": "جاري الإلغاء...",
+      "revokeFailed": "فشل إلغاء الجلسات",
+      "sessionsRevoked": "تم إلغاء جميع الجلسات الأخرى",
+      "noSessions": "لا توجد جلسات نشطة"
     },
     "billing": {
       "title": "الفوترة والاشتراك",

@@ -107,6 +107,16 @@
     "free": "Ücretsiz"
   },
   "settings": {
+    "navigation": {
+      "general": "Genel",
+      "generalDescription": "Profil ve kişisel bilgilerinizi güncelleyin",
+      "security": "Güvenlik",
+      "securityDescription": "Şifrenizi ve güvenlik ayarlarınızı yönetin",
+      "billing": "Faturalama",
+      "billingDescription": "Aboneliğinizi ve fatura bilgilerinizi yönetin",
+      "dangerZone": "Tehlikeli Bölge",
+      "dangerZoneDescription": "Hesabınızı silin ve diğer geri alınamaz işlemler"
+    },
     "general": {
       "title": "Genel Ayarlar",
       "description": "Profil bilgilerinizi yönetin",
@@ -118,6 +128,32 @@
       "saved": "Ayarlar başarıyla kaydedildi",
       "nameRequired": "Ad gereklidir",
       "updateFailed": "Profil güncellenemedi"
+    },
+    "security": {
+      "title": "Güvenlik Ayarları",
+      "description": "Şifrenizi ve aktif oturumlarınızı yönetin",
+      "changePassword": "Şifre Değiştir",
+      "passwordDescription": "Hesabınızı güvende tutmak için şifrenizi güncelleyin",
+      "currentPassword": "Mevcut Şifre",
+      "newPassword": "Yeni Şifre",
+      "confirmPassword": "Yeni Şifreyi Onayla",
+      "updating": "Güncelleniyor...",
+      "updatePassword": "Şifreyi Güncelle",
+      "allFieldsRequired": "Tüm alanlar gereklidir",
+      "passwordMinLength": "Şifre en az 8 karakter olmalıdır",
+      "passwordMismatch": "Şifreler eşleşmiyor",
+      "passwordChangeFailed": "Şifre değiştirilemedi",
+      "passwordChanged": "Şifre başarıyla değiştirildi",
+      "activeSessions": "Aktif Oturumlar",
+      "sessionsDescription": "Hesabınıza şu anda giriş yapmış cihazları yönetin",
+      "currentDevice": "Bu cihaz",
+      "lastActive": "Son aktif",
+      "active": "Aktif",
+      "revokeAllSessions": "Diğer Tüm Oturumları İptal Et",
+      "revoking": "İptal ediliyor...",
+      "revokeFailed": "Oturumlar iptal edilemedi",
+      "sessionsRevoked": "Diğer tüm oturumlar iptal edildi",
+      "noSessions": "Aktif oturum yok"
     },
     "billing": {
       "title": "Faturalama ve Abonelik",

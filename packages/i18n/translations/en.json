@@ -107,6 +107,16 @@
     "free": "Free"
   },
   "settings": {
+    "navigation": {
+      "general": "General",
+      "generalDescription": "Update your profile and personal information",
+      "security": "Security",
+      "securityDescription": "Manage your password and security settings",
+      "billing": "Billing",
+      "billingDescription": "Manage your subscription and billing information",
+      "dangerZone": "Danger Zone",
+      "dangerZoneDescription": "Delete your account and other irreversible actions"
+    },
     "general": {
       "title": "General Settings",
       "description": "Manage your profile information",
@@ -118,6 +128,32 @@
       "saved": "Settings saved successfully",
       "nameRequired": "Name is required",
       "updateFailed": "Failed to update profile"
+    },
+    "security": {
+      "title": "Security Settings",
+      "description": "Manage your password and active sessions",
+      "changePassword": "Change Password",
+      "passwordDescription": "Update your password to keep your account secure",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "updating": "Updating...",
+      "updatePassword": "Update Password",
+      "allFieldsRequired": "All fields are required",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "passwordChangeFailed": "Failed to change password",
+      "passwordChanged": "Password changed successfully",
+      "activeSessions": "Active Sessions",
+      "sessionsDescription": "Manage devices that are currently logged in to your account",
+      "currentDevice": "This device",
+      "lastActive": "Last active",
+      "active": "Active",
+      "revokeAllSessions": "Revoke All Other Sessions",
+      "revoking": "Revoking...",
+      "revokeFailed": "Failed to revoke sessions",
+      "sessionsRevoked": "All other sessions have been revoked",
+      "noSessions": "No active sessions"
     },
     "billing": {
       "title": "Billing & Subscription",

@@ -2,6 +2,12 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,12 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { trpc } from "@/utils/trpc";
 
 export default function Home() {
@@ -25,33 +25,66 @@ export default function Home() {
   const features = [
     {
       title: "Lightning Fast",
-      description: "Built with performance in mind. TypeScript, Next.js 15, and optimized for speed.",
+      description:
+        "Built with performance in mind. TypeScript, Next.js 15, and optimized for speed.",
       icon: (
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/80">
-          <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <svg
+            className="h-6 w-6 text-primary-foreground"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+            />
           </svg>
         </div>
       ),
     },
     {
       title: "Secure by Default",
-      description: "Enterprise-grade authentication, RBAC, and security best practices built in.",
+      description:
+        "Enterprise-grade authentication, RBAC, and security best practices built in.",
       icon: (
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-green-600">
-          <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <svg
+            className="h-6 w-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+            />
           </svg>
         </div>
       ),
     },
     {
       title: "AI Integration",
-      description: "Ready-to-use AI chat functionality with modern UI and streaming responses.",
+      description:
+        "Ready-to-use AI chat functionality with modern UI and streaming responses.",
       icon: (
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-purple-600">
-          <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          <svg
+            className="h-6 w-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+            />
           </svg>
         </div>
       ),
@@ -70,36 +103,14 @@ export default function Home() {
   const faqs = [
     {
       question: "What's included in the starter kit?",
-      answer: "You get a complete Next.js application with authentication, database setup, AI chat functionality, admin dashboard, beautiful UI components, multi-language support, and full TypeScript support. Everything is production-ready and well-documented."
+      answer:
+        "You get a complete Next.js application with authentication, database setup, AI chat functionality, admin dashboard, beautiful UI components, multi-language support, and full TypeScript support. Everything is production-ready and well-documented.",
     },
     {
       question: "How does the pricing work?",
-      answer: "The Starter plan is completely free and includes the full source code. Pro plan adds premium templates and priority support. Enterprise includes custom development and on-premise deployment assistance. All plans include lifetime updates."
+      answer:
+        "The Starter plan is completely free and includes the full source code. Pro plan adds premium templates and priority support. Enterprise includes custom development and on-premise deployment assistance. All plans include lifetime updates.",
     },
-    {
-      question: "Can I customize the design and functionality?",
-      answer: "Absolutely! You get full source code access, so you can customize everything - colors, layout, components, database schema, and add your own features. The codebase is well-structured and documented to make modifications easy."
-    },
-    {
-      question: "What databases are supported?",
-      answer: "We use Prisma ORM which supports PostgreSQL, MySQL, SQLite, MongoDB, and SQL Server. The default setup uses PostgreSQL, but you can easily switch by updating the database URL and running migrations."
-    },
-    {
-      question: "Is there ongoing support and updates?",
-      answer: "Yes! The starter kit receives regular updates with new features, security patches, and framework updates. Pro and Enterprise plans include priority email support, while the community plan has access to documentation and community forums."
-    },
-    {
-      question: "How do I deploy my application?",
-      answer: "The kit is optimized for deployment on Vercel, Netlify, and other modern hosting platforms. We include Docker configuration for self-hosting and detailed deployment guides for various platforms including AWS, DigitalOcean, and Railway."
-    },
-    {
-      question: "Can I use this for commercial projects?",
-      answer: "Yes! All plans include commercial usage rights. You can build and sell applications using the starter kit. There are no restrictions on the number of projects or revenue generated from applications built with CodeBaseHub."
-    },
-    {
-      question: "What if I need help getting started?",
-      answer: "We provide comprehensive documentation, video tutorials, and example implementations. Pro plan users get email support, while Enterprise users get dedicated support channels and optional consultation calls."
-    }
   ] as const;
 
   return (
@@ -121,7 +132,7 @@ export default function Home() {
                     : "API disconnected"}
               </span>
             </div>
-            
+
             <div className="space-y-6">
               <h1 className="font-bold text-5xl tracking-tight md:text-7xl">
                 Build faster with{" "}
@@ -130,16 +141,22 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mx-auto max-w-3xl text-muted-foreground text-xl leading-relaxed md:text-2xl">
-                A production-ready starter kit with authentication, AI integration, 
-                and everything you need to ship fast. Built by developers, for developers.
+                A production-ready starter kit with authentication, AI
+                integration, and everything you need to ship fast. Built by
+                developers, for developers.
               </p>
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="h-12 px-8 text-base">
+              <Button asChild className="h-12 px-8 text-base" size="lg">
                 <Link href="/dashboard">Get Started Free</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base">
+              <Button
+                asChild
+                className="h-12 px-8 text-base"
+                size="lg"
+                variant="outline"
+              >
                 <Link href="/ai">Try AI Chat</Link>
               </Button>
             </div>
@@ -150,7 +167,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6 opacity-60">
                 {techStack.map((tech) => (
-                  <div key={tech.name} className="flex items-center gap-2">
+                  <div className="flex items-center gap-2" key={tech.name}>
                     <span className="font-semibold text-sm">{tech.name}</span>
                     <span className="hidden text-muted-foreground text-xs sm:inline">
                       {tech.description}
@@ -178,15 +195,13 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-3">
             {features.map((feature, index) => (
-              <Card 
-                key={feature.title}
+              <Card
                 className="group relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-lg"
+                key={feature.title}
               >
                 <CardHeader className="pb-4">
-                  <div className="mb-4">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                  <div className="mb-4">{feature.icon}</div>
+                  <CardTitle className="text-xl transition-colors group-hover:text-primary">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
@@ -208,8 +223,18 @@ export default function Home() {
           <div className="mb-16 space-y-4 text-center">
             <div className="flex items-center justify-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                <svg
+                  className="h-8 w-8 text-primary-foreground"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
                 </svg>
               </div>
             </div>
@@ -220,175 +245,314 @@ export default function Home() {
               </span>
             </h2>
             <p className="mx-auto max-w-2xl text-muted-foreground text-xl">
-              Choose the plan that's right for you. Start free, upgrade when you need more.
+              Choose the plan that's right for you. Start free, upgrade when you
+              need more.
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Starter Plan */}
-            <Card className="relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/30 hover:shadow-lg bg-gradient-to-br from-card to-card/50">
+            <Card className="relative overflow-hidden border-2 bg-gradient-to-br from-card to-card/50 transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
               <CardHeader className="pb-8">
                 <div className="mb-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-muted to-muted/50">
-                    <svg className="h-6 w-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg
+                      className="h-6 w-6 text-muted-foreground"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                      />
                     </svg>
                   </div>
                 </div>
                 <div>
                   <CardTitle className="text-2xl">Starter</CardTitle>
-                  <CardDescription className="text-base mt-2">
+                  <CardDescription className="mt-2 text-base">
                     Perfect for personal projects and learning
                   </CardDescription>
                 </div>
                 <div className="mt-6">
                   <div className="flex items-baseline gap-1">
                     <span className="font-bold text-4xl">$0</span>
-                    <span className="text-muted-foreground text-sm">/month</span>
+                    <span className="text-muted-foreground text-sm">
+                      /month
+                    </span>
                   </div>
-                  <p className="text-muted-foreground text-sm mt-1">Forever free</p>
+                  <p className="mt-1 text-muted-foreground text-sm">
+                    Forever free
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Full codebase access</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Basic authentication</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Community support</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Up to 2 projects</span>
                   </div>
                 </div>
-                <Button className="w-full h-12 rounded-xl border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground transition-all">
+                <Button className="h-12 w-full rounded-xl border-2 border-primary bg-transparent text-primary transition-all hover:bg-primary hover:text-primary-foreground">
                   Get Started Free
                 </Button>
               </CardContent>
             </Card>
 
             {/* Pro Plan - Popular */}
-            <Card className="relative overflow-hidden border-2 border-primary/50 transition-all duration-300 hover:border-primary hover:shadow-2xl bg-gradient-to-br from-card to-primary/5 scale-105">
-              <div className="absolute -top-px left-1/2 -translate-x-1/2">
-                <div className="rounded-b-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 px-4 py-2 text-primary-foreground text-xs font-semibold shadow-lg">
+            <Card className="relative scale-105 overflow-hidden border-2 border-primary/50 bg-gradient-to-br from-card to-primary/5 transition-all duration-300 hover:border-primary hover:shadow-2xl">
+              <div className="-top-px -translate-x-1/2 absolute left-1/2">
+                <div className="rounded-b-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 px-4 py-2 font-semibold text-primary-foreground text-xs shadow-lg">
                   Most Popular
                 </div>
               </div>
-              <CardHeader className="pb-8 pt-12">
+              <CardHeader className="pt-12 pb-8">
                 <div className="mb-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                    <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    <svg
+                      className="h-6 w-6 text-primary-foreground"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                      />
                     </svg>
                   </div>
                 </div>
                 <div>
                   <CardTitle className="text-2xl">Pro</CardTitle>
-                  <CardDescription className="text-base mt-2">
+                  <CardDescription className="mt-2 text-base">
                     Best for growing businesses and teams
                   </CardDescription>
                 </div>
                 <div className="mt-6">
                   <div className="flex items-baseline gap-1">
                     <span className="font-bold text-4xl">$29</span>
-                    <span className="text-muted-foreground text-sm">/month</span>
+                    <span className="text-muted-foreground text-sm">
+                      /month
+                    </span>
                   </div>
-                  <p className="text-muted-foreground text-sm mt-1">Billed annually</p>
+                  <p className="mt-1 text-muted-foreground text-sm">
+                    Billed annually
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Everything in Starter</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Advanced AI features</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Priority support</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Unlimited projects</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Team collaboration</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Custom integrations</span>
                   </div>
                 </div>
-                <Button className="w-full h-12 rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 hover:from-primary/90 hover:to-orange-600 shadow-lg transition-all hover:scale-105 font-semibold">
+                <Button className="h-12 w-full rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 font-semibold shadow-lg transition-all hover:scale-105 hover:from-primary/90 hover:to-orange-600">
                   Start Free Trial
                 </Button>
               </CardContent>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/30 hover:shadow-lg bg-gradient-to-br from-card to-card/50">
+            <Card className="relative overflow-hidden border-2 bg-gradient-to-br from-card to-card/50 transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
               <CardHeader className="pb-8">
                 <div className="mb-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg">
-                    <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    <svg
+                      className="h-6 w-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                      />
                     </svg>
                   </div>
                 </div>
                 <div>
                   <CardTitle className="text-2xl">Enterprise</CardTitle>
-                  <CardDescription className="text-base mt-2">
+                  <CardDescription className="mt-2 text-base">
                     For large teams and organizations
                   </CardDescription>
                 </div>
@@ -396,176 +560,125 @@ export default function Home() {
                   <div className="flex items-baseline gap-1">
                     <span className="font-bold text-4xl">Custom</span>
                   </div>
-                  <p className="text-muted-foreground text-sm mt-1">Contact for pricing</p>
+                  <p className="mt-1 text-muted-foreground text-sm">
+                    Contact for pricing
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Everything in Pro</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">White-label solution</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Dedicated support</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">SLA guarantees</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">Custom development</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 mt-0.5">
-                      <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded bg-green-500/20">
+                      <svg
+                        className="h-3 w-3 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M5 13l4 4L19 7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
                       </svg>
                     </div>
                     <span className="text-sm">On-premise deployment</span>
                   </div>
                 </div>
-                <Button className="w-full h-12 rounded-xl border-2 border-purple-500 bg-transparent text-purple-600 hover:bg-purple-500 hover:text-white transition-all">
+                <Button className="h-12 w-full rounded-xl border-2 border-purple-500 bg-transparent text-purple-600 transition-all hover:bg-purple-500 hover:text-white">
                   Contact Sales
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Pricing FAQ */}
-          <div className="mt-16 text-center">
-            <Card className="mx-auto max-w-2xl border bg-gradient-to-r from-muted/20 to-muted/10">
-              <CardContent className="p-8">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-orange-500/10 text-primary">
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <h3 className="font-bold text-xl">Questions?</h3>
-                  <p className="text-muted-foreground">
-                    All plans include our core starter kit with full source code access. 
-                    Upgrade anytime as your needs grow. Cancel or downgrade at any time.
-                  </p>
-                  <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
-                    <Button variant="outline" size="sm" asChild className="rounded-xl">
-                      <Link href="/contact">Contact Support</Link>
-                    </Button>
-                    <Button variant="outline" size="sm" asChild className="rounded-xl">
-                      <Link href="/docs">View Documentation</Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Code Example Section */}
-      <section className="py-24">
-        <div className="container mx-auto max-w-7xl px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="space-y-6">
-              <h3 className="font-bold text-3xl md:text-4xl">
-                Developer experience{" "}
-                <span className="text-primary">first</span>
-              </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                Type-safe APIs, modern tooling, and best practices built in. 
-                Focus on building features, not configuration.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-green-500/20">
-                    <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span>Full TypeScript support</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-green-500/20">
-                    <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span>tRPC for end-to-end type safety</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-green-500/20">
-                    <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span>Prisma ORM with migrations</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-green-500/20">
-                    <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span>ESLint & Prettier configured</span>
-                </div>
-              </div>
-            </div>
-            
-            <Card className="overflow-hidden border-2">
-              <CardHeader className="bg-muted/50 pb-3">
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-red-500" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                  <div className="h-3 w-3 rounded-full bg-green-500" />
-                  <span className="ml-4 font-mono text-muted-foreground text-sm">api/users.ts</span>
-                </div>
-              </CardHeader>
-              <CardContent className="p-0">
-                <pre className="overflow-x-auto bg-card p-6 font-mono text-sm">
-                  <code className="text-foreground">
-{`import { z } from 'zod'
-import { publicProcedure } from '../trpc'
-
-export const userRouter = {
-  getProfile: publicProcedure
-    .input(z.object({
-      userId: z.string().uuid()
-    }))
-    .query(async ({ input }) => {
-      return await db.user.findUnique({
-        where: { id: input.userId }
-      })
-    })
-}`}
-                  </code>
-                </pre>
               </CardContent>
             </Card>
           </div>
@@ -573,30 +686,45 @@ export const userRouter = {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-gradient-to-br from-muted/20 to-muted/5">
+      <section className="bg-gradient-to-br from-muted/20 to-muted/5 py-24">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="space-y-12">
             {/* Section Header */}
-            <div className="text-center space-y-6">
+            <div className="space-y-6 text-center">
               <div className="flex items-center justify-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                  <svg className="h-8 w-8 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="h-8 w-8 text-primary-foreground"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                    />
                   </svg>
                 </div>
               </div>
               <div className="space-y-4">
-                <h2 className="font-bold text-4xl md:text-5xl tracking-tight">
+                <h2 className="font-bold text-4xl tracking-tight md:text-5xl">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-primary via-primary/90 to-orange-500 bg-clip-text text-transparent">
                     Questions
                   </span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Everything you need to know about CodeBaseHub. Can't find what you're looking for? 
-                  <Link href="/contact" className="text-primary hover:underline ml-1">
+                <p className="mx-auto max-w-2xl text-muted-foreground text-xl leading-relaxed">
+                  Everything you need to know about CodeBaseHub. Can't find what
+                  you're looking for?
+                  <Link
+                    className="ml-1 text-primary hover:underline"
+                    href="/contact"
+                  >
                     Contact our support team
-                  </Link>.
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -604,18 +732,20 @@ export const userRouter = {
             {/* FAQ Accordion */}
             <Card className="border-2 bg-card/50 backdrop-blur">
               <CardContent className="p-8">
-                <Accordion type="single" collapsible className="space-y-4">
+                <Accordion className="space-y-4" collapsible type="single">
                   {faqs.map((faq, index) => (
-                    <AccordionItem 
-                      key={index} 
+                    <AccordionItem
+                      className="rounded-xl border border-border/50 px-6 transition-all duration-200 data-[state=open]:border-primary/50"
+                      key={index}
                       value={`item-${index}`}
-                      className="border border-border/50 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all duration-200"
                     >
-                      <AccordionTrigger className="text-left py-6 hover:no-underline hover:text-primary transition-colors">
-                        <span className="font-semibold text-lg">{faq.question}</span>
+                      <AccordionTrigger className="py-6 text-left transition-colors hover:text-primary hover:no-underline">
+                        <span className="font-semibold text-lg">
+                          {faq.question}
+                        </span>
                       </AccordionTrigger>
-                      <AccordionContent className="pb-6 pt-0">
-                        <div className="text-muted-foreground leading-relaxed text-base pl-2 border-l-2 border-primary/20">
+                      <AccordionContent className="pt-0 pb-6">
+                        <div className="border-primary/20 border-l-2 pl-2 text-base text-muted-foreground leading-relaxed">
                           {faq.answer}
                         </div>
                       </AccordionContent>
@@ -624,35 +754,6 @@ export const userRouter = {
                 </Accordion>
               </CardContent>
             </Card>
-
-            {/* FAQ CTA */}
-            <div className="text-center">
-              <Card className="border-2 bg-gradient-to-r from-primary/5 via-primary/5 to-orange-500/5 border-primary/20">
-                <CardContent className="py-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-center">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-orange-500 shadow-lg">
-                        <svg className="h-6 w-6 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <h3 className="font-bold text-xl">Still have questions?</h3>
-                    <p className="text-muted-foreground max-w-md mx-auto">
-                      Our team is here to help you succeed. Get personalized support and guidance for your project.
-                    </p>
-                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
-                      <Button asChild variant="outline" className="rounded-xl">
-                        <Link href="/contact">📧 Contact Support</Link>
-                      </Button>
-                      <Button asChild className="rounded-xl bg-gradient-to-r from-primary via-primary/90 to-orange-500 hover:from-primary/90 hover:to-orange-600">
-                        <Link href="/docs">📚 Browse Docs</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
@@ -668,14 +769,19 @@ export const userRouter = {
               </span>
             </h2>
             <p className="mx-auto max-w-2xl text-muted-foreground text-xl">
-              Join thousands of developers who ship faster with our modern starter kit.
-              Get started in minutes, not hours.
+              Join thousands of developers who ship faster with our modern
+              starter kit. Get started in minutes, not hours.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="h-12 px-8 text-base">
+              <Button asChild className="h-12 px-8 text-base" size="lg">
                 <Link href="/dashboard">Start Building Now</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base">
+              <Button
+                asChild
+                className="h-12 px-8 text-base"
+                size="lg"
+                variant="outline"
+              >
                 <Link href="/docs">View Documentation</Link>
               </Button>
             </div>

@@ -101,5 +101,36 @@
   },
   "common": {
     "cancel": "إلغاء"
+  },
+  "dashboard": {
+    "pro": "Pro",
+    "free": "مجاني"
+  },
+  "settings": {
+    "billing": {
+      "title": "الفوترة والاشتراك",
+      "description": "إدارة الاشتراك ومعلومات الفوترة",
+      "currentPlan": "الخطة الحالية",
+      "planDescription": "عرض وإدارة خطة الاشتراك الحالية",
+      "proDescription": "لديك حق الوصول إلى جميع ميزات Pro",
+      "freeDescription": "قم بالترقية إلى Pro لفتح جميع الميزات",
+      "manage": "إدارة الاشتراك",
+      "upgrade": "الترقية إلى Pro"
+    },
+    "dangerZone": {
+      "title": "منطقة الخطر",
+      "description": "إجراءات لا رجعة فيها ومدمرة",
+      "deleteAccount": "حذف الحساب",
+      "deleteWarning": "بمجرد حذف حسابك، لا يمكن التراجع. يرجى التأكد.",
+      "permanentAction": "هذا الإجراء دائم ولا يمكن التراجع عنه:",
+      "deleteItem1": "سيتم حذف جميع بياناتك بشكل دائم",
+      "deleteItem2": "سيتم إلغاء اشتراكك",
+      "deleteItem3": "ستفقد الوصول إلى جميع الميزات",
+      "typeDelete": "اكتب DELETE للتأكيد",
+      "deleting": "جاري الحذف...",
+      "deleteAccountButton": "حذف الحساب",
+      "confirmError": "يرجى كتابة DELETE للتأكيد",
+      "accountDeleted": "تم حذف الحساب بنجاح"
+    }
   }
 }

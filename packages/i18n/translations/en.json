@@ -101,5 +101,36 @@
   },
   "common": {
     "cancel": "Cancel"
+  },
+  "dashboard": {
+    "pro": "Pro",
+    "free": "Free"
+  },
+  "settings": {
+    "billing": {
+      "title": "Billing & Subscription",
+      "description": "Manage your subscription and billing information",
+      "currentPlan": "Current Plan",
+      "planDescription": "View and manage your current subscription plan",
+      "proDescription": "You have access to all Pro features",
+      "freeDescription": "Upgrade to Pro to unlock all features",
+      "manage": "Manage Subscription",
+      "upgrade": "Upgrade to Pro"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "description": "Irreversible and destructive actions",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "Once you delete your account, there is no going back. Please be certain.",
+      "permanentAction": "This action is permanent and cannot be undone:",
+      "deleteItem1": "All your data will be permanently deleted",
+      "deleteItem2": "Your subscription will be cancelled",
+      "deleteItem3": "You will lose access to all features",
+      "typeDelete": "Type DELETE to confirm",
+      "deleting": "Deleting...",
+      "deleteAccountButton": "Delete Account",
+      "confirmError": "Please type DELETE to confirm",
+      "accountDeleted": "Account deleted successfully"
+    }
   }
 }

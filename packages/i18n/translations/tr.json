@@ -101,5 +101,36 @@
   },
   "common": {
     "cancel": "İptal"
+  },
+  "dashboard": {
+    "pro": "Pro",
+    "free": "Ücretsiz"
+  },
+  "settings": {
+    "billing": {
+      "title": "Faturalama ve Abonelik",
+      "description": "Aboneliğinizi ve fatura bilgilerinizi yönetin",
+      "currentPlan": "Mevcut Plan",
+      "planDescription": "Mevcut abonelik planınızı görüntüleyin ve yönetin",
+      "proDescription": "Tüm Pro özelliklere erişiminiz var",
+      "freeDescription": "Tüm özelliklerin kilidini açmak için Pro'ya yükseltin",
+      "manage": "Aboneliği Yönet",
+      "upgrade": "Pro'ya Yükselt"
+    },
+    "dangerZone": {
+      "title": "Tehlikeli Bölge",
+      "description": "Geri alınamaz ve yıkıcı işlemler",
+      "deleteAccount": "Hesabı Sil",
+      "deleteWarning": "Hesabınızı sildikten sonra geri dönüş yoktur. Lütfen emin olun.",
+      "permanentAction": "Bu işlem kalıcıdır ve geri alınamaz:",
+      "deleteItem1": "Tüm verileriniz kalıcı olarak silinecek",
+      "deleteItem2": "Aboneliğiniz iptal edilecek",
+      "deleteItem3": "Tüm özelliklere erişiminizi kaybedeceksiniz",
+      "typeDelete": "Onaylamak için DELETE yazın",
+      "deleting": "Siliniyor...",
+      "deleteAccountButton": "Hesabı Sil",
+      "confirmError": "Lütfen onaylamak için DELETE yazın",
+      "accountDeleted": "Hesap başarıyla silindi"
+    }
   }
 }

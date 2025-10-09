@@ -19,5 +19,9 @@
     "assistant": "Yapay Zeka Asistanı",
     "placeholder": "Mesajınızı yazın...",
     "sendButton": "Mesaj gönder"
+  },
+  "changelog": {
+    "title": "Değişiklik Günlüğü",
+    "description": "En son özellikler, iyileştirmeler ve sürümlerle güncel kalın."
   }
 }

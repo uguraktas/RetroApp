@@ -19,5 +19,9 @@
     "assistant": "AI Assistant",
     "placeholder": "Type your message...",
     "sendButton": "Send message"
+  },
+  "changelog": {
+    "title": "Changelog",
+    "description": "Stay updated with the latest features, improvements, and releases."
   }
 }

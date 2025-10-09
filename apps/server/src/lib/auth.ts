@@ -18,6 +18,7 @@ export const auth = betterAuth<BetterAuthOptions>({
     ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
     "codebasehubapp://",
     "exp://",
+    "https://my-better-t-appv11-server.vercel.app",
   ],
 
   emailAndPassword: {

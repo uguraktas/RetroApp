@@ -106,6 +106,25 @@
     "email": "Email",
     "now": "just now"
   },
+  "header": {
+    "home": "Home",
+    "aiChat": "AI Chat",
+    "docs": "Docs",
+    "blog": "Blog",
+    "changelog": "Changelog",
+    "contact": "Contact"
+  },
+  "success": {
+    "title": "Payment Successful!",
+    "description": "Thank you for your purchase. Your payment has been processed successfully.",
+    "transactionDetails": "Transaction Details",
+    "checkoutId": "Checkout ID",
+    "saveRecord": "Save this ID for your records",
+    "goToDashboard": "Go to Dashboard",
+    "needHelp": "Need help?",
+    "contactSupport": "Contact support",
+    "copySuccess": "Copied to clipboard"
+  },
   "auth": {
     "signIn": {
       "title": "Welcome back",

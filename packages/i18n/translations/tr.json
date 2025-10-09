@@ -106,6 +106,25 @@
     "email": "E-posta",
     "now": "şimdi"
   },
+  "header": {
+    "home": "Ana Sayfa",
+    "aiChat": "Yapay Zeka Sohbet",
+    "docs": "Dokümantasyon",
+    "blog": "Blog",
+    "changelog": "Değişiklik Günlüğü",
+    "contact": "İletişim"
+  },
+  "success": {
+    "title": "Ödeme Başarılı!",
+    "description": "Satın alımınız için teşekkür ederiz. Ödemeniz başarıyla işlendi.",
+    "transactionDetails": "İşlem Detayları",
+    "checkoutId": "Ödeme ID",
+    "saveRecord": "Bu ID'yi kayıtlarınız için saklayın",
+    "goToDashboard": "Kontrol Paneline Git",
+    "needHelp": "Yardıma mı ihtiyacınız var?",
+    "contactSupport": "Destek ile iletişime geçin",
+    "copySuccess": "Panoya kopyalandı"
+  },
   "auth": {
     "signIn": {
       "title": "Tekrar hoş geldiniz",

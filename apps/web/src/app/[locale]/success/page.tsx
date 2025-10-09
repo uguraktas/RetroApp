@@ -1,12 +1,12 @@
 "use client";
 
 import { CheckCircle2, Copy, Home } from "lucide-react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "@/i18n/routing";
 
 export default function SuccessPage() {
   const t = useTranslations();
@@ -28,37 +28,39 @@ export default function SuccessPage() {
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
             <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
-          <h1 className="mb-2 font-semibold text-2xl">
-            Payment Successful!
-          </h1>
-          <p className="text-muted-foreground">
-            Thank you for your purchase. Your payment has been processed successfully.
-          </p>
+          <h1 className="mb-2 font-semibold text-2xl">{t("success.title")}</h1>
+          <p className="text-muted-foreground">{t("success.description")}</p>
         </div>
 
         {/* Transaction Details Card */}
         {checkoutId && (
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-center text-lg">Transaction Details</CardTitle>
+              <CardTitle className="text-center text-lg">
+                {t("success.transactionDetails")}
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg bg-muted/50 p-4">
-                <p className="mb-2 text-sm text-muted-foreground">Checkout ID</p>
+                <p className="mb-2 text-muted-foreground text-sm">
+                  {t("success.checkoutId")}
+                </p>
                 <div className="flex items-center justify-between">
-                  <code className="break-all font-mono text-sm">{checkoutId}</code>
+                  <code className="break-all font-mono text-sm">
+                    {checkoutId}
+                  </code>
                   <Button
+                    className="ml-2 h-8 w-8 p-0"
                     onClick={copyToClipboard}
                     size="sm"
                     variant="ghost"
-                    className="ml-2 h-8 w-8 p-0"
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
-              <p className="text-center text-xs text-muted-foreground">
-                Save this ID for your records
+              <p className="text-center text-muted-foreground text-xs">
+                {t("success.saveRecord")}
               </p>
             </CardContent>
           </Card>
@@ -68,16 +70,19 @@ export default function SuccessPage() {
         <Button asChild className="w-full" size="lg">
           <Link href="/dashboard">
             <Home className="mr-2 h-4 w-4" />
-            Go to Dashboard
+            {t("success.goToDashboard")}
           </Link>
         </Button>
 
         {/* Support Link */}
         <div className="text-center">
-          <p className="text-sm text-muted-foreground">
-            Need help? {" "}
-            <Link className="text-primary hover:underline font-medium" href="/contact">
-              Contact support
+          <p className="text-muted-foreground text-sm">
+            {t("success.needHelp")}{" "}
+            <Link
+              className="font-medium text-primary hover:underline"
+              href="/contact"
+            >
+              {t("success.contactSupport")}
             </Link>
           </p>
         </div>

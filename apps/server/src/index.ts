@@ -5,11 +5,11 @@ import { convertToModelMessages, streamText } from "ai";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { db } from "./db/index.js";
+import { user } from "./db/schema/auth.js";
 import { auth } from "./lib/auth.js";
 import { createContext } from "./lib/context.js";
 import { appRouter } from "./routers/index.js";
-import { db } from "./db/index.js";
-import { user } from "./db/schema/auth.js";
 
 const app = new Hono();
 
@@ -19,8 +19,10 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "",
     allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["Content-Type", "Authorization"],
+    allowHeaders: ["Content-Type", "Authorization", "Cookie"],
+    exposeHeaders: ["Set-Cookie"],
     credentials: true,
+    maxAge: 600,
   })
 );
 
@@ -59,7 +61,9 @@ app.get("/api/admin/list-users", async (c) => {
     }
 
     // Type assertion for role property added by admin plugin
-    const userWithRole = session.user as typeof session.user & { role?: string | null };
+    const userWithRole = session.user as typeof session.user & {
+      role?: string | null;
+    };
 
     if (userWithRole.role !== "admin") {
       return c.json({ error: "Unauthorized" }, 403);

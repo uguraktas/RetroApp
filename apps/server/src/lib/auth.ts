@@ -31,9 +31,16 @@ export const auth = betterAuth<BetterAuthOptions>({
       sameSite: "none",
       secure: true,
       httpOnly: true,
+      partitioned: true, // Required for cross-domain cookies in modern browsers
     },
     crossSubDomainCookies: {
       enabled: true,
+    },
+  },
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60, // 5 minutes cache
     },
   },
   plugins: [

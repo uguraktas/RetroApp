@@ -19,8 +19,6 @@ export const auth = betterAuth<BetterAuthOptions>({
     ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
     "codebasehubapp://",
     "exp://",
-    "https://my-better-t-appv11-server.vercel.app",
-    "https://my-better-t-appv11-web.vercel.app",
   ],
 
   emailAndPassword: {
@@ -32,9 +30,7 @@ export const auth = betterAuth<BetterAuthOptions>({
       secure: true,
       httpOnly: true,
       partitioned: true, // Required for cross-domain cookies in modern browsers
-    },
-    crossSubDomainCookies: {
-      enabled: true,
+      domain: undefined, // Don't set domain for truly cross-origin cookies
     },
   },
   session: {

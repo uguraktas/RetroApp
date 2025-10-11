@@ -14,12 +14,18 @@ import { appRouter } from "./routers/index.js";
 const app = new Hono();
 
 app.use(logger());
+
 app.use(
   "/*",
   cors({
     origin: process.env.CORS_ORIGIN || "",
-    allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["Content-Type", "Authorization", "Cookie"],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cookie",
+      "X-Requested-With",
+    ],
     exposeHeaders: ["Set-Cookie"],
     credentials: true,
     maxAge: 600,

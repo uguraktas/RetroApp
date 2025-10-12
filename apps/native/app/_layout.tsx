@@ -27,7 +27,7 @@ const DARK_THEME: Theme = {
 };
 
 export const unstable_settings = {
-	initialRouteName: "(drawer)",
+	initialRouteName: "index",
 };
 
 export default function RootLayout() {
@@ -56,12 +56,9 @@ export default function RootLayout() {
 			<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
 				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
 				<GestureHandlerRootView style={{ flex: 1 }}>
-					<Stack>
-						<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-						<Stack.Screen
-							name="modal"
-							options={{ title: "Modal", presentation: "modal" }}
-						/>
+					<Stack screenOptions={{ headerShown: false }}>
+						<Stack.Screen name="index" />
+						<Stack.Screen name="login" />
 					</Stack>
 				</GestureHandlerRootView>
 			</ThemeProvider>

@@ -4,8 +4,8 @@
   "main": "expo-router/entry",
   "scripts": {
     "dev": "expo start --clear",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "expo run:android --no-build-cache --device",
+    "ios": "expo run:ios --no-build-cache --device",
     "prebuild": "expo prebuild --clean",
     "web": "expo start --web",
     "eas:ios": "eas build --platform ios",

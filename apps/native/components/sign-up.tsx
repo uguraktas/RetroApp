@@ -1,3 +1,4 @@
+import { analytics } from "@/lib/analytics";
 import { authClient } from "@/lib/auth-client";
 import { queryClient } from "@/utils/trpc";
 import { useState } from "react";
@@ -44,7 +45,11 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					setError(error.error?.message || "Failed to sign up");
 					setIsLoading(false);
 				},
-				onSuccess: () => {
+				onSuccess: async (context) => {
+					const userId = context.data.user?.id;
+					if (userId) {
+						await analytics.setUserId(userId);
+					}
 					setName("");
 					setEmail("");
 					setPassword("");

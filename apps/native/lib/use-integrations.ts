@@ -23,14 +23,15 @@ export const useIntegrations = () => {
     const initializeAll = async () => {
       initializeAppsFlyer();
       initializePostHog();
-      await initializeOneSignal();
+      initializeOneSignal();
 
       if (isOneSignalEnabled) {
         await requestNotificationPermission();
       }
+
+      hasInitialized.current = true;
     };
 
     initializeAll();
-    hasInitialized.current = true;
   }, []);
 };

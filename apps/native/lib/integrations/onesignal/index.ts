@@ -1,19 +1,11 @@
 import { appConfig } from "@repo/config";
+import { OneSignal } from "react-native-onesignal";
 
 let isInitialized = false;
 
 const isEnabled = appConfig.platforms.mobile.integrations.oneSignal;
 
-const loadOneSignal = async () => {
-  if (!isEnabled) {
-    return null;
-  }
-
-  const OneSignal = await import("react-native-onesignal");
-  return OneSignal.default;
-};
-
-export const initializeOneSignal = async (): Promise<void> => {
+export const initializeOneSignal = (): void => {
   if (!isEnabled) {
     return;
   }
@@ -28,13 +20,12 @@ export const initializeOneSignal = async (): Promise<void> => {
     return;
   }
 
-  const OneSignal = await loadOneSignal();
-  if (!OneSignal) {
-    return;
+  try {
+    OneSignal.initialize(appId);
+    isInitialized = true;
+  } catch {
+    // Silent fail - OneSignal errors are logged internally
   }
-
-  OneSignal.initialize(appId);
-  isInitialized = true;
 };
 
 export const requestNotificationPermission = async (): Promise<boolean> => {
@@ -46,15 +37,14 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
     return false;
   }
 
-  const OneSignal = await loadOneSignal();
-  if (!OneSignal) {
+  try {
+    return await OneSignal.Notifications.requestPermission(true);
+  } catch {
     return false;
   }
-
-  return OneSignal.Notifications.requestPermission(true);
 };
 
-export const setExternalUserId = async (userId: string): Promise<void> => {
+export const setExternalUserId = (userId: string): void => {
   if (!isEnabled) {
     return;
   }
@@ -63,15 +53,14 @@ export const setExternalUserId = async (userId: string): Promise<void> => {
     return;
   }
 
-  const OneSignal = await loadOneSignal();
-  if (!OneSignal) {
-    return;
+  try {
+    OneSignal.login(userId);
+  } catch {
+    // Silent fail - OneSignal errors are logged internally
   }
-
-  OneSignal.login(userId);
 };
 
-export const removeExternalUserId = async (): Promise<void> => {
+export const removeExternalUserId = (): void => {
   if (!isEnabled) {
     return;
   }
@@ -80,12 +69,11 @@ export const removeExternalUserId = async (): Promise<void> => {
     return;
   }
 
-  const OneSignal = await loadOneSignal();
-  if (!OneSignal) {
-    return;
+  try {
+    OneSignal.logout();
+  } catch {
+    // Silent fail - OneSignal errors are logged internally
   }
-
-  OneSignal.logout();
 };
 
 export const addTag = (key: string, value: string): void => {
@@ -97,11 +85,11 @@ export const addTag = (key: string, value: string): void => {
     return;
   }
 
-  loadOneSignal().then((OneSignal) => {
-    if (OneSignal) {
-      OneSignal.User.addTag(key, value);
-    }
-  });
+  try {
+    OneSignal.User.addTag(key, value);
+  } catch {
+    // Silent fail - OneSignal errors are logged internally
+  }
 };
 
 export const addTags = (tags: Record<string, string>): void => {
@@ -113,11 +101,11 @@ export const addTags = (tags: Record<string, string>): void => {
     return;
   }
 
-  loadOneSignal().then((OneSignal) => {
-    if (OneSignal) {
-      OneSignal.User.addTags(tags);
-    }
-  });
+  try {
+    OneSignal.User.addTags(tags);
+  } catch {
+    // Silent fail - OneSignal errors are logged internally
+  }
 };
 
 export { isEnabled as isOneSignalEnabled };

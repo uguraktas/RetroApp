@@ -20,11 +20,11 @@ export const analytics = {
   setUserId: async (userId: string, properties?: AnalyticsParams) => {
     await appsFlyerSetUserId(userId);
     postHogIdentifyUser(userId, properties);
-    await oneSignalSetUserId(userId);
+    oneSignalSetUserId(userId);
   },
 
-  removeUserId: async () => {
-    await oneSignalRemoveUserId();
+  removeUserId: () => {
+    oneSignalRemoveUserId();
   },
 };
 

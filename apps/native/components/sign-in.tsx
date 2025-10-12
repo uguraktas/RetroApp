@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { useI18n } from "@/contexts/i18n-context";
+import { analytics } from "@/lib/analytics";
 import { authClient } from "@/lib/auth-client";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { queryClient } from "@/utils/trpc";
@@ -40,7 +41,11 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
           setError(error.error?.message || "Failed to sign in");
           setIsLoading(false);
         },
-        onSuccess: () => {
+        onSuccess: async (context) => {
+          const userId = context.data.user?.id;
+          if (userId) {
+            await analytics.setUserId(userId);
+          }
           setEmail("");
           setPassword("");
           queryClient.refetchQueries();

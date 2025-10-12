@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Platform } from "react-native";
-import { initializeAppsFlyer } from "./integrations";
+import {
+  initializeAppsFlyer,
+  initializeOneSignal,
+  initializePostHog,
+  isOneSignalEnabled,
+  requestNotificationPermission,
+} from "./integrations";
 
 export const useIntegrations = () => {
   const hasInitialized = useRef(false);
@@ -14,7 +20,17 @@ export const useIntegrations = () => {
       return;
     }
 
-    initializeAppsFlyer();
+    const initializeAll = async () => {
+      initializeAppsFlyer();
+      initializePostHog();
+      await initializeOneSignal();
+
+      if (isOneSignalEnabled) {
+        await requestNotificationPermission();
+      }
+    };
+
+    initializeAll();
     hasInitialized.current = true;
   }, []);
 };

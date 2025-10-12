@@ -38,8 +38,8 @@ export const appConfig: AppConfig = {
       },
       integrations: {
         appsFlyer: true,
-        oneSignal: false,
-        postHog: false,
+        oneSignal: true,
+        postHog: true,
         revenueCat: false,
       },
     },

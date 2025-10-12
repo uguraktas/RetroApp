@@ -5,7 +5,7 @@ import { useColorScheme } from "@/lib/use-color-scheme";
 import { Ionicons } from "@expo/vector-icons";
 import { InfoCard } from "@/components/info-card";
 import { LanguageSelector } from "@/components/language-selector";
-import { useI18n } from "@/hooks/use-i18n";
+import { useI18n } from "@/contexts/i18n-context";
 
 export default function HomeScreen() {
 	const router = useRouter();

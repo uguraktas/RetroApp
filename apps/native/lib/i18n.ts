@@ -193,7 +193,4 @@ export const getLanguageInfo = (languageCode: string) => {
   };
 };
 
-// Translation function
-export const t = (key: string, options?: any) => i18n.t(key, options);
-
 export default i18n;

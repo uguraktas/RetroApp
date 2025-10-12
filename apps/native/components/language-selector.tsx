@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/lib/use-color-scheme';
-import { useI18n } from '@/hooks/use-i18n';
+import { useI18n } from '@/contexts/i18n-context';
 
 export function LanguageSelector() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +12,7 @@ export function LanguageSelector() {
   const currentLangInfo = getCurrentLanguageInfo();
 
   const handleLanguageSelect = async (languageCode: string) => {
+    await changeLanguage(languageCode);
     setIsVisible(false);
   };
 

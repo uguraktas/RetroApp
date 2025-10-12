@@ -16,7 +16,7 @@ import React, { useRef } from "react";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { Platform } from "react-native";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
-import { initializeI18n } from "@/lib/i18n";
+import { I18nProvider } from "@/contexts/i18n-context";
 
 const LIGHT_THEME: Theme = {
 	...DefaultTheme,
@@ -41,20 +41,12 @@ export default function RootLayout() {
 			return;
 		}
 
-		const initialize = async () => {
-			if (Platform.OS === "web") {
-				document.documentElement.classList.add("bg-background");
-			}
-			setAndroidNavigationBar(colorScheme);
-			
-			// Initialize i18n system
-			await initializeI18n();
-			
-			setIsColorSchemeLoaded(true);
-			hasMounted.current = true;
-		};
-
-		initialize();
+		if (Platform.OS === "web") {
+			document.documentElement.classList.add("bg-background");
+		}
+		setAndroidNavigationBar(colorScheme);
+		setIsColorSchemeLoaded(true);
+		hasMounted.current = true;
 	}, []);
 
 	if (!isColorSchemeLoaded) {
@@ -62,15 +54,17 @@ export default function RootLayout() {
 	}
 	return (
 		<QueryClientProvider client={queryClient}>
-			<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-				<GestureHandlerRootView style={{ flex: 1 }}>
-					<Stack screenOptions={{ headerShown: false }}>
-						<Stack.Screen name="sign-in" />
-						<Stack.Screen name="(app)" />
-					</Stack>
-				</GestureHandlerRootView>
-			</ThemeProvider>
+			<I18nProvider>
+				<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+					<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<Stack screenOptions={{ headerShown: false }}>
+							<Stack.Screen name="sign-in" />
+							<Stack.Screen name="(app)" />
+						</Stack>
+					</GestureHandlerRootView>
+				</ThemeProvider>
+			</I18nProvider>
 		</QueryClientProvider>
 	);
 }

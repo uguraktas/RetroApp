@@ -11,7 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "@/lib/use-color-scheme";
-import { useI18n } from "@/hooks/use-i18n";
+import { useI18n } from "@/contexts/i18n-context";
 
 type SignInProps = {
 	onSwitchToSignUp: () => void;

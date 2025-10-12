@@ -74,33 +74,53 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 	};
 
 	return (
-		<View className="w-full space-y-6">
+		<View className="w-full" style={{ gap: 24 }}>
 			{/* Header */}
-			<View className="space-y-2 items-center">
-				<Text className="text-3xl font-bold text-foreground tracking-tight text-center">
+			<View style={{ gap: 8 }} className="items-center">
+				<Text
+					className="text-center font-bold tracking-tight text-foreground"
+					style={{ fontSize: 32, lineHeight: 40 }}
+				>
 					Create your account
 				</Text>
-				<Text className="text-muted-foreground text-center">
+				<Text
+					className="text-center text-muted-foreground"
+					style={{ fontSize: 15 }}
+				>
 					Get started with your free account today
 				</Text>
 			</View>
 
 			{/* Form Card */}
-			<View className="rounded-2xl border border-border bg-card p-8 shadow-lg">
+			<View
+				className="rounded-3xl border border-border/50 bg-card"
+				style={{
+					padding: 24,
+					shadowColor: "#000",
+					shadowOffset: { width: 0, height: 8 },
+					shadowOpacity: 0.1,
+					shadowRadius: 24,
+					elevation: 8,
+				}}
+			>
 				{error && (
-					<View className="mb-4 p-3 bg-destructive/10 rounded-md border border-destructive/20">
-						<Text className="text-destructive text-sm">{error}</Text>
+					<View
+						className="mb-4 rounded-lg border border-destructive/20 bg-destructive/10"
+						style={{ padding: 12 }}
+					>
+						<Text className="text-sm text-destructive">{error}</Text>
 					</View>
 				)}
 
-				<View className="space-y-4">
+				<View style={{ gap: 20 }}>
 					{/* Name Field */}
-					<View className="space-y-2">
+					<View style={{ gap: 8 }}>
 						<Text className="text-sm font-medium text-foreground">
 							Full name
 						</Text>
 						<TextInput
-							className="h-12 px-4 rounded-md bg-background text-foreground border border-border text-base"
+							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
+							style={{ height: 48 }}
 							placeholder="John Doe"
 							value={name}
 							onChangeText={setName}
@@ -110,12 +130,13 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					</View>
 
 					{/* Email Field */}
-					<View className="space-y-2">
+					<View style={{ gap: 8 }}>
 						<Text className="text-sm font-medium text-foreground">
 							Email address
 						</Text>
 						<TextInput
-							className="h-12 px-4 rounded-md bg-background text-foreground border border-border text-base"
+							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
+							style={{ height: 48 }}
 							placeholder="you@example.com"
 							value={email}
 							onChangeText={setEmail}
@@ -127,12 +148,13 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					</View>
 
 					{/* Password Field */}
-					<View className="space-y-2">
+					<View style={{ gap: 8 }}>
 						<Text className="text-sm font-medium text-foreground">
 							Password
 						</Text>
 						<TextInput
-							className="h-12 px-4 rounded-md bg-background text-foreground border border-border text-base"
+							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
+							style={{ height: 48 }}
 							placeholder="Enter your password"
 							value={password}
 							onChangeText={setPassword}
@@ -150,21 +172,28 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 				<TouchableOpacity
 					onPress={handleSignUp}
 					disabled={isLoading || !name || !email || !password}
-					className="mt-6 h-12 rounded-md flex-row justify-center items-center"
+					className="mt-6 flex-row items-center justify-center rounded-lg"
 					style={{
+						height: 48,
 						backgroundColor: "#ea580c",
-						opacity: isLoading || !name || !email || !password ? 0.5 : 1,
+						opacity: isLoading || !name || !email || !password ? 0.6 : 1,
+						shadowColor: "#ea580c",
+						shadowOffset: { width: 0, height: 4 },
+						shadowOpacity: 0.3,
+						shadowRadius: 8,
+						elevation: 4,
 					}}
+					activeOpacity={0.8}
 				>
 					{isLoading ? (
-						<View className="flex-row items-center gap-2">
+						<View className="flex-row items-center" style={{ gap: 8 }}>
 							<ActivityIndicator size="small" color="#fff" />
-							<Text className="text-white font-medium text-base">
+							<Text className="text-base font-semibold text-white">
 								Creating account...
 							</Text>
 						</View>
 					) : (
-						<Text className="text-white font-medium text-base">
+						<Text className="text-base font-semibold text-white">
 							Create account
 						</Text>
 					)}
@@ -173,10 +202,13 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 				{/* Divider */}
 				<View className="relative my-6">
 					<View className="absolute inset-0 flex items-center">
-						<View className="w-full border-t border-border" />
+						<View className="w-full border-t border-border/60" />
 					</View>
 					<View className="relative flex justify-center">
-						<Text className="bg-card px-2 text-xs uppercase text-muted-foreground">
+						<Text
+							className="bg-card px-3 text-xs uppercase text-muted-foreground"
+							style={{ letterSpacing: 0.5 }}
+						>
 							OR CONTINUE WITH
 						</Text>
 					</View>
@@ -185,18 +217,25 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 				{/* Google Button */}
 				<TouchableOpacity
 					disabled={isLoading}
-					className="h-12 rounded-md border border-border flex-row justify-center items-center"
-					style={{ opacity: isLoading ? 0.5 : 1 }}
+					className="flex-row items-center justify-center rounded-lg border border-border/60 bg-background"
+					style={{
+						height: 48,
+						opacity: isLoading ? 0.5 : 1,
+					}}
+					activeOpacity={0.7}
 				>
 					<GoogleIcon />
-					<Text className="text-foreground font-medium text-base">
+					<Text className="text-base font-medium text-foreground">
 						Continue with Google
 					</Text>
 				</TouchableOpacity>
 
 				{/* Terms */}
 				<View className="mt-4">
-					<Text className="text-xs text-muted-foreground text-center leading-relaxed">
+					<Text
+						className="text-center text-xs leading-relaxed text-muted-foreground"
+						style={{ lineHeight: 18 }}
+					>
 						By creating an account, you agree to our{" "}
 						<Text className="underline">Terms of Service</Text> and{" "}
 						<Text className="underline">Privacy Policy</Text>

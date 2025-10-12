@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	View,
 	ScrollView,
@@ -7,9 +7,20 @@ import {
 } from "react-native";
 import { SignIn } from "@/components/sign-in";
 import { SignUp } from "@/components/sign-up";
+import { useRouter } from "expo-router";
+import { authClient } from "@/lib/auth-client";
 
-export default function LoginScreen() {
+export default function SignInScreen() {
 	const [showSignIn, setShowSignIn] = useState(true);
+	const router = useRouter();
+	const { data: session } = authClient.useSession();
+
+	// Redirect to home if already authenticated
+	useEffect(() => {
+		if (session) {
+			router.replace("/(app)");
+		}
+	}, [session]);
 
 	return (
 		<KeyboardAvoidingView

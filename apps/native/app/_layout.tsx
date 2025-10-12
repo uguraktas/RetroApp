@@ -27,7 +27,7 @@ const DARK_THEME: Theme = {
 };
 
 export const unstable_settings = {
-	initialRouteName: "index",
+	initialRouteName: "sign-in",
 };
 
 export default function RootLayout() {
@@ -57,8 +57,8 @@ export default function RootLayout() {
 				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
 				<GestureHandlerRootView style={{ flex: 1 }}>
 					<Stack screenOptions={{ headerShown: false }}>
-						<Stack.Screen name="index" />
-						<Stack.Screen name="login" />
+						<Stack.Screen name="sign-in" />
+						<Stack.Screen name="(app)" />
 					</Stack>
 				</GestureHandlerRootView>
 			</ThemeProvider>

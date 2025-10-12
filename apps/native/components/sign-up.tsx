@@ -64,7 +64,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					setEmail("");
 					setPassword("");
 					queryClient.refetchQueries();
-					router.replace("/");
+					router.replace("/(app)");
 				},
 				onFinished: () => {
 					setIsLoading(false);

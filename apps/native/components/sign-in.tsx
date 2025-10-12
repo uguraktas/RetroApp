@@ -43,9 +43,18 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
         },
         onSuccess: async (context) => {
           const userId = context.data.user?.id;
+          const userName = context.data.user?.name;
+          const userEmail = context.data.user?.email;
+
           if (userId) {
-            await analytics.setUserId(userId);
+            // For existing users signing in, just set user ID with basic info
+            // Don't automatically enable email notifications for returning users
+            await analytics.setUserId(userId, {
+              name: userName,
+              email: userEmail,
+            });
           }
+
           setEmail("");
           setPassword("");
           queryClient.refetchQueries();

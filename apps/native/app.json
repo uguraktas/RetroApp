@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.anonymous.codebasehubapp",
+      "bundleIdentifier": "com.uguraktas.codebasehubrnapp",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -20,7 +20,7 @@
       "entitlements": {
         "aps-environment": "development",
         "com.apple.security.application-groups": [
-          "group.com.anonymous.codebasehubapp.onesignal"
+          "group.com.uguraktas.codebasehubrnapp.onesignal"
         ]
       }
     },
@@ -33,7 +33,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.codebasehubapp"
+      "package": "com.uguraktas.codebasehubrnapp"
     },
     "web": {
       "output": "static",

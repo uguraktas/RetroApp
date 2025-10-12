@@ -1,67 +1,80 @@
-import { analytics } from "@/lib/analytics";
-import { authClient } from "@/lib/auth-client";
-import { queryClient } from "@/utils/trpc";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
-	ActivityIndicator,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	View,
+  ActivityIndicator,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { useColorScheme } from "@/lib/use-color-scheme";
 import { useI18n } from "@/contexts/i18n-context";
+import { analytics } from "@/lib/analytics";
+import { authClient } from "@/lib/auth-client";
+import { setEmailNotificationPreference } from "@/lib/notification-preferences";
+import { useColorScheme } from "@/lib/use-color-scheme";
+import { queryClient } from "@/utils/trpc";
 
 type SignUpProps = {
-	onSwitchToSignIn: () => void;
+  onSwitchToSignIn: () => void;
 };
 
-
-
 export function SignUp({ onSwitchToSignIn }: SignUpProps) {
-	const router = useRouter();
-	const { isDarkColorScheme } = useColorScheme();
-	const { t } = useI18n();
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const { isDarkColorScheme } = useColorScheme();
+  const { t } = useI18n();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-	const handleSignUp = async () => {
-		setIsLoading(true);
-		setError(null);
+  const handleSignUp = async () => {
+    setIsLoading(true);
+    setError(null);
 
-		await authClient.signUp.email(
-			{
-				name,
-				email,
-				password,
-			},
-			{
-				onError: (error) => {
-					setError(error.error?.message || "Failed to sign up");
-					setIsLoading(false);
-				},
-				onSuccess: async (context) => {
-					const userId = context.data.user?.id;
-					if (userId) {
-						await analytics.setUserId(userId);
-					}
-					setName("");
-					setEmail("");
-					setPassword("");
-					queryClient.refetchQueries();
-					router.replace("/(app)");
-				},
-				onFinished: () => {
-					setIsLoading(false);
-				},
-			},
-		);
-	};
+    await authClient.signUp.email(
+      {
+        name,
+        email,
+        password,
+      },
+      {
+        onError: (error) => {
+          setError(error.error?.message || "Failed to sign up");
+          setIsLoading(false);
+        },
+        onSuccess: async (context) => {
+          const userId = context.data.user?.id;
+          const userName = context.data.user?.name;
+          const userEmail = context.data.user?.email;
+
+          if (userId && userName && userEmail) {
+            // For new sign-ups, enable both push and email notifications by default
+            // User already granted push permission during app startup
+            await analytics.setUserWithNotifications({
+              userId,
+              name: userName,
+              email: userEmail,
+              enableEmailNotifications: true,
+            });
+
+            // Save email notification preference locally
+            await setEmailNotificationPreference(true);
+          }
+
+          setName("");
+          setEmail("");
+          setPassword("");
+          queryClient.refetchQueries();
+          router.replace("/(app)");
+        },
+        onFinished: () => {
+          setIsLoading(false);
+        },
+      }
+    );
+  };
 
 	return (
 		<View className="w-full" style={{ gap: 24 }}>

@@ -2,8 +2,9 @@ import {
   type AppsFlyerEventParams,
   logEvent as appsFlyerLogEvent,
   setCustomerUserId as appsFlyerSetUserId,
-  removeExternalUserId as oneSignalRemoveUserId,
-  setExternalUserId as oneSignalSetUserId,
+  removeUser as oneSignalRemoveUser,
+  setUser as oneSignalSetUser,
+  addEmailSubscription as oneSignalAddEmail,
   type PostHogEventParams,
   identifyUser as postHogIdentifyUser,
   logEvent as postHogLogEvent,
@@ -11,20 +12,58 @@ import {
 
 type AnalyticsParams = AppsFlyerEventParams | PostHogEventParams;
 
+type UserData = {
+  userId: string;
+  name?: string;
+  email?: string;
+  enableEmailNotifications?: boolean;
+};
+
 export const analytics = {
   logEvent: async (eventName: string, params?: AnalyticsParams) => {
     await appsFlyerLogEvent(eventName, params);
     postHogLogEvent(eventName, params);
   },
 
-  setUserId: async (userId: string, properties?: AnalyticsParams) => {
+  setUserId: async (
+    userId: string,
+    properties?: AnalyticsParams & { name?: string; email?: string }
+  ) => {
     await appsFlyerSetUserId(userId);
     postHogIdentifyUser(userId, properties);
-    oneSignalSetUserId(userId);
+    await oneSignalSetUser(userId, properties?.name, properties?.email);
+  },
+
+  /**
+   * Set user data with email subscription
+   * Use this for new registrations where user accepts notifications
+   */
+  setUserWithNotifications: async (userData: UserData) => {
+    await appsFlyerSetUserId(userData.userId);
+
+    const postHogProps: Record<string, string | number | boolean> = {};
+    if (userData.name) {
+      postHogProps.name = userData.name;
+    }
+    if (userData.email) {
+      postHogProps.email = userData.email;
+    }
+
+    if (Object.keys(postHogProps).length > 0) {
+      postHogIdentifyUser(userData.userId, postHogProps);
+    }
+
+    // Set user in OneSignal with name and email
+    await oneSignalSetUser(userData.userId, userData.name, userData.email);
+
+    // Add email subscription if enabled
+    if (userData.enableEmailNotifications && userData.email) {
+      oneSignalAddEmail(userData.email);
+    }
   },
 
   removeUserId: () => {
-    oneSignalRemoveUserId();
+    oneSignalRemoveUser();
   },
 };
 

@@ -290,5 +290,26 @@
       "confirmError": "Please type DELETE to confirm",
       "accountDeleted": "Account deleted successfully"
     }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome!",
+      "description": "Discover a new way to achieve your goals with our powerful features and intuitive design."
+    },
+    "features": {
+      "title": "Powerful Features",
+      "description": "Everything you need in one place. Track progress, set goals, and stay motivated on your journey."
+    },
+    "notifications": {
+      "title": "Stay Updated",
+      "description": "Get timely reminders and updates to keep you on track and never miss important moments."
+    },
+    "ready": {
+      "title": "Ready to Start?",
+      "description": "Join thousands of users already achieving their goals. Let's begin your journey together!"
+    },
+    "next": "Next",
+    "skip": "Skip",
+    "getStarted": "Let's start"
   }
 }

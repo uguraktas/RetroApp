@@ -290,5 +290,26 @@
       "confirmError": "Lütfen onaylamak için DELETE yazın",
       "accountDeleted": "Hesap başarıyla silindi"
     }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Hoş Geldiniz!",
+      "description": "Güçlü özelliklerimiz ve sezgisel tasarımımızla hedeflerinize ulaşmanın yeni bir yolunu keşfedin."
+    },
+    "features": {
+      "title": "Güçlü Özellikler",
+      "description": "İhtiyacınız olan her şey tek yerde. İlerlemenizi takip edin, hedefler belirleyin ve yolculuğunuzda motive kalın."
+    },
+    "notifications": {
+      "title": "Güncel Kalın",
+      "description": "Zamanında hatırlatmalar ve güncellemeler alın, yolunuzda kalın ve önemli anları kaçırmayın."
+    },
+    "ready": {
+      "title": "Başlamaya Hazır mısınız?",
+      "description": "Hedeflerine ulaşan binlerce kullanıcıya katılın. Hadi yolculuğunuza birlikte başlayalım!"
+    },
+    "next": "İleri",
+    "skip": "Atla",
+    "getStarted": "Başlayalım"
   }
 }

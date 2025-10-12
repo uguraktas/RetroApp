@@ -44,6 +44,23 @@ const translations = {
     sign_out: "Sign Out",
     language: "Language",
     select_language: "Select Language",
+
+    // Onboarding
+    welcome: "Welcome",
+    welcome_subtitle:
+      "Discover a new way to achieve your goals with our powerful features and intuitive design.",
+    features: "Features",
+    features_subtitle:
+      "Everything you need in one place. Track progress, set goals, and stay motivated on your journey.",
+    notifications: "Notifications",
+    notifications_subtitle:
+      "Get timely reminders and updates to keep you on track and never miss important moments.",
+    ready: "Ready",
+    ready_subtitle:
+      "Join thousands of users already achieving their goals. Let's begin your journey together!",
+    next: "Next",
+    skip: "Skip",
+    getStarted: "Get Started",
   },
   tr: {
     // Auth

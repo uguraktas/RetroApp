@@ -11,10 +11,12 @@ import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "../global.css";
 import React, { useRef } from "react";
-import { Platform } from "react-native";
+import { Platform, View } from "react-native";
+import { OnboardingScreen } from "@/components/onboarding-screen";
 import { I18nProvider } from "@/contexts/i18n-context";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { NAV_THEME } from "@/lib/constants";
+import { useOnboarding } from "@/lib/onboarding/use-onboarding";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { useIntegrations } from "@/lib/use-integrations";
 import { queryClient } from "@/utils/trpc";
@@ -28,7 +30,7 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
-export const unstable_settings = {
+export const unstableSettings = {
   initialRouteName: "sign-in",
 };
 
@@ -50,27 +52,44 @@ export default function RootLayout() {
     setAndroidNavigationBar(colorScheme);
     setIsColorSchemeLoaded(true);
     hasMounted.current = true;
-  }, []);
+  }, [colorScheme]);
 
   if (!isColorSchemeLoaded) {
     return null;
   }
+
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
           <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
           <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="sign-in" />
-              <Stack.Screen name="(app)" />
-            </Stack>
+            <RootContent />
           </GestureHandlerRootView>
         </ThemeProvider>
       </I18nProvider>
     </QueryClientProvider>
   );
 }
+
+const RootContent = () => {
+  const { isOnboardingComplete, isLoading } = useOnboarding();
+
+  if (isLoading) {
+    return <View className="flex-1 bg-background" />;
+  }
+
+  if (!isOnboardingComplete) {
+    return <OnboardingScreen />;
+  }
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="sign-in" />
+      <Stack.Screen name="(app)" />
+    </Stack>
+  );
+};
 
 const useIsomorphicLayoutEffect =
   Platform.OS === "web" && typeof window === "undefined"

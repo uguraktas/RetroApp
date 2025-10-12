@@ -9,35 +9,18 @@ import {
 	View,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Svg, Path } from "react-native-svg";
+import { Ionicons } from "@expo/vector-icons";
+import { useColorScheme } from "@/lib/use-color-scheme";
 
 type SignUpProps = {
 	onSwitchToSignIn: () => void;
 };
 
-const GoogleIcon = () => (
-	<Svg width={16} height={16} viewBox="0 0 24 24" style={{ marginRight: 8 }}>
-		<Path
-			d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-			fill="#4285F4"
-		/>
-		<Path
-			d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-			fill="#34A853"
-		/>
-		<Path
-			d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-			fill="#FBBC05"
-		/>
-		<Path
-			d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-			fill="#EA4335"
-		/>
-	</Svg>
-);
+
 
 export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 	const router = useRouter();
+	const { isDarkColorScheme } = useColorScheme();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -76,93 +59,125 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 	return (
 		<View className="w-full" style={{ gap: 24 }}>
 			{/* Header */}
-			<View style={{ gap: 8 }} className="items-center">
+			<View style={{ gap: 12 }} className="items-center">
+				<View className="mb-2 h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-900">
+					<Ionicons
+						name="person-add"
+						size={32}
+						color={isDarkColorScheme ? "#a1a1aa" : "#71717a"}
+					/>
+				</View>
 				<Text
-					className="text-center font-bold tracking-tight text-foreground"
-					style={{ fontSize: 32, lineHeight: 40 }}
+					className="text-center font-bold tracking-tight text-black dark:text-white"
+					style={{ fontSize: 28, lineHeight: 36 }}
 				>
 					Create your account
 				</Text>
 				<Text
-					className="text-center text-muted-foreground"
+					className="text-center text-zinc-600 dark:text-zinc-400"
 					style={{ fontSize: 15 }}
 				>
 					Get started with your free account today
 				</Text>
+				
+				{/* Status Badge */}
+				<View className="flex-row items-center self-center rounded-full bg-zinc-100 px-3 py-1.5 dark:bg-zinc-900">
+					<View className="mr-2 h-2 w-2 rounded-full bg-blue-500" />
+					<Text className="font-medium text-black text-xs dark:text-white">
+						Quick setup
+					</Text>
+				</View>
 			</View>
 
 			{/* Form Card */}
-			<View
-				className="rounded-3xl border border-border/50 bg-card"
-				style={{
-					padding: 24,
-					shadowColor: "#000",
-					shadowOffset: { width: 0, height: 8 },
-					shadowOpacity: 0.1,
-					shadowRadius: 24,
-					elevation: 8,
-				}}
-			>
+			<View className="rounded-2xl bg-zinc-100 p-6 dark:bg-zinc-900">
 				{error && (
-					<View
-						className="mb-4 rounded-lg border border-destructive/20 bg-destructive/10"
-						style={{ padding: 12 }}
-					>
-						<Text className="text-sm text-destructive">{error}</Text>
+					<View className="mb-4 rounded-lg bg-red-50 p-3 dark:bg-red-950/30">
+						<View className="flex-row items-center">
+							<Ionicons 
+								name="alert-circle" 
+								size={16} 
+								color={isDarkColorScheme ? "#f87171" : "#dc2626"} 
+							/>
+							<Text className="ml-2 text-sm text-red-600 dark:text-red-400">
+								{error}
+							</Text>
+						</View>
 					</View>
 				)}
 
 				<View style={{ gap: 20 }}>
 					{/* Name Field */}
 					<View style={{ gap: 8 }}>
-						<Text className="text-sm font-medium text-foreground">
+						<Text className="font-medium text-sm text-black dark:text-white">
 							Full name
 						</Text>
-						<TextInput
-							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
-							style={{ height: 48 }}
-							placeholder="John Doe"
-							value={name}
-							onChangeText={setName}
-							placeholderTextColor="#9CA3AF"
-							editable={!isLoading}
-						/>
+						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
+							<Ionicons
+								name="person"
+								size={20}
+								color={isDarkColorScheme ? "#a1a1aa" : "#71717a"}
+								style={{ marginRight: 12 }}
+							/>
+							<TextInput
+								className="flex-1 text-base text-black dark:text-white"
+								placeholder="John Doe"
+								value={name}
+								onChangeText={setName}
+								placeholderTextColor={isDarkColorScheme ? "#71717a" : "#a1a1aa"}
+								editable={!isLoading}
+							/>
+						</View>
 					</View>
 
 					{/* Email Field */}
 					<View style={{ gap: 8 }}>
-						<Text className="text-sm font-medium text-foreground">
+						<Text className="font-medium text-sm text-black dark:text-white">
 							Email address
 						</Text>
-						<TextInput
-							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
-							style={{ height: 48 }}
-							placeholder="you@example.com"
-							value={email}
-							onChangeText={setEmail}
-							placeholderTextColor="#9CA3AF"
-							keyboardType="email-address"
-							autoCapitalize="none"
-							editable={!isLoading}
-						/>
+						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
+							<Ionicons
+								name="mail"
+								size={20}
+								color={isDarkColorScheme ? "#a1a1aa" : "#71717a"}
+								style={{ marginRight: 12 }}
+							/>
+							<TextInput
+								className="flex-1 text-base text-black dark:text-white"
+								placeholder="you@example.com"
+								value={email}
+								onChangeText={setEmail}
+								placeholderTextColor={isDarkColorScheme ? "#71717a" : "#a1a1aa"}
+								keyboardType="email-address"
+								autoCapitalize="none"
+								editable={!isLoading}
+							/>
+						</View>
 					</View>
 
 					{/* Password Field */}
 					<View style={{ gap: 8 }}>
-						<Text className="text-sm font-medium text-foreground">
+						<Text className="font-medium text-sm text-black dark:text-white">
 							Password
 						</Text>
-						<TextInput
-							className="rounded-lg border border-input bg-background px-4 text-base text-foreground"
-							style={{ height: 48 }}
-							placeholder="Enter your password"
-							value={password}
-							onChangeText={setPassword}
-							placeholderTextColor="#9CA3AF"
-							secureTextEntry
-							editable={!isLoading}
-						/>
-						<Text className="text-xs text-muted-foreground">
+						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
+							<Ionicons
+								name="lock-closed"
+								size={20}
+								color={isDarkColorScheme ? "#a1a1aa" : "#71717a"}
+								style={{ marginRight: 12 }}
+							/>
+							<TextInput
+								className="flex-1 text-base text-black dark:text-white"
+								placeholder="Enter your password"
+								value={password}
+								onChangeText={setPassword}
+								placeholderTextColor={isDarkColorScheme ? "#71717a" : "#a1a1aa"}
+								secureTextEntry
+								editable={!isLoading}
+							/>
+						</View>
+						<Text className="text-xs text-zinc-500 dark:text-zinc-400">
 							Must be at least 8 characters
 						</Text>
 					</View>
@@ -172,84 +187,51 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 				<TouchableOpacity
 					onPress={handleSignUp}
 					disabled={isLoading || !name || !email || !password}
-					className="mt-6 flex-row items-center justify-center rounded-lg"
+					className="mt-6 h-12 flex-row items-center justify-center rounded-lg bg-green-500"
 					style={{
-						height: 48,
-						backgroundColor: "#ea580c",
 						opacity: isLoading || !name || !email || !password ? 0.6 : 1,
-						shadowColor: "#ea580c",
-						shadowOffset: { width: 0, height: 4 },
-						shadowOpacity: 0.3,
-						shadowRadius: 8,
-						elevation: 4,
 					}}
 					activeOpacity={0.8}
 				>
 					{isLoading ? (
 						<View className="flex-row items-center" style={{ gap: 8 }}>
 							<ActivityIndicator size="small" color="#fff" />
-							<Text className="text-base font-semibold text-white">
+							<Text className="font-semibold text-base text-white">
 								Creating account...
 							</Text>
 						</View>
 					) : (
-						<Text className="text-base font-semibold text-white">
-							Create account
-						</Text>
+						<>
+							<Ionicons name="person-add" size={20} color="#fff" style={{ marginRight: 8 }} />
+							<Text className="font-semibold text-base text-white">
+								Create account
+							</Text>
+						</>
 					)}
 				</TouchableOpacity>
 
-				{/* Divider */}
-				<View className="relative my-6">
-					<View className="absolute inset-0 flex items-center">
-						<View className="w-full border-t border-border/60" />
-					</View>
-					<View className="relative flex justify-center">
-						<Text
-							className="bg-card px-3 text-xs uppercase text-muted-foreground"
-							style={{ letterSpacing: 0.5 }}
-						>
-							OR CONTINUE WITH
-						</Text>
-					</View>
-				</View>
 
-				{/* Google Button */}
-				<TouchableOpacity
-					disabled={isLoading}
-					className="flex-row items-center justify-center rounded-lg border border-border/60 bg-background"
-					style={{
-						height: 48,
-						opacity: isLoading ? 0.5 : 1,
-					}}
-					activeOpacity={0.7}
-				>
-					<GoogleIcon />
-					<Text className="text-base font-medium text-foreground">
-						Continue with Google
-					</Text>
-				</TouchableOpacity>
 
 				{/* Terms */}
-				<View className="mt-4">
+				<View className="mt-6">
 					<Text
-						className="text-center text-xs leading-relaxed text-muted-foreground"
+						className="text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-400"
 						style={{ lineHeight: 18 }}
 					>
 						By creating an account, you agree to our{" "}
-						<Text className="underline">Terms of Service</Text> and{" "}
-						<Text className="underline">Privacy Policy</Text>
+						<Text className="font-medium text-blue-500 underline">Terms of Service</Text> and{" "}
+						<Text className="font-medium text-blue-500 underline">Privacy Policy</Text>
 					</Text>
 				</View>
 			</View>
 
 			{/* Switch to Sign In */}
 			<View className="items-center">
-				<Text className="text-sm text-muted-foreground">
+				<Text className="text-sm text-zinc-600 dark:text-zinc-400">
 					Already have an account?{" "}
 					<Text
 						onPress={onSwitchToSignIn}
-						className="font-semibold text-primary"
+						className="font-semibold text-blue-500"
 					>
 						Sign in
 					</Text>

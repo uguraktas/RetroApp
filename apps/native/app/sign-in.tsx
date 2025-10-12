@@ -25,7 +25,7 @@ export default function SignInScreen() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			className="flex-1 bg-background"
+			className="flex-1 bg-white dark:bg-black"
 		>
 			<ScrollView
 				className="flex-1"

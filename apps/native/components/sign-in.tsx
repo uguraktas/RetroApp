@@ -11,6 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "@/lib/use-color-scheme";
+import { useI18n } from "@/hooks/use-i18n";
 
 type SignInProps = {
 	onSwitchToSignUp: () => void;
@@ -19,6 +20,7 @@ type SignInProps = {
 export function SignIn({ onSwitchToSignUp }: SignInProps) {
 	const router = useRouter();
 	const { isDarkColorScheme } = useColorScheme();
+	const { t } = useI18n();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -66,20 +68,20 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 					className="text-center font-bold tracking-tight text-black dark:text-white"
 					style={{ fontSize: 28, lineHeight: 36 }}
 				>
-					Welcome back
+					{t('welcome_back')}
 				</Text>
 				<Text
 					className="text-center text-zinc-600 dark:text-zinc-400"
 					style={{ fontSize: 15 }}
 				>
-					Enter your credentials to access your account
+					{t('sign_in_subtitle')}
 				</Text>
 				
 				{/* Status Badge */}
 				<View className="flex-row items-center self-center rounded-full bg-zinc-100 px-3 py-1.5 dark:bg-zinc-900">
 					<View className="mr-2 h-2 w-2 rounded-full bg-green-500" />
 					<Text className="font-medium text-black text-xs dark:text-white">
-						Secure sign in
+						{t('secure_sign_in')}
 					</Text>
 				</View>
 			</View>
@@ -105,7 +107,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 					{/* Email Field */}
 					<View style={{ gap: 8 }}>
 						<Text className="font-medium text-sm text-black dark:text-white">
-							Email address
+							{t('email_address')}
 						</Text>
 						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
 							<Ionicons
@@ -131,11 +133,11 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 					<View style={{ gap: 8 }}>
 						<View className="flex-row items-center justify-between">
 							<Text className="font-medium text-sm text-black dark:text-white">
-								Password
+								{t('password')}
 							</Text>
 							<TouchableOpacity activeOpacity={0.7}>
 								<Text className="text-sm text-zinc-500 dark:text-zinc-400">
-									Forgot password?
+									{t('forgot_password')}
 								</Text>
 							</TouchableOpacity>
 						</View>
@@ -148,7 +150,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 							/>
 							<TextInput
 								className="flex-1 text-base text-black dark:text-white"
-								placeholder="Enter your password"
+								placeholder={t('password')}
 								value={password}
 								onChangeText={setPassword}
 								placeholderTextColor={isDarkColorScheme ? "#71717a" : "#a1a1aa"}
@@ -173,13 +175,13 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 						<View className="flex-row items-center" style={{ gap: 8 }}>
 							<ActivityIndicator size="small" color="#fff" />
 							<Text className="font-semibold text-base text-white">
-								Signing in...
+								{t('signing_in')}
 							</Text>
 						</View>
 					) : (
 						<>
 							<Ionicons name="log-in" size={20} color="#fff" style={{ marginRight: 8 }} />
-							<Text className="font-semibold text-base text-white">Sign in</Text>
+							<Text className="font-semibold text-base text-white">{t('sign_in')}</Text>
 						</>
 					)}
 				</TouchableOpacity>
@@ -194,7 +196,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 							className="bg-zinc-100 px-3 text-xs uppercase text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400"
 							style={{ letterSpacing: 0.5 }}
 						>
-							OR CONTINUE WITH
+							{t('or_continue_with')}
 						</Text>
 					</View>
 				</View>
@@ -217,7 +219,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 							style={{ marginRight: 8 }} 
 						/>
 						<Text className="font-medium text-base text-black dark:text-white">
-							Continue with Google
+							{t('continue_with_google')}
 						</Text>
 					</TouchableOpacity>
 
@@ -237,7 +239,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 							style={{ marginRight: 8 }} 
 						/>
 						<Text className="font-medium text-base text-black dark:text-white">
-							Continue with Apple
+							{t('continue_with_apple')}
 						</Text>
 					</TouchableOpacity>
 				</View>
@@ -246,12 +248,12 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
 			{/* Switch to Sign Up */}
 			<View className="items-center">
 				<Text className="text-sm text-zinc-600 dark:text-zinc-400">
-					Don't have an account?{" "}
+					{t('dont_have_account')}{" "}
 					<Text
 						onPress={onSwitchToSignUp}
 						className="font-semibold text-blue-500"
 					>
-						Create account
+						{t('create_account')}
 					</Text>
 				</Text>
 			</View>

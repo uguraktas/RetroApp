@@ -11,6 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "@/lib/use-color-scheme";
+import { useI18n } from "@/hooks/use-i18n";
 
 type SignUpProps = {
 	onSwitchToSignIn: () => void;
@@ -21,6 +22,7 @@ type SignUpProps = {
 export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 	const router = useRouter();
 	const { isDarkColorScheme } = useColorScheme();
+	const { t } = useI18n();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -71,20 +73,20 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					className="text-center font-bold tracking-tight text-black dark:text-white"
 					style={{ fontSize: 28, lineHeight: 36 }}
 				>
-					Create your account
+					{t('create_account')}
 				</Text>
 				<Text
 					className="text-center text-zinc-600 dark:text-zinc-400"
 					style={{ fontSize: 15 }}
 				>
-					Get started with your free account today
+					{t('sign_up_subtitle')}
 				</Text>
 				
 				{/* Status Badge */}
 				<View className="flex-row items-center self-center rounded-full bg-zinc-100 px-3 py-1.5 dark:bg-zinc-900">
 					<View className="mr-2 h-2 w-2 rounded-full bg-blue-500" />
 					<Text className="font-medium text-black text-xs dark:text-white">
-						Quick setup
+						{t('quick_setup')}
 					</Text>
 				</View>
 			</View>
@@ -110,7 +112,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					{/* Name Field */}
 					<View style={{ gap: 8 }}>
 						<Text className="font-medium text-sm text-black dark:text-white">
-							Full name
+							{t('full_name')}
 						</Text>
 						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
 							<Ionicons
@@ -133,7 +135,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					{/* Email Field */}
 					<View style={{ gap: 8 }}>
 						<Text className="font-medium text-sm text-black dark:text-white">
-							Email address
+							{t('email_address')}
 						</Text>
 						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
 							<Ionicons
@@ -158,7 +160,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 					{/* Password Field */}
 					<View style={{ gap: 8 }}>
 						<Text className="font-medium text-sm text-black dark:text-white">
-							Password
+							{t('password')}
 						</Text>
 						<View className="flex-row items-center rounded-lg bg-zinc-200 px-4 dark:bg-zinc-800" style={{ height: 48 }}>
 							<Ionicons
@@ -169,7 +171,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 							/>
 							<TextInput
 								className="flex-1 text-base text-black dark:text-white"
-								placeholder="Enter your password"
+								placeholder={t('password')}
 								value={password}
 								onChangeText={setPassword}
 								placeholderTextColor={isDarkColorScheme ? "#71717a" : "#a1a1aa"}
@@ -178,7 +180,7 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 							/>
 						</View>
 						<Text className="text-xs text-zinc-500 dark:text-zinc-400">
-							Must be at least 8 characters
+							{t('must_be_8_characters')}
 						</Text>
 					</View>
 				</View>
@@ -197,14 +199,14 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 						<View className="flex-row items-center" style={{ gap: 8 }}>
 							<ActivityIndicator size="small" color="#fff" />
 							<Text className="font-semibold text-base text-white">
-								Creating account...
+								{t('creating_account')}
 							</Text>
 						</View>
 					) : (
 						<>
 							<Ionicons name="person-add" size={20} color="#fff" style={{ marginRight: 8 }} />
 							<Text className="font-semibold text-base text-white">
-								Create account
+								{t('create_account_btn')}
 							</Text>
 						</>
 					)}
@@ -218,9 +220,9 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 						className="text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-400"
 						style={{ lineHeight: 18 }}
 					>
-						By creating an account, you agree to our{" "}
-						<Text className="font-medium text-blue-500 underline">Terms of Service</Text> and{" "}
-						<Text className="font-medium text-blue-500 underline">Privacy Policy</Text>
+						{t('terms_text')}{" "}
+						<Text className="font-medium text-blue-500 underline">{t('terms_of_service')}</Text> and{" "}
+						<Text className="font-medium text-blue-500 underline">{t('privacy_policy')}</Text>
 					</Text>
 				</View>
 			</View>
@@ -228,12 +230,12 @@ export function SignUp({ onSwitchToSignIn }: SignUpProps) {
 			{/* Switch to Sign In */}
 			<View className="items-center">
 				<Text className="text-sm text-zinc-600 dark:text-zinc-400">
-					Already have an account?{" "}
+					{t('already_have_account')}{" "}
 					<Text
 						onPress={onSwitchToSignIn}
 						className="font-semibold text-blue-500"
 					>
-						Sign in
+						{t('sign_in')}
 					</Text>
 				</Text>
 			</View>

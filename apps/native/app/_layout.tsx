@@ -16,6 +16,7 @@ import React, { useRef } from "react";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { Platform } from "react-native";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
+import { initializeI18n } from "@/lib/i18n";
 
 const LIGHT_THEME: Theme = {
 	...DefaultTheme,
@@ -40,12 +41,20 @@ export default function RootLayout() {
 			return;
 		}
 
-		if (Platform.OS === "web") {
-			document.documentElement.classList.add("bg-background");
-		}
-		setAndroidNavigationBar(colorScheme);
-		setIsColorSchemeLoaded(true);
-		hasMounted.current = true;
+		const initialize = async () => {
+			if (Platform.OS === "web") {
+				document.documentElement.classList.add("bg-background");
+			}
+			setAndroidNavigationBar(colorScheme);
+			
+			// Initialize i18n system
+			await initializeI18n();
+			
+			setIsColorSchemeLoaded(true);
+			hasMounted.current = true;
+		};
+
+		initialize();
 	}, []);
 
 	if (!isColorSchemeLoaded) {

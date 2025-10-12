@@ -41,6 +41,9 @@ importers:
       '@repo/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@repo/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@stardazed/streams-text-encoding':
         specifier: ^1.0.2
         version: 1.0.2

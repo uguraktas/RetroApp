@@ -22,7 +22,7 @@ export default function HomeScreen() {
 				<View className="mb-8">
 					<View className="mb-4 flex-row items-center justify-between">
 						<View className="flex-1">
-							<Text className="font-bold text-3xl text-foreground">
+							<Text className="font-bold text-3xl text-black dark:text-white">
 								Dashboard
 							</Text>
 							<Text className="mt-1 text-zinc-600 dark:text-zinc-400">

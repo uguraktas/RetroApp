@@ -22,6 +22,7 @@ import Animated, {
 import { useI18n } from "@/contexts/i18n-context";
 import { onboardingSlides } from "@/lib/onboarding/content";
 import { setOnboardingCompleted } from "@/lib/onboarding/storage";
+import { useColorScheme } from "@/lib/use-color-scheme";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const SPRING_DAMPING = 15;
@@ -48,6 +49,7 @@ const SCALE_ANIM_INITIAL = 0.8;
 export const OnboardingScreen = () => {
   const { t } = useI18n();
   const router = useRouter();
+  const { isDarkColorScheme } = useColorScheme();
   const scrollViewRef = useRef<ScrollView>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useSharedValue(0);
@@ -92,17 +94,24 @@ export const OnboardingScreen = () => {
 
   const isLastSlide = currentIndex === onboardingSlides.length - 1;
 
+  const gradientColors = isDarkColorScheme
+    ? (["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8"] as const)
+    : (["#f0f9ff", "#e0f2fe", "#bae6fd", "#7dd3fc"] as const);
+
+  const footerBg = isDarkColorScheme ? "bg-black/40" : "bg-white/80";
+  const dotColor = isDarkColorScheme ? "bg-white" : "bg-purple-600";
+
   return (
     <View className="flex-1 bg-background">
       <LinearGradient
         className="absolute inset-0"
-        colors={["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8"]}
+        colors={gradientColors}
         end={{ x: 1, y: 1 }}
         start={{ x: 0, y: 0 }}
       />
 
       {/* Decorative background elements */}
-      <BackgroundCircles />
+      <BackgroundCircles isDark={isDarkColorScheme} />
 
       {/* Main content area */}
       <View className="flex-1">
@@ -118,6 +127,7 @@ export const OnboardingScreen = () => {
           {onboardingSlides.map((slide, slideIndex) => (
             <SlideContent
               isActive={currentIndex === slideIndex}
+              isDark={isDarkColorScheme}
               key={slide.id}
               slide={slide}
               t={t}
@@ -126,12 +136,17 @@ export const OnboardingScreen = () => {
         </ScrollView>
       </View>
 
-      {/* Fixed footer with dark background */}
-      <View className="bg-black/40 backdrop-blur-xl">
+      {/* Fixed footer with adaptive background */}
+      <View className={`${footerBg} backdrop-blur-xl`}>
         {/* Pagination dots */}
         <View className="flex-row items-center justify-center gap-2 py-8">
           {onboardingSlides.map((slide, index) => (
-            <PaginationDot index={index} key={slide.id} scrollX={scrollX} />
+            <PaginationDot
+              dotColor={dotColor}
+              index={index}
+              key={slide.id}
+              scrollX={scrollX}
+            />
           ))}
         </View>
 
@@ -148,8 +163,8 @@ export const OnboardingScreen = () => {
               start={{ x: 0, y: 0 }}
             >
               {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-              <Text className="text-center text-lg font-bold text-white">
-                {isLastSlide ? t("onboarding.getStarted") : t("next")}
+              <Text className="text-center text-lg font-bold text-white p-3">
+                {isLastSlide ? t("get_started") : t("next")}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -161,7 +176,9 @@ export const OnboardingScreen = () => {
               onPress={handleGetStarted}
             >
               {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-              <Text className="text-center text-base font-medium text-white/60">
+              <Text
+                className={`text-center font-medium text-base ${isDarkColorScheme ? "text-white/60" : "text-gray-500"}`}
+              >
                 {t("skip")}
               </Text>
             </Pressable>
@@ -173,7 +190,7 @@ export const OnboardingScreen = () => {
 };
 
 // Background decorative circles
-const BackgroundCircles = () => {
+const BackgroundCircles = ({ isDark }: { isDark: boolean }) => {
   const circle1 = useSharedValue(0);
   const circle2 = useSharedValue(0);
 
@@ -222,14 +239,17 @@ const BackgroundCircles = () => {
     ],
   }));
 
+  const circle1Color = isDark ? "bg-purple-400" : "bg-purple-200";
+  const circle2Color = isDark ? "bg-blue-400" : "bg-blue-200";
+
   return (
     <>
       <Animated.View
-        className="-top-20 -right-20 absolute h-80 w-80 rounded-full bg-purple-400"
+        className={`-top-20 -right-20 absolute h-80 w-80 rounded-full ${circle1Color}`}
         style={circle1Style}
       />
       <Animated.View
-        className="-bottom-32 -left-20 absolute h-96 w-96 rounded-full bg-blue-400"
+        className={`-bottom-32 -left-20 absolute h-96 w-96 rounded-full ${circle2Color}`}
         style={circle2Style}
       />
     </>
@@ -245,10 +265,11 @@ type SlideContentProps = {
     emoji: string;
   };
   isActive: boolean;
+  isDark: boolean;
   t: (key: string) => string;
 };
 
-const SlideContent = ({ slide, isActive, t }: SlideContentProps) => {
+const SlideContent = ({ slide, isActive, isDark, t }: SlideContentProps) => {
   const emojiScale = useSharedValue(EMOJI_SCALE_INITIAL);
   const emojiRotate = useSharedValue(0);
   const contentOpacity = useSharedValue(0);
@@ -292,6 +313,12 @@ const SlideContent = ({ slide, isActive, t }: SlideContentProps) => {
     transform: [{ translateY: contentTranslateY.value }],
   }));
 
+  const glowColor1 = isDark ? "bg-white/5" : "bg-purple-100/50";
+  const glowColor2 = isDark ? "bg-white/10" : "bg-purple-200/50";
+  const glowColor3 = isDark ? "bg-white/20" : "bg-purple-300/50";
+  const titleColor = isDark ? "text-white" : "text-gray-900";
+  const descColor = isDark ? "text-white/80" : "text-gray-700";
+
   return (
     <View
       className="flex-1 items-center justify-center px-10"
@@ -299,10 +326,10 @@ const SlideContent = ({ slide, isActive, t }: SlideContentProps) => {
     >
       {/* Emoji container with glow effect */}
       <View className="mb-16 items-center justify-center">
-        <View className="absolute h-64 w-64 rounded-full bg-white/5" />
-        <View className="absolute h-56 w-56 rounded-full bg-white/10" />
+        <View className={`absolute h-64 w-64 rounded-full ${glowColor1}`} />
+        <View className={`absolute h-56 w-56 rounded-full ${glowColor2}`} />
         <Animated.View
-          className="h-48 w-48 items-center justify-center rounded-full bg-white/20"
+          className={`h-48 w-48 items-center justify-center rounded-full ${glowColor3}`}
           style={emojiStyle}
         >
           <Text className="text-9xl">{slide.emoji}</Text>
@@ -310,13 +337,15 @@ const SlideContent = ({ slide, isActive, t }: SlideContentProps) => {
       </View>
 
       <Animated.View className="w-full items-center" style={contentStyle}>
-        {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-        <Text className="mb-6 text-center text-5xl font-extrabold text-white leading-tight">
+        {/* biome-ignore lint/nursery/useSortedClasses: Dynamic color classes */}
+        <Text
+          className={`mb-6 text-center font-extrabold text-5xl leading-tight ${titleColor}`}
+        >
           {t(slide.titleKey)}
         </Text>
 
-        {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-        <Text className="text-center text-xl leading-8 text-white/80 px-4">
+        {/* biome-ignore lint/nursery/useSortedClasses: Dynamic color classes */}
+        <Text className={`px-4 text-center text-xl leading-8 ${descColor}`}>
           {t(slide.descriptionKey)}
         </Text>
       </Animated.View>
@@ -327,9 +356,10 @@ const SlideContent = ({ slide, isActive, t }: SlideContentProps) => {
 type PaginationDotProps = {
   index: number;
   scrollX: ReturnType<typeof useSharedValue<number>>;
+  dotColor: string;
 };
 
-const PaginationDot = ({ index, scrollX }: PaginationDotProps) => {
+const PaginationDot = ({ index, scrollX, dotColor }: PaginationDotProps) => {
   const animatedStyle = useAnimatedStyle(() => {
     const isActive =
       scrollX.value >= index * SCREEN_WIDTH - SCREEN_WIDTH / 2 &&
@@ -359,7 +389,7 @@ const PaginationDot = ({ index, scrollX }: PaginationDotProps) => {
 
   return (
     <Animated.View
-      className="h-2.5 rounded-full bg-white shadow-lg"
+      className={`h-2.5 rounded-full ${dotColor} shadow-lg`}
       style={animatedStyle}
     />
   );

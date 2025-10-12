@@ -60,7 +60,7 @@ const translations = {
       "Join thousands of users already achieving their goals. Let's begin your journey together!",
     next: "Next",
     skip: "Skip",
-    getStarted: "Get Started",
+    get_started: "Get Started",
   },
   tr: {
     // Auth

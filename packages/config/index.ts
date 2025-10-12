@@ -37,10 +37,10 @@ export const appConfig: AppConfig = {
         onboarding: true,
       },
       integrations: {
-        appsFlyer: false,
+        appsFlyer: true,
         oneSignal: false,
         postHog: false,
-        revenueCat:false
+        revenueCat: false,
       },
     },
   },

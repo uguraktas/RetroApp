@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-import { Container } from "@/components/container";
 import { authClient } from "@/lib/auth-client";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { Ionicons } from "@expo/vector-icons";
+import { InfoCard } from "@/components/info-card";
 
 export default function HomeScreen() {
 	const router = useRouter();
@@ -16,64 +16,72 @@ export default function HomeScreen() {
 	};
 
 	return (
-		<Container>
-			<View className="flex-1 justify-center py-8">
-				<View className="rounded-lg border border-border bg-card p-6">
-					{/* Header with Theme Toggle */}
-					<View className="mb-6 flex-row items-center justify-between">
-						<View>
-							<Text className="mb-1 text-2xl font-semibold text-foreground">
+		<View className="flex-1 bg-background">
+			<ScrollView className="flex-1 p-4 pt-16">
+				{/* Header */}
+				<View className="mb-8">
+					<View className="mb-4 flex-row items-center justify-between">
+						<View className="flex-1">
+							<Text className="font-bold text-3xl text-foreground">
 								Dashboard
 							</Text>
-							<Text className="text-sm text-muted-foreground">
+							<Text className="mt-1 text-muted-foreground">
 								Welcome back, {session?.user.name}!
 							</Text>
 						</View>
 						<TouchableOpacity
 							onPress={toggleColorScheme}
-							className="items-center justify-center rounded-full bg-muted"
-							style={{ width: 48, height: 48 }}
+							className="h-11 w-11 items-center justify-center rounded-full bg-muted"
 							activeOpacity={0.7}
 						>
 							<Ionicons
 								name={isDarkColorScheme ? "sunny" : "moon"}
-								size={24}
-								className="text-foreground"
-								color={isDarkColorScheme ? "#f59e0b" : "#6366f1"}
+								size={22}
+								className="text-primary"
 							/>
 						</TouchableOpacity>
 					</View>
 
-					<View style={{ gap: 16 }}>
-						<View className="rounded-md bg-muted p-4">
-							<Text className="mb-1 text-xs text-muted-foreground">Email</Text>
-							<Text className="text-foreground">{session?.user.email}</Text>
-						</View>
-
-						<View className="rounded-md bg-muted p-4">
-							<Text className="mb-1 text-xs text-muted-foreground">Name</Text>
-							<Text className="text-foreground">{session?.user.name}</Text>
-						</View>
-
-						<View className="rounded-md bg-muted p-4">
-							<Text className="mb-1 text-xs text-muted-foreground">Theme</Text>
-							<Text className="text-foreground">
-								{isDarkColorScheme ? "Dark Mode" : "Light Mode"}
-							</Text>
-						</View>
-					</View>
-
-					<TouchableOpacity
-						onPress={handleSignOut}
-						className="mt-6 flex-row items-center justify-center rounded-md bg-destructive p-4"
-						activeOpacity={0.8}
-					>
-						<Text className="font-medium text-destructive-foreground">
-							Sign Out
+					{/* Status Badge */}
+					<View className="flex-row items-center self-start rounded-full bg-muted px-3 py-1.5">
+						<View className="mr-2 h-2 w-2 rounded-full bg-green-500" />
+						<Text className="font-medium text-xs text-foreground">
+							All systems operational
 						</Text>
-					</TouchableOpacity>
+					</View>
 				</View>
-			</View>
-		</Container>
+
+				{/* Info Cards */}
+				<View className="gap-3">
+					<InfoCard
+						icon="mail"
+						label="Email Address"
+						value={session?.user.email || ""}
+					/>
+					<InfoCard
+						icon="person"
+						label="Full Name"
+						value={session?.user.name || ""}
+					/>
+					<InfoCard
+						icon={isDarkColorScheme ? "moon" : "sunny"}
+						label="Current Theme"
+						value={isDarkColorScheme ? "Dark Mode" : "Light Mode"}
+					/>
+				</View>
+
+				{/* Sign Out Button */}
+				<TouchableOpacity
+					onPress={handleSignOut}
+					className="mt-8 h-12 flex-row items-center justify-center rounded-lg bg-destructive"
+					activeOpacity={0.8}
+				>
+					<Ionicons name="log-out-outline" size={20} color="#fff" />
+					<Text className="ml-2 font-semibold text-base text-destructive-foreground">
+						Sign Out
+					</Text>
+				</TouchableOpacity>
+			</ScrollView>
+		</View>
 	);
 }

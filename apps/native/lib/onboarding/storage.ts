@@ -1,6 +1,6 @@
 import { deleteItemAsync, getItemAsync, setItemAsync } from "expo-secure-store";
 
-const ONBOARDING_KEY = "onboarding_completed5";
+const ONBOARDING_KEY = "onboarding_completed";
 
 export const hasCompletedOnboarding = async (): Promise<boolean> => {
   try {

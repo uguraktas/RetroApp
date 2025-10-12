@@ -16,7 +16,7 @@ export default function HomeScreen() {
 	};
 
 	return (
-		<View className="flex-1 bg-background">
+		<View className="flex-1 bg-white dark:bg-black">
 			<ScrollView className="flex-1 p-4 pt-16">
 				{/* Header */}
 				<View className="mb-8">
@@ -25,27 +25,27 @@ export default function HomeScreen() {
 							<Text className="font-bold text-3xl text-foreground">
 								Dashboard
 							</Text>
-							<Text className="mt-1 text-muted-foreground">
+							<Text className="mt-1 text-zinc-600 dark:text-zinc-400">
 								Welcome back, {session?.user.name}!
 							</Text>
 						</View>
 						<TouchableOpacity
 							onPress={toggleColorScheme}
-							className="h-11 w-11 items-center justify-center rounded-full bg-muted"
+							className="h-11 w-11 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900"
 							activeOpacity={0.7}
 						>
 							<Ionicons
 								name={isDarkColorScheme ? "sunny" : "moon"}
 								size={22}
-								className="text-primary"
+								color={isDarkColorScheme ? "#fbbf24" : "#4f46e5"}
 							/>
 						</TouchableOpacity>
 					</View>
 
 					{/* Status Badge */}
-					<View className="flex-row items-center self-start rounded-full bg-muted px-3 py-1.5">
+					<View className="flex-row items-center self-start rounded-full bg-zinc-100 px-3 py-1.5 dark:bg-zinc-900">
 						<View className="mr-2 h-2 w-2 rounded-full bg-green-500" />
-						<Text className="font-medium text-xs text-foreground">
+						<Text className="font-medium text-black text-xs dark:text-white">
 							All systems operational
 						</Text>
 					</View>
@@ -73,11 +73,11 @@ export default function HomeScreen() {
 				{/* Sign Out Button */}
 				<TouchableOpacity
 					onPress={handleSignOut}
-					className="mt-8 h-12 flex-row items-center justify-center rounded-lg bg-destructive"
+					className="mt-8 h-12 flex-row items-center justify-center rounded-lg bg-red-500"
 					activeOpacity={0.8}
 				>
 					<Ionicons name="log-out-outline" size={20} color="#fff" />
-					<Text className="ml-2 font-semibold text-base text-destructive-foreground">
+					<Text className="ml-2 font-semibold text-base text-white">
 						Sign Out
 					</Text>
 				</TouchableOpacity>

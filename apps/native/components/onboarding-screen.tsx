@@ -104,57 +104,64 @@ export const OnboardingScreen = () => {
       {/* Decorative background elements */}
       <BackgroundCircles />
 
-      <ScrollView
-        className="flex-1"
-        horizontal
-        onScroll={handleScroll}
-        pagingEnabled
-        ref={scrollViewRef}
-        scrollEventThrottle={16}
-        showsHorizontalScrollIndicator={false}
-      >
-        {onboardingSlides.map((slide, slideIndex) => (
-          <SlideContent
-            isActive={currentIndex === slideIndex}
-            key={slide.id}
-            slide={slide}
-            t={t}
-          />
-        ))}
-      </ScrollView>
+      {/* Main content area */}
+      <View className="flex-1">
+        <ScrollView
+          className="flex-1"
+          horizontal
+          onScroll={handleScroll}
+          pagingEnabled
+          ref={scrollViewRef}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+        >
+          {onboardingSlides.map((slide, slideIndex) => (
+            <SlideContent
+              isActive={currentIndex === slideIndex}
+              key={slide.id}
+              slide={slide}
+              t={t}
+            />
+          ))}
+        </ScrollView>
+      </View>
 
-      <View className="pt-8 pb-12">
-        <View className="mb-8 flex-row items-center justify-center gap-2">
+      {/* Fixed footer with dark background */}
+      <View className="bg-black/40 backdrop-blur-xl">
+        {/* Pagination dots */}
+        <View className="flex-row items-center justify-center gap-2 py-8">
           {onboardingSlides.map((slide, index) => (
             <PaginationDot index={index} key={slide.id} scrollX={scrollX} />
           ))}
         </View>
 
-        <View className="px-6">
+        {/* Action button */}
+        <View className="px-10 pb-10">
           <Pressable
-            className="overflow-hidden rounded-3xl shadow-2xl active:opacity-90"
+            className="overflow-hidden rounded-full active:scale-95"
             onPress={isLastSlide ? handleGetStarted : handleNext}
           >
             <LinearGradient
-              className="px-8 py-6"
-              colors={["#a855f7", "#9333ea", "#7e22ce"]}
+              className="px-8 py-5"
+              colors={["#a855f7", "#9333ea"]}
               end={{ x: 1, y: 0 }}
               start={{ x: 0, y: 0 }}
             >
               {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-              <Text className="text-center text-lg font-bold text-white tracking-wide">
-                {isLastSlide ? t("skip") : t("next")}
+              <Text className="text-center text-lg font-bold text-white">
+                {isLastSlide ? t("onboarding.getStarted") : t("next")}
               </Text>
             </LinearGradient>
           </Pressable>
 
+          {/* Skip text - only show on non-last slides */}
           {!isLastSlide && (
             <Pressable
-              className="mt-4 py-4 active:opacity-70"
+              className="mt-5 py-2 active:opacity-70"
               onPress={handleGetStarted}
             >
               {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-              <Text className="text-center text-base font-semibold text-white/70">
+              <Text className="text-center text-base font-medium text-white/60">
                 {t("skip")}
               </Text>
             </Pressable>

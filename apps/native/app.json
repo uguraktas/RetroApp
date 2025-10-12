@@ -9,7 +9,20 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.anonymous.codebasehubapp",
+      "infoPlist": {
+        "CFBundleLocalizations": ["en", "tr", "ar"],
+        "CFBundleDevelopmentRegion": "en",
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "development",
+        "com.apple.security.application-groups": [
+          "group.com.anonymous.codebasehubapp.onesignal"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +41,9 @@
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
+      "expo-secure-store",
+      "expo-web-browser",
       [
         "expo-splash-screen",
         {
@@ -38,6 +54,20 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development",
+          "iPhoneDeploymentTarget": "15.0"
+        }
+      ],
+      [
+        "react-native-appsflyer",
+        {
+          "shouldUseStrictMode": false,
+          "shouldUsePurchaseConnector": true
         }
       ]
     ],

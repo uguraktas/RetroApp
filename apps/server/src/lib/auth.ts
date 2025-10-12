@@ -8,37 +8,43 @@ import * as schema from "../db/schema/auth.js";
 import { polarClient } from "./payments.js";
 
 export const auth = betterAuth<BetterAuthOptions>({
-  baseURL: process.env.BETTER_AUTH_URL || "",
   database: drizzleAdapter(db, {
     provider: "pg",
-
     schema,
   }),
   trustedOrigins: [
     ...(process.env.CORS_ORIGIN ? [process.env.CORS_ORIGIN] : []),
-    ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
     "codebasehubapp://",
-    "exp://",
+    "https://appleid.apple.com",
   ],
-
+  user: {
+    deleteUser: {
+      enabled: true,
+    },
+  },
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: false,
   },
-  advanced: {
-    defaultCookieAttributes: {
-      sameSite: "none",
-      secure: true,
-      httpOnly: true,
-      partitioned: true, // Required for cross-domain cookies in modern browsers
-      domain: undefined, // Don't set domain for truly cross-origin cookies
-    },
-  },
-  session: {
-    cookieCache: {
+  account: {
+    accountLinking: {
       enabled: true,
-      maxAge: 5 * 60, // 5 minutes cache
+      trustedProviders: ["google", "apple"],
     },
   },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      scope: ["email", "profile"],
+    },
+    apple: {
+      clientId: process.env.APPLE_CLIENT_ID as string,
+      clientSecret: process.env.APPLE_CLIENT_SECRET as string,
+      appBundleIdentifier: process.env.APPLE_APP_BUNDLE_IDENTIFIER as string,
+    },
+  },
+
   plugins: [
     admin(),
     polar({

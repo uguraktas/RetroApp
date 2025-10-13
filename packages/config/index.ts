@@ -40,7 +40,7 @@ export const appConfig: AppConfig = {
         appsFlyer: true,
         oneSignal: true,
         postHog: true,
-        revenueCat: false,
+        revenueCat: true,
       },
     },
   },

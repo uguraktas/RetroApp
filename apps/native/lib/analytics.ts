@@ -8,6 +8,8 @@ import {
   type PostHogEventParams,
   identifyUser as postHogIdentifyUser,
   logEvent as postHogLogEvent,
+  setRevenueCatUser,
+  removeRevenueCatUser,
 } from "./integrations";
 
 type AnalyticsParams = AppsFlyerEventParams | PostHogEventParams;
@@ -32,6 +34,7 @@ export const analytics = {
     await appsFlyerSetUserId(userId);
     postHogIdentifyUser(userId, properties);
     await oneSignalSetUser(userId, properties?.name, properties?.email);
+    await setRevenueCatUser(userId);
   },
 
   /**
@@ -56,14 +59,18 @@ export const analytics = {
     // Set user in OneSignal with name and email
     await oneSignalSetUser(userData.userId, userData.name, userData.email);
 
+    // Set user in RevenueCat for subscription tracking
+    await setRevenueCatUser(userData.userId);
+
     // Add email subscription if enabled
     if (userData.enableEmailNotifications && userData.email) {
       oneSignalAddEmail(userData.email);
     }
   },
 
-  removeUserId: () => {
+  removeUserId: async () => {
     oneSignalRemoveUser();
+    await removeRevenueCatUser();
   },
 };
 

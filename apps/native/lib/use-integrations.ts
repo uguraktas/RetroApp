@@ -4,6 +4,7 @@ import {
   initializeAppsFlyer,
   initializeOneSignal,
   initializePostHog,
+  initializeRevenueCat,
   isOneSignalEnabled,
   requestNotificationPermission,
 } from "./integrations";
@@ -24,6 +25,7 @@ export const useIntegrations = () => {
       initializeAppsFlyer();
       initializePostHog();
       initializeOneSignal();
+      await initializeRevenueCat();
 
       if (isOneSignalEnabled) {
         await requestNotificationPermission();

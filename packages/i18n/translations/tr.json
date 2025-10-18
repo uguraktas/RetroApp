@@ -138,9 +138,14 @@
       "signInButton": "Giriş yap",
       "orContinueWith": "Veya şununla devam edin",
       "continueWithGoogle": "Google ile devam et",
+      "continueWithApple": "Apple ile devam et",
       "noAccount": "Hesabınız yok mu?",
       "createAccount": "Hesap oluştur",
-      "success": "Başarıyla giriş yapıldı"
+      "success": "Başarıyla giriş yapıldı",
+      "errors": {
+        "googleSignInFailed": "Google girişi başarısız oldu. Lütfen tekrar deneyin.",
+        "appleSignInFailed": "Apple girişi başarısız oldu. Lütfen tekrar deneyin."
+      }
     },
     "signUp": {
       "title": "Hesabınızı oluşturun",
@@ -156,13 +161,18 @@
       "createAccountButton": "Hesap oluştur",
       "orContinueWith": "Veya şununla devam edin",
       "continueWithGoogle": "Google ile devam et",
+      "continueWithApple": "Apple ile devam et",
       "termsAgreement": "Bir hesap oluşturarak, bizim",
       "termsOfService": "Hizmet Şartlarımızı",
       "and": "ve",
       "privacyPolicy": "Gizlilik Politikamızı",
       "hasAccount": "Zaten hesabınız var mı?",
       "signIn": "Giriş yap",
-      "success": "Hesap başarıyla oluşturuldu"
+      "success": "Hesap başarıyla oluşturuldu",
+      "errors": {
+        "googleSignUpFailed": "Google kayıt başarısız oldu. Lütfen tekrar deneyin.",
+        "appleSignUpFailed": "Apple kayıt başarısız oldu. Lütfen tekrar deneyin."
+      }
     },
     "validation": {
       "nameMin": "Ad en az 2 karakter olmalıdır",
@@ -327,7 +337,13 @@
     "continueWithApple": "Apple ile devam et",
     "dontHaveAccount": "Hesabınız yok mu?",
     "createAccount": "Hesap oluştur",
-    "success": "Başarıyla giriş yapıldı"
+    "success": "Başarıyla giriş yapıldı",
+    "errors": {
+      "googleSignInFailed": "Google girişi başarısız oldu. Lütfen tekrar deneyin.",
+      "appleSignInFailed": "Apple girişi başarısız oldu. Lütfen tekrar deneyin.",
+      "invalidCredentials": "Geçersiz e-posta veya şifre",
+      "networkError": "Ağ hatası. Lütfen bağlantınızı kontrol edin."
+    }
   },
   "signUp": {
     "title": "Hesabınızı oluşturun",
@@ -343,13 +359,20 @@
     "createAccountButton": "Hesap oluştur",
     "orContinueWith": "Veya şununla devam edin",
     "continueWithGoogle": "Google ile devam et",
+    "continueWithApple": "Apple ile devam et",
     "termsAgreement": "Bir hesap oluşturarak, bizim",
     "termsOfService": "Hizmet Şartlarımızı",
     "and": "ve",
     "privacyPolicy": "Gizlilik Politikamızı",
     "hasAccount": "Zaten hesabınız var mı?",
     "signIn": "Giriş yap",
-    "success": "Hesap başarıyla oluşturuldu"
+    "success": "Hesap başarıyla oluşturuldu",
+    "errors": {
+      "googleSignUpFailed": "Google kaydı başarısız oldu. Lütfen tekrar deneyin.",
+      "appleSignUpFailed": "Apple kaydı başarısız oldu. Lütfen tekrar deneyin.",
+      "emailInUse": "Bu e-posta zaten kullanımda",
+      "networkError": "Ağ hatası. Lütfen bağlantınızı kontrol edin."
+    }
   },
   "home": {
     "title": "Kontrol Paneli",

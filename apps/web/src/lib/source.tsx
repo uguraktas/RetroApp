@@ -1,4 +1,4 @@
-import { docs, meta, blog, blogMeta } from "@/.source";
+import { docs, meta, blog, blogMeta, legal, legalMeta } from "@/.source";
 import { createI18nSearchAPI } from "fumadocs-core/search/server";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
@@ -14,11 +14,14 @@ import {
 	Zap,
 	FileCode,
 	Box,
+	Scale,
+	Shield,
 	type LucideIcon
 } from "lucide-react";
 
 const source = createMDXSource(docs, meta);
 const blogSource = createMDXSource(blog, blogMeta);
+const legalSource = createMDXSource(legal, legalMeta);
 
 // Icon mapping for sidebar
 const iconMap: Record<string, LucideIcon> = {
@@ -33,6 +36,8 @@ const iconMap: Record<string, LucideIcon> = {
 	Zap,
 	FileCode,
 	Box,
+	Scale,
+	Shield,
 };
 
 export const { getPage, getPages, pageTree } = loader({
@@ -89,6 +94,45 @@ export const blogSearchAPI = createI18nSearchAPI("advanced", {
 		defaultLanguage: "en",
 	},
 	indexes: getBlogPages().map((page) => ({
+		id: page.url,
+		title: page.data.title,
+		description: page.data.description,
+		structuredData: page.data.structuredData,
+		url: page.url,
+		locale: page.locale ?? "en",
+	})),
+});
+
+// Legal loader
+export const {
+	getPage: getLegalPage,
+	getPages: getLegalPages,
+	pageTree: legalPageTree
+} = loader({
+	baseUrl: "/legal",
+	source: legalSource,
+	i18n: {
+		languages: ["en", "tr", "ar"],
+		defaultLanguage: "en",
+	},
+	icon(icon) {
+		if (!icon) {
+			return;
+		}
+		if (icon in iconMap) {
+			const Icon = iconMap[icon as keyof typeof iconMap];
+			return <Icon />;
+		}
+	},
+});
+
+// Legal search API
+export const legalSearchAPI = createI18nSearchAPI("advanced", {
+	i18n: {
+		languages: ["en", "tr", "ar"],
+		defaultLanguage: "en",
+	},
+	indexes: getLegalPages().map((page) => ({
 		id: page.url,
 		title: page.data.title,
 		description: page.data.description,

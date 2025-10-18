@@ -138,9 +138,14 @@
       "signInButton": "Sign in",
       "orContinueWith": "Or continue with",
       "continueWithGoogle": "Continue with Google",
+      "continueWithApple": "Continue with Apple",
       "noAccount": "Don't have an account?",
       "createAccount": "Create account",
-      "success": "Signed in successfully"
+      "success": "Signed in successfully",
+      "errors": {
+        "googleSignInFailed": "Google sign-in failed. Please try again.",
+        "appleSignInFailed": "Apple sign-in failed. Please try again."
+      }
     },
     "signUp": {
       "title": "Create your account",
@@ -156,13 +161,18 @@
       "createAccountButton": "Create account",
       "orContinueWith": "Or continue with",
       "continueWithGoogle": "Continue with Google",
+      "continueWithApple": "Continue with Apple",
       "termsAgreement": "By creating an account, you agree to our",
       "termsOfService": "Terms of Service",
       "and": "and",
       "privacyPolicy": "Privacy Policy",
       "hasAccount": "Already have an account?",
       "signIn": "Sign in",
-      "success": "Account created successfully"
+      "success": "Account created successfully",
+      "errors": {
+        "googleSignUpFailed": "Google sign-up failed. Please try again.",
+        "appleSignUpFailed": "Apple sign-up failed. Please try again."
+      }
     },
     "validation": {
       "nameMin": "Name must be at least 2 characters",
@@ -327,7 +337,13 @@
     "continueWithApple": "Continue with Apple",
     "dontHaveAccount": "Don't have an account?",
     "createAccount": "Create account",
-    "success": "Signed in successfully"
+    "success": "Signed in successfully",
+    "errors": {
+      "googleSignInFailed": "Google sign-in failed. Please try again.",
+      "appleSignInFailed": "Apple sign-in failed. Please try again.",
+      "invalidCredentials": "Invalid email or password",
+      "networkError": "Network error. Please check your connection."
+    }
   },
   "signUp": {
     "title": "Create your account",
@@ -343,13 +359,20 @@
     "createAccountButton": "Create account",
     "orContinueWith": "Or continue with",
     "continueWithGoogle": "Continue with Google",
+    "continueWithApple": "Continue with Apple",
     "termsAgreement": "By creating an account, you agree to our",
     "termsOfService": "Terms of Service",
     "and": "and",
     "privacyPolicy": "Privacy Policy",
     "hasAccount": "Already have an account?",
     "signIn": "Sign in",
-    "success": "Account created successfully"
+    "success": "Account created successfully",
+    "errors": {
+      "googleSignUpFailed": "Google sign-up failed. Please try again.",
+      "appleSignUpFailed": "Apple sign-up failed. Please try again.",
+      "emailInUse": "This email is already in use",
+      "networkError": "Network error. Please check your connection."
+    }
   },
   "home": {
     "title": "Dashboard",

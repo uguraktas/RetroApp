@@ -138,9 +138,14 @@
       "signInButton": "تسجيل الدخول",
       "orContinueWith": "أو تابع مع",
       "continueWithGoogle": "تابع مع Google",
+      "continueWithApple": "تابع مع Apple",
       "noAccount": "ليس لديك حساب؟",
       "createAccount": "إنشاء حساب",
-      "success": "تم تسجيل الدخول بنجاح"
+      "success": "تم تسجيل الدخول بنجاح",
+      "errors": {
+        "googleSignInFailed": "فشل تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى.",
+        "appleSignInFailed": "فشل تسجيل الدخول عبر Apple. يرجى المحاولة مرة أخرى."
+      }
     },
     "signUp": {
       "title": "إنشاء حسابك",
@@ -156,13 +161,18 @@
       "createAccountButton": "إنشاء حساب",
       "orContinueWith": "أو تابع مع",
       "continueWithGoogle": "تابع مع Google",
+      "continueWithApple": "تابع مع Apple",
       "termsAgreement": "بإنشاء حساب، فإنك توافق على",
       "termsOfService": "شروط الخدمة",
       "and": "و",
       "privacyPolicy": "سياسة الخصوصية",
       "hasAccount": "هل لديك حساب بالفعل؟",
       "signIn": "تسجيل الدخول",
-      "success": "تم إنشاء الحساب بنجاح"
+      "success": "تم إنشاء الحساب بنجاح",
+      "errors": {
+        "googleSignUpFailed": "فشل التسجيل عبر Google. يرجى المحاولة مرة أخرى.",
+        "appleSignUpFailed": "فشل التسجيل عبر Apple. يرجى المحاولة مرة أخرى."
+      }
     },
     "validation": {
       "nameMin": "يجب أن يكون الاسم حرفين على الأقل",
@@ -327,7 +337,13 @@
     "continueWithApple": "تابع مع Apple",
     "dontHaveAccount": "ليس لديك حساب؟",
     "createAccount": "إنشاء حساب",
-    "success": "تم تسجيل الدخول بنجاح"
+    "success": "تم تسجيل الدخول بنجاح",
+    "errors": {
+      "googleSignInFailed": "فشل تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى.",
+      "appleSignInFailed": "فشل تسجيل الدخول عبر Apple. يرجى المحاولة مرة أخرى.",
+      "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+      "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك."
+    }
   },
   "signUp": {
     "title": "إنشاء حسابك",
@@ -343,13 +359,20 @@
     "createAccountButton": "إنشاء حساب",
     "orContinueWith": "أو تابع مع",
     "continueWithGoogle": "تابع مع Google",
+    "continueWithApple": "تابع مع Apple",
     "termsAgreement": "بإنشاء حساب، فإنك توافق على",
     "termsOfService": "شروط الخدمة",
     "and": "و",
     "privacyPolicy": "سياسة الخصوصية",
     "hasAccount": "هل لديك حساب بالفعل؟",
     "signIn": "تسجيل الدخول",
-    "success": "تم إنشاء الحساب بنجاح"
+    "success": "تم إنشاء الحساب بنجاح",
+    "errors": {
+      "googleSignUpFailed": "فشل التسجيل عبر Google. يرجى المحاولة مرة أخرى.",
+      "appleSignUpFailed": "فشل التسجيل عبر Apple. يرجى المحاولة مرة أخرى.",
+      "emailInUse": "هذا البريد الإلكتروني مستخدم بالفعل",
+      "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك."
+    }
   },
   "home": {
     "title": "لوحة التحكم",

@@ -18,3 +18,8 @@ export const { docs, meta } = defineDocs({
 export const { docs: blog, meta: blogMeta } = defineDocs({
 	dir: "content/blog",
 });
+
+export const { docs: legal, meta: legalMeta } = defineDocs({
+	dir: "content/legal",
+	exclude: ["README.md"],
+});

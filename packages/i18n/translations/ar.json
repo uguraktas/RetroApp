@@ -386,5 +386,25 @@
     "signOut": "تسجيل الخروج",
     "language": "اللغة",
     "selectLanguage": "اختر اللغة"
+  },
+  "footer": {
+    "description": "مجموعة أدوات SaaS جاهزة للإنتاج مبنية باستخدام Next.js و TypeScript وأفضل الممارسات الحديثة.",
+    "product": "المنتج",
+    "features": "الميزات",
+    "pricing": "التسعير",
+    "docs": "التوثيق",
+    "changelog": "سجل التغييرات",
+    "company": "الشركة",
+    "about": "حول",
+    "blog": "المدونة",
+    "contact": "اتصل بنا",
+    "resources": "الموارد",
+    "aiChat": "دردشة AI",
+    "dashboard": "لوحة التحكم",
+    "support": "الدعم",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "cookies": "سياسة ملفات تعريف الارتباط",
+    "rights": "جميع الحقوق محفوظة."
   }
 }

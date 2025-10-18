@@ -386,5 +386,25 @@
     "signOut": "Sign Out",
     "language": "Language",
     "selectLanguage": "Select Language"
+  },
+  "footer": {
+    "description": "A production-ready SaaS starter kit built with Next.js, TypeScript, and modern best practices.",
+    "product": "Product",
+    "features": "Features",
+    "pricing": "Pricing",
+    "docs": "Documentation",
+    "changelog": "Changelog",
+    "company": "Company",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "resources": "Resources",
+    "aiChat": "AI Chat",
+    "dashboard": "Dashboard",
+    "support": "Support",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "rights": "All rights reserved."
   }
 }

@@ -386,5 +386,25 @@
     "signOut": "Çıkış Yap",
     "language": "Dil",
     "selectLanguage": "Dil Seçin"
+  },
+  "footer": {
+    "description": "Next.js, TypeScript ve modern en iyi uygulamalarla oluşturulmuş üretime hazır bir SaaS başlangıç kiti.",
+    "product": "Ürün",
+    "features": "Özellikler",
+    "pricing": "Fiyatlandırma",
+    "docs": "Dokümantasyon",
+    "changelog": "Değişiklik Günlüğü",
+    "company": "Şirket",
+    "about": "Hakkında",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "resources": "Kaynaklar",
+    "aiChat": "AI Sohbet",
+    "dashboard": "Kontrol Paneli",
+    "support": "Destek",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Hizmet Şartları",
+    "cookies": "Çerez Politikası",
+    "rights": "Tüm hakları saklıdır."
   }
 }

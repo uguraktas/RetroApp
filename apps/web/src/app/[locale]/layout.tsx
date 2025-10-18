@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../index.css";
 import { ConditionalHeader } from "@/components/conditional-header";
+import { Footer } from "@/components/footer";
 import Providers from "@/components/providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -48,9 +49,10 @@ export default async function LocaleLayout({
 			>
 				<NextIntlClientProvider messages={messages}>
 					<Providers>
-						<div className="grid h-svh grid-rows-[auto_1fr]">
+						<div className="flex min-h-screen flex-col">
 							<ConditionalHeader />
-							{children}
+							<main className="flex-1">{children}</main>
+							<Footer />
 						</div>
 					</Providers>
 				</NextIntlClientProvider>

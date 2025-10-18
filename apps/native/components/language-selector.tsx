@@ -50,7 +50,7 @@ export function LanguageSelector() {
             >
               <View className="mb-4 flex-row items-center justify-between">
                 <Text className="font-bold text-lg text-black dark:text-white">
-                  {t('select_language')}
+                  {t('home.selectLanguage')}
                 </Text>
                 <TouchableOpacity
                   onPress={() => setIsVisible(false)}

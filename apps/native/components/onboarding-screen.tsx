@@ -164,7 +164,9 @@ export const OnboardingScreen = () => {
             >
               {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
               <Text className="text-center text-lg font-bold text-white p-3">
-                {isLastSlide ? t("get_started") : t("next")}
+                {isLastSlide
+                  ? t("onboarding.getStarted")
+                  : t("onboarding.next")}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -179,7 +181,7 @@ export const OnboardingScreen = () => {
               <Text
                 className={`text-center font-medium text-base ${isDarkColorScheme ? "text-white/60" : "text-gray-500"}`}
               >
-                {t("skip")}
+                {t("onboarding.skip")}
               </Text>
             </Pressable>
           )}

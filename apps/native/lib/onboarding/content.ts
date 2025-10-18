@@ -8,26 +8,26 @@ export type OnboardingSlide = {
 export const onboardingSlides: OnboardingSlide[] = [
   {
     id: "welcome",
-    titleKey: "welcome",
-    descriptionKey: "welcome_subtitle",
+    titleKey: "onboarding.welcome.title",
+    descriptionKey: "onboarding.welcome.description",
     emoji: "👋",
   },
   {
     id: "features",
-    titleKey: "features",
-    descriptionKey: "features_subtitle",
+    titleKey: "onboarding.features.title",
+    descriptionKey: "onboarding.features.description",
     emoji: "✨",
   },
   {
     id: "notifications",
-    titleKey: "notifications",
-    descriptionKey: "notifications_subtitle",
+    titleKey: "onboarding.notifications.title",
+    descriptionKey: "onboarding.notifications.description",
     emoji: "🔔",
   },
   {
     id: "ready",
-    titleKey: "ready",
-    descriptionKey: "ready_subtitle",
+    titleKey: "onboarding.ready.title",
+    descriptionKey: "onboarding.ready.description",
     emoji: "🚀",
   },
 ];

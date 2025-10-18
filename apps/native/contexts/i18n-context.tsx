@@ -36,7 +36,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     return getLanguageInfo(currentLanguage);
   };
 
-  // Simple t function that will re-run when currentLanguage changes
+  // Translation function with proper namespace support
   const t = (key: string, options?: any) => {
     // This will cause re-renders because it depends on currentLanguage state
     return i18n.t(key, options);

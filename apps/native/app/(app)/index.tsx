@@ -65,10 +65,10 @@ export default function HomeScreen() {
           <View className="mb-4 flex-row items-center justify-between">
             <View className="flex-1">
               <Text className="font-bold text-3xl text-black dark:text-white">
-                {t("dashboard")}
+                {t("home.title")}
               </Text>
               <Text className="mt-1 text-zinc-600 dark:text-zinc-400">
-                {t("welcome_back_user", { name: session?.user.name })}
+                {t("home.welcomeBack", { name: session?.user.name })}
               </Text>
             </View>
             <View className="flex-row items-center" style={{ gap: 8 }}>
@@ -91,7 +91,7 @@ export default function HomeScreen() {
           <View className="flex-row items-center self-start rounded-full bg-zinc-100 px-3 py-1.5 dark:bg-zinc-900">
             <View className="mr-2 h-2 w-2 rounded-full bg-green-500" />
             <Text className="font-medium text-black text-xs dark:text-white">
-              {t("all_systems_operational")}
+              {t("home.allSystemsOperational")}
             </Text>
           </View>
         </View>
@@ -236,22 +236,22 @@ export default function HomeScreen() {
         <View className="gap-3">
           <InfoCard
             icon="mail"
-            label={t("email_address_label")}
+            label={t("home.emailLabel")}
             value={session?.user.email || ""}
           />
           <InfoCard
             icon="person"
-            label={t("full_name_label")}
+            label={t("home.fullNameLabel")}
             value={session?.user.name || ""}
           />
           <InfoCard
             icon={isDarkColorScheme ? "moon" : "sunny"}
-            label={t("current_theme")}
-            value={isDarkColorScheme ? t("dark_mode") : t("light_mode")}
+            label={t("home.currentTheme")}
+            value={isDarkColorScheme ? t("home.darkMode") : t("home.lightMode")}
           />
           <InfoCard
             icon="language"
-            label={t("language")}
+            label={t("home.language")}
             value={getCurrentLanguageInfo().name}
           />
         </View>
@@ -271,7 +271,7 @@ export default function HomeScreen() {
         >
           <Ionicons color="#fff" name="log-out-outline" size={20} />
           <Text className="ml-2 font-semibold text-base text-white">
-            {t("sign_out")}
+            {t("home.signOut")}
           </Text>
         </TouchableOpacity>
       </ScrollView>

@@ -1,25 +1,24 @@
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
 
 export default defineConfig({
-	mdxOptions: {
-		rehypeCodeOptions: {
-			themes: {
-				light: "github-light",
-				dark: "github-dark",
-			},
-		},
-	},
+  mdxOptions: {
+    rehypeCodeOptions: {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+    },
+  },
 });
 
 export const { docs, meta } = defineDocs({
-	dir: "content/docs",
+  dir: "content/docs",
 });
 
 export const { docs: blog, meta: blogMeta } = defineDocs({
-	dir: "content/blog",
+  dir: "content/blog",
 });
 
 export const { docs: legal, meta: legalMeta } = defineDocs({
-	dir: "content/legal",
-	exclude: ["README.md"],
+  dir: "content/legal",
 });

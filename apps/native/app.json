@@ -69,7 +69,8 @@
           "shouldUseStrictMode": false,
           "shouldUsePurchaseConnector": true
         }
-      ]
+      ],
+      "expo-tracking-transparency"
     ],
     "experiments": {
       "typedRoutes": true,

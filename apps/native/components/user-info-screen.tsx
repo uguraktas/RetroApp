@@ -87,50 +87,39 @@ export const UserInfoScreen = () => {
     setShowDatePicker(null);
   }, []);
 
-  const validateCurrentStep = useCallback(() => {
+  const isCurrentStepValid = useCallback(() => {
     const currentStep = userInfoSteps[currentIndex];
     for (const field of currentStep.fields) {
       if (field.required) {
         const value = formData[field.id];
         if (!value || (Array.isArray(value) && value.length === 0)) {
-          Alert.alert(
-            t("userInfo.validation.required.title"),
-            t("userInfo.validation.required.message")
-          );
           return false;
         }
       }
     }
     return true;
-  }, [currentIndex, formData, t]);
+  }, [currentIndex, formData]);
 
   const handleNext = useCallback(() => {
-    if (!validateCurrentStep()) {
-      return;
-    }
-
     if (currentIndex < userInfoSteps.length - 1) {
       scrollViewRef.current?.scrollTo({
         x: SCREEN_WIDTH * (currentIndex + 1),
         animated: true,
       });
     }
-  }, [currentIndex, validateCurrentStep]);
+  }, [currentIndex]);
 
   const handleComplete = useCallback(async () => {
-    if (!validateCurrentStep()) {
-      return;
-    }
-
     try {
       await completeUserInfo(formData);
       router.replace("/sign-in");
-    } catch (error) {
+    } catch {
       Alert.alert(t("userInfo.error.title"), t("userInfo.error.message"));
     }
-  }, [validateCurrentStep, formData, completeUserInfo, router, t]);
+  }, [formData, completeUserInfo, router, t]);
 
   const isLastSlide = currentIndex === userInfoSteps.length - 1;
+  const isButtonDisabled = !isCurrentStepValid();
 
   const gradientColors = isDarkColorScheme
     ? (["#1e1b4b", "#312e81", "#4c1d95", "#6b21a8"] as const)
@@ -202,16 +191,22 @@ export const UserInfoScreen = () => {
         <View className="px-10 pb-10">
           <Pressable
             className="overflow-hidden rounded-full active:scale-95"
+            disabled={isButtonDisabled}
             onPress={isLastSlide ? handleComplete : handleNext}
           >
             <LinearGradient
               className="px-8 py-5"
-              colors={["#a855f7", "#9333ea"]}
+              colors={
+                isButtonDisabled
+                  ? ["#9ca3af", "#6b7280"]
+                  : ["#a855f7", "#9333ea"]
+              }
               end={{ x: 1, y: 0 }}
               start={{ x: 0, y: 0 }}
             >
-              {/* biome-ignore lint/nursery/useSortedClasses: Biome CSS sorting conflicts with NativeWind */}
-              <Text className="text-center text-lg font-bold text-white p-3">
+              <Text
+                className={`p-3 text-center font-bold text-lg ${isButtonDisabled ? "text-white/50" : "text-white"}`}
+              >
                 {isLastSlide ? t("userInfo.complete") : t("userInfo.next")}
               </Text>
             </LinearGradient>

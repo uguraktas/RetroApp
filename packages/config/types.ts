@@ -23,6 +23,7 @@ export type MobileSettings = {
   theme: Theme;
   features: {
     onboarding: boolean;
+    userInfo: boolean;
   };
   integrations: {
     appsFlyer: boolean;

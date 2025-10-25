@@ -322,6 +322,59 @@
     "skip": "Skip",
     "getStarted": "Let's start"
   },
+  "userInfo": {
+    "birthday": {
+      "title": "When's your birthday?",
+      "description": "Help us personalize your experience",
+      "label": "Birthday",
+      "placeholder": "Select your birth date"
+    },
+    "interests": {
+      "title": "What interests you?",
+      "description": "Choose your primary interest",
+      "label": "Select your main interest",
+      "options": {
+        "technology": "Technology & Innovation",
+        "business": "Business & Entrepreneurship",
+        "health": "Health & Wellness",
+        "education": "Education & Learning",
+        "entertainment": "Entertainment & Media"
+      }
+    },
+    "preferences": {
+      "title": "Communication preferences",
+      "description": "How would you like to hear from us?",
+      "notifications": {
+        "label": "Notification channels",
+        "options": {
+          "email": "Email notifications",
+          "push": "Push notifications",
+          "sms": "SMS notifications"
+        }
+      },
+      "newsletter": {
+        "label": "Newsletter subscription",
+        "options": {
+          "subscribe": "Subscribe to our newsletter"
+        }
+      }
+    },
+    "selectDate": "Select date",
+    "next": "Next",
+    "back": "Back",
+    "complete": "Complete",
+    "progress": "Progress",
+    "validation": {
+      "required": {
+        "title": "Required Field",
+        "message": "Please complete all required fields before continuing"
+      }
+    },
+    "error": {
+      "title": "Error",
+      "message": "Something went wrong. Please try again."
+    }
+  },
   "signIn": {
     "title": "Welcome back",
     "description": "Enter your credentials to access your account",

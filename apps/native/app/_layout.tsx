@@ -13,10 +13,12 @@ import "../global.css";
 import React, { useRef } from "react";
 import { Platform, View } from "react-native";
 import { OnboardingScreen } from "@/components/onboarding-screen";
+import { UserInfoScreen } from "@/components/user-info-screen";
 import { I18nProvider } from "@/contexts/i18n-context";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { NAV_THEME } from "@/lib/constants";
 import { useOnboarding } from "@/lib/onboarding/use-onboarding";
+import { useUserInfo } from "@/lib/user-info/use-user-info";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { useIntegrations } from "@/lib/use-integrations";
 import { queryClient } from "@/utils/trpc";
@@ -73,16 +75,26 @@ export default function RootLayout() {
 }
 
 const RootContent = () => {
-  const { isOnboardingComplete, isLoading } = useOnboarding();
+  const { isOnboardingComplete, isLoading: isOnboardingLoading } =
+    useOnboarding();
+  const { isUserInfoComplete, isLoading: isUserInfoLoading } = useUserInfo();
 
-  if (isLoading) {
+  // Wait for both features to load
+  if (isOnboardingLoading || isUserInfoLoading) {
     return <View className="flex-1 bg-background" />;
   }
 
+  // Step 1: Show onboarding if not completed
   if (!isOnboardingComplete) {
     return <OnboardingScreen />;
   }
 
+  // Step 2: Show user info collection if not completed
+  if (!isUserInfoComplete) {
+    return <UserInfoScreen />;
+  }
+
+  // Step 3: Show main app navigation
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="sign-in" />

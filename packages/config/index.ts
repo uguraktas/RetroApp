@@ -35,6 +35,7 @@ export const appConfig: AppConfig = {
       theme: "system",
       features: {
         onboarding: true,
+        userInfo: true,
       },
       integrations: {
         appsFlyer: true,

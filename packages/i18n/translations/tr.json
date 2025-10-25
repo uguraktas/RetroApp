@@ -322,6 +322,59 @@
     "skip": "Atla",
     "getStarted": "Başlayalım"
   },
+  "userInfo": {
+    "birthday": {
+      "title": "Doğum tarihiniz ne zaman?",
+      "description": "Deneyiminizi kişiselleştirmemize yardımcı olun",
+      "label": "Doğum Tarihi",
+      "placeholder": "Doğum tarihinizi seçin"
+    },
+    "interests": {
+      "title": "Sizi neler ilgilendiriyor?",
+      "description": "Birincil ilgi alanınızı seçin",
+      "label": "Ana ilgi alanınızı seçin",
+      "options": {
+        "technology": "Teknoloji ve İnovasyon",
+        "business": "İş ve Girişimcilik",
+        "health": "Sağlık ve Wellness",
+        "education": "Eğitim ve Öğrenme",
+        "entertainment": "Eğlence ve Medya"
+      }
+    },
+    "preferences": {
+      "title": "İletişim tercihleri",
+      "description": "Sizden nasıl haber almak istersiniz?",
+      "notifications": {
+        "label": "Bildirim kanalları",
+        "options": {
+          "email": "E-posta bildirimleri",
+          "push": "Push bildirimleri",
+          "sms": "SMS bildirimleri"
+        }
+      },
+      "newsletter": {
+        "label": "Haber bülteni aboneliği",
+        "options": {
+          "subscribe": "Haber bültenine abone ol"
+        }
+      }
+    },
+    "selectDate": "Tarih seçin",
+    "next": "İleri",
+    "back": "Geri",
+    "complete": "Tamamla",
+    "progress": "İlerleme",
+    "validation": {
+      "required": {
+        "title": "Gerekli Alan",
+        "message": "Devam etmeden önce lütfen tüm gerekli alanları doldurun"
+      }
+    },
+    "error": {
+      "title": "Hata",
+      "message": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin."
+    }
+  },
   "signIn": {
     "title": "Tekrar hoş geldiniz",
     "description": "Hesabınıza erişmek için kimlik bilgilerinizi girin",

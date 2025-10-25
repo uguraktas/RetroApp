@@ -58,7 +58,7 @@ export function SignIn({ onSwitchToSignUp }: SignInProps) {
           setEmail("");
           setPassword("");
           queryClient.refetchQueries();
-          router.replace("/(app)");
+          // Navigation is handled by the sign-in screen's useEffect watching session state
         },
         onFinished: () => {
           setIsLoading(false);

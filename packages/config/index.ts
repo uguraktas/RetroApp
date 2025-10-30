@@ -32,7 +32,7 @@ export const appConfig: AppConfig = {
         google: true,
         apple: true,
       },
-      theme: "system", //light, dark, system
+      theme: "dark", //light, dark, system
       features: {
         onboarding: true,
         userInfo: true,

@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "codebasehub",
-    "slug": "codebasehub",
+    "name": "Retro",
+    "slug": "retroapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "codebasehubapp",
+    "scheme": "retroapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.uguraktas.codebasehubrnapp",
+      "bundleIdentifier": "com.uguraktas.retroapp",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -20,7 +20,7 @@
       "entitlements": {
         "aps-environment": "development",
         "com.apple.security.application-groups": [
-          "group.com.uguraktas.codebasehubrnapp.onesignal"
+          "group.com.uguraktas.retroapp.onesignal"
         ]
       }
     },
@@ -33,7 +33,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.uguraktas.codebasehubrnapp"
+      "package": "com.uguraktas.retroapp"
     },
     "web": {
       "output": "static",

@@ -20,28 +20,28 @@ export const appConfig: AppConfig = {
   platforms: {
     web: {
       auth: {
-        allowSignup: true,
+        allowSignup: false,
         google: false,
         apple: false,
       },
-      theme: "system",
+      theme: "system", //light, dark, system
     },
     mobile: {
       auth: {
         allowSignup: true,
-        google: false,
-        apple: false,
+        google: true,
+        apple: true,
       },
-      theme: "system",
+      theme: "system", //light, dark, system
       features: {
         onboarding: true,
         userInfo: true,
       },
       integrations: {
-        appsFlyer: true,
-        oneSignal: true,
-        postHog: true,
-        revenueCat: true,
+        appsFlyer: false,
+        oneSignal: false,
+        postHog: false,
+        revenueCat: false,
       },
     },
   },

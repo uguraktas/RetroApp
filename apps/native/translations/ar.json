@@ -1,0 +1,9 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Retro",
+    "NSContactsUsageDescription": "Allow access to Retro"
+  },
+  "android": {
+    "app_name": "Retro"
+  }
+}

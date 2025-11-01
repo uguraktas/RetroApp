@@ -1,9 +1,15 @@
 import { appConfig } from "@repo/config";
-import arTranslations from "@repo/i18n/translations/ar.json" with { type: "json" };
-import enTranslations from "@repo/i18n/translations/en.json" with { type: "json" };
-import trTranslations from "@repo/i18n/translations/tr.json" with { type: "json" };
-import * as Localization from "expo-localization";
-import * as SecureStore from "expo-secure-store";
+import arTranslations from "@repo/i18n/translations/ar.json" with {
+  type: "json",
+};
+import enTranslations from "@repo/i18n/translations/en.json" with {
+  type: "json",
+};
+import trTranslations from "@repo/i18n/translations/tr.json" with {
+  type: "json",
+};
+import { getLocales } from "expo-localization";
+import { getItemAsync, setItemAsync } from "expo-secure-store";
 import { I18n } from "i18n-js";
 import { setLanguage as setOneSignalLanguage } from "@/lib/integrations/onesignal";
 
@@ -21,23 +27,37 @@ const i18n = new I18n(translations);
 
 // Helper function to get device language
 const getDeviceLanguage = (): string => {
-  const deviceLocales = Localization.getLocales();
-  const deviceLanguage =
-    deviceLocales[0]?.languageCode || appConfig.i18n.default;
+  try {
+    const deviceLocales = getLocales();
 
-  // Check if device language is supported
-  return appConfig.i18n.locales[
-    deviceLanguage as keyof typeof appConfig.i18n.locales
-  ]
-    ? deviceLanguage
-    : appConfig.i18n.default;
+    if (!deviceLocales || deviceLocales.length === 0) {
+      return appConfig.i18n.default;
+    }
+
+    // Get the first device locale's language code
+    const deviceLanguageCode = deviceLocales[0]?.languageCode;
+
+    // Check if device language is supported
+    if (
+      deviceLanguageCode &&
+      appConfig.i18n.locales[
+        deviceLanguageCode as keyof typeof appConfig.i18n.locales
+      ]
+    ) {
+      return deviceLanguageCode;
+    }
+
+    return appConfig.i18n.default;
+  } catch {
+    return appConfig.i18n.default;
+  }
 };
 
 // Initialize language
 export const initializeI18n = async () => {
   try {
     // Try to get saved language
-    const savedLanguage = await SecureStore.getItemAsync(STORAGE_KEY);
+    const savedLanguage = await getItemAsync(STORAGE_KEY);
 
     if (
       savedLanguage &&
@@ -52,7 +72,7 @@ export const initializeI18n = async () => {
       // Use device language or fallback to default
       const deviceLanguage = getDeviceLanguage();
       i18n.locale = deviceLanguage;
-      await SecureStore.setItemAsync(STORAGE_KEY, deviceLanguage);
+      await setItemAsync(STORAGE_KEY, deviceLanguage);
       // Set language in OneSignal
       setOneSignalLanguage(deviceLanguage);
     }
@@ -72,7 +92,7 @@ export const changeLanguage = async (languageCode: string) => {
     appConfig.i18n.locales[languageCode as keyof typeof appConfig.i18n.locales]
   ) {
     i18n.locale = languageCode;
-    await SecureStore.setItemAsync(STORAGE_KEY, languageCode);
+    await setItemAsync(STORAGE_KEY, languageCode);
     // Update language in OneSignal
     setOneSignalLanguage(languageCode);
   }

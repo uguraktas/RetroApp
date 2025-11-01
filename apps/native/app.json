@@ -8,10 +8,24 @@
     "scheme": "retroapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "extra": {
+      "supportsRTL": true
+    },
+    "locales": {
+      "en": "./translations/en.json",
+      "tr": "./translations/tr.json",
+      "ar": "./translations/ar.json"
+    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.uguraktas.retroapp",
       "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "CFBundleLocalizations": [
+          "en",
+          "tr",
+          "ar"
+        ],
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
           "remote-notification"
